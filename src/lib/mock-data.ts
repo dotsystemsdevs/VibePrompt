@@ -15,6 +15,7 @@ export const CATEGORIES: Category[] = [
   {
     slug: "app-store",
     name: "App Store",
+    shortName: "App Store",
     description: "iOS App Store descriptions that convert",
     icon: "📱",
     count: 12,
@@ -22,6 +23,7 @@ export const CATEGORIES: Category[] = [
   {
     slug: "play-store",
     name: "Play Store",
+    shortName: "Play Store",
     description: "Google Play descriptions optimized for installs",
     icon: "🤖",
     count: 9,
@@ -29,6 +31,7 @@ export const CATEGORIES: Category[] = [
   {
     slug: "aso",
     name: "ASO",
+    shortName: "ASO",
     description: "App Store Optimization — keywords, titles, subtitles",
     icon: "📈",
     count: 15,
@@ -36,6 +39,7 @@ export const CATEGORIES: Category[] = [
   {
     slug: "landing-page",
     name: "Landing Page",
+    shortName: "Landing",
     description: "Copy that turns visitors into users",
     icon: "🚀",
     count: 18,
@@ -43,6 +47,7 @@ export const CATEGORIES: Category[] = [
   {
     slug: "ui-ux",
     name: "UI / UX",
+    shortName: "UI/UX",
     description: "Design audits, flows, and component prompts",
     icon: "🎨",
     count: 21,
@@ -50,6 +55,7 @@ export const CATEGORIES: Category[] = [
   {
     slug: "mvp-docs",
     name: "MVP Docs",
+    shortName: "MVP",
     description: "PRDs, scopes, and product specs",
     icon: "📋",
     count: 11,
@@ -57,6 +63,7 @@ export const CATEGORIES: Category[] = [
   {
     slug: "api-backend",
     name: "API / Backend",
+    shortName: "Backend",
     description: "Architecture, endpoints, and database design",
     icon: "⚙️",
     count: 16,
@@ -64,6 +71,7 @@ export const CATEGORIES: Category[] = [
   {
     slug: "testing",
     name: "Testing",
+    shortName: "Testing",
     description: "QA, test cases, and bug reports",
     icon: "🧪",
     count: 8,

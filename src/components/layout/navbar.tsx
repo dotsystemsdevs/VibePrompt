@@ -1,37 +1,52 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
+
+const NAV_LINKS = [
+  { href: "/workflow", label: "Workflow" },
+  { href: "/browse", label: "Prompts" },
+  { href: "/awesome", label: "Awesome" },
+  { href: "/about", label: "About" },
+];
+
+const GITHUB_URL = "https://github.com/dotsystemsdevs/VibePrompt";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-foreground/15 bg-background/90 backdrop-blur-md">
       <div className="mx-auto flex h-12 max-w-6xl items-center justify-between px-6">
-        <Link href="/" className="text-sm font-semibold tracking-tight">
+        <Link href="/" className="text-sm font-semibold tracking-tight transition-opacity hover:opacity-75">
           vibeprompt
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
-          {[
-            { href: "/browse", label: "Browse" },
-            { href: "/workflow", label: "Workflow" },
-            { href: "/articles", label: "Articles" },
-            { href: "/library", label: "Library" },
-          ].map((l) => (
-            <Link key={l.href} href={l.href} className="text-xs text-muted-foreground transition-colors hover:text-foreground">
-              {l.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((l) => {
+            const active = pathname === l.href || pathname.startsWith(l.href + "/");
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                className="text-xs transition-colors hover:text-foreground"
+                style={{ color: active ? "var(--lilac)" : "var(--muted-foreground)" }}
+              >
+                {l.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-4">
           <a
-            href="https://github.com/dotsystemsdevs/VibePrompt"
+            href={GITHUB_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="border border-foreground/20 px-4 py-1.5 text-xs font-medium transition-all hover:bg-foreground hover:text-background"
+            className="hidden px-4 py-1.5 text-xs font-medium transition-opacity hover:opacity-85 sm:inline-flex"
+            style={{ backgroundColor: "var(--accent-blue)", color: "#ffffff" }}
           >
             Submit to GitHub
           </a>
@@ -46,13 +61,22 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className="border-t border-border px-6 pb-5 pt-4 md:hidden">
-          <div className="flex flex-col gap-4 text-xs text-muted-foreground">
-            <Link href="/browse" className="hover:text-foreground">Browse</Link>
-            <Link href="/workflow" className="hover:text-foreground">Workflow</Link>
-            <Link href="/articles" className="hover:text-foreground">Articles</Link>
-            <Link href="/library" className="hover:text-foreground">Library</Link>
-            <a href="https://github.com/dotsystemsdevs/VibePrompt" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">GitHub ↗</a>
+        <div className="border-t border-foreground/15 px-6 pb-5 pt-4 md:hidden">
+          <div className="flex flex-col gap-4 text-xs">
+            {NAV_LINKS.map((l) => {
+              const active = pathname === l.href || pathname.startsWith(l.href + "/");
+              return (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className="transition-colors hover:text-foreground"
+                  style={{ color: active ? "var(--lilac)" : "var(--muted-foreground)" }}
+                  onClick={() => setOpen(false)}
+                >
+                  {l.label}
+                </Link>
+              );
+            })}
           </div>
         </div>
       )}

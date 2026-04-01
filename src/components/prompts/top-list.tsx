@@ -1,47 +1,29 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import { Prompt } from "@/lib/types";
 import { CATEGORY_COLOR_MAP } from "@/lib/categories";
 
-const tabs = ["Today", "Week", "Year"] as const;
-type Tab = (typeof tabs)[number];
-
-const multipliers: Record<Tab, number> = { Today: 0.15, Week: 0.6, Year: 1 };
-
 interface TopListProps {
   prompts: Prompt[];
+  saveCounts: Record<string, number>;
 }
 
-export function TopList({ prompts }: TopListProps) {
-  const [active, setActive] = useState<Tab>("Week");
-
+export function TopList({ prompts, saveCounts }: TopListProps) {
   const sorted = [...prompts]
-    .map((p) => ({ ...p, score: Math.round(p.upvotes * multipliers[active]) }))
-    .sort((a, b) => b.score - a.score)
+    .map((p, idx) => ({ ...p, saves: saveCounts[p.slug] ?? 0, idx }))
+    .sort((a, b) => {
+      if (b.saves !== a.saves) return b.saves - a.saves;
+      const byName = a.title.localeCompare(b.title);
+      if (byName !== 0) return byName;
+      return a.idx - b.idx;
+    })
     .slice(0, 10);
 
   return (
     <div>
-      {/* Tabs */}
       <div className="flex items-center justify-between border-b border-border px-6 py-4">
-        <span className="text-xs text-muted-foreground uppercase tracking-widest">Top prompts</span>
-        <div className="flex items-center gap-1">
-          {tabs.map((t) => (
-            <button
-              key={t}
-              onClick={() => setActive(t)}
-              className={`px-3 py-1 text-xs transition-colors ${
-                active === t
-                  ? "border border-foreground bg-foreground text-background"
-                  : "border border-border text-muted-foreground hover:border-foreground hover:text-foreground"
-              }`}
-            >
-              {t}
-            </button>
-          ))}
-        </div>
+        <span className="text-xs text-muted-foreground uppercase tracking-widest">Top saved prompts</span>
       </div>
 
       {/* List */}
@@ -60,12 +42,23 @@ export function TopList({ prompts }: TopListProps) {
                 {p.title}
               </span>
             </div>
-            <span className="hidden shrink-0 items-center gap-1.5 text-xs text-muted-foreground sm:flex">
-              <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: CATEGORY_COLOR_MAP[p.category] ?? "#6b7280" }} />
+            <span className="hidden shrink-0 text-xs text-muted-foreground sm:flex">
               {p.categoryName}
             </span>
             <span className="shrink-0 text-xs text-muted-foreground tabular-nums">
-              {p.score} ↑
+              <span className="inline-flex items-center gap-1.5">
+                <svg
+                  className="h-3.5 w-3.5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
+                </svg>
+                {p.saves}
+              </span>
             </span>
             <span className="shrink-0 text-xs text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100">
               →

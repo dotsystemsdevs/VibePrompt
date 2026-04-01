@@ -2,6 +2,12 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+@source "../../**/*.{ts,tsx}";
+
+html {
+  scroll-behavior: smooth;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -16,25 +22,34 @@
   --color-card-foreground: var(--card-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-lilac: var(--lilac);
+  --color-lilac-dim: var(--lilac-dim);
   --radius: 0rem;
 }
 
 :root {
-  --background: oklch(0.08 0 0);
-  --foreground: oklch(0.95 0 0);
-  --card: oklch(0.11 0 0);
-  --card-foreground: oklch(0.95 0 0);
-  --muted: oklch(0.13 0 0);
-  --muted-foreground: oklch(0.65 0 0);
-  --border: oklch(1 0 0 / 0.30);
-  --input: oklch(1 0 0 / 0.07);
-  --primary: oklch(0.95 0 0);
-  --primary-foreground: oklch(0.08 0 0);
-  --secondary: oklch(0.13 0 0);
-  --secondary-foreground: oklch(0.95 0 0);
-  --ring: oklch(0.95 0 0);
+  --background: #0D0D0D;
+  --foreground: #EDEDED;
+  --font-geist-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-geist-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --card: rgba(237, 237, 237, 0.03);
+  --card-foreground: #EDEDED;
+  --muted: rgba(237, 237, 237, 0.04);
+  --muted-foreground: rgba(237, 237, 237, 0.85);
+  --border: rgba(237, 237, 237, 0.22);
+  --input: rgba(237, 237, 237, 0.22);
+  --primary: #EDEDED;
+  --primary-foreground: #0D0D0D;
+  --secondary: rgba(237, 237, 237, 0.04);
+  --secondary-foreground: #EDEDED;
+  --ring: #EDEDED;
   --radius: 0rem;
+  --lilac: #EDEDED;
+  --lilac-dim: rgba(237, 237, 237, 0.06);
+  --accent-blue: #2563EB;
+  --accent-blue-hover: #1D55D4;
 }
+
 
 @layer base {
   * { @apply border-border; }
@@ -42,15 +57,30 @@
     @apply bg-background text-foreground;
     -webkit-font-smoothing: antialiased;
   }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-geist-sans);
+    letter-spacing: -0.03em;
+  }
 }
 
 @layer utilities {
   .hero-display {
-    @apply font-bold leading-[1] tracking-tight;
-    font-size: clamp(2.2rem, 6vw, 4.4rem);
+    @apply font-bold leading-[1.05];
+    font-family: var(--font-geist-sans);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    letter-spacing: -0.04em;
   }
 
   .hero-kicker {
-    @apply text-xs uppercase tracking-widest text-muted-foreground;
+    @apply text-[10px] uppercase tracking-widest;
+    color: var(--lilac);
+  }
+
+.no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }

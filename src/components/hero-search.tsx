@@ -14,18 +14,32 @@ export function HeroSearch() {
   }
 
   return (
-    <form onSubmit={submit} className="mt-10 flex items-center border border-border max-w-lg">
+    <form
+      onSubmit={submit}
+      className="mt-8 flex max-w-lg items-center transition-all"
+      style={{
+        border: "1px solid var(--border)",
+        background: "var(--muted)",
+      }}
+      onFocus={(e) => {
+        (e.currentTarget as HTMLFormElement).style.borderColor = "var(--foreground)";
+      }}
+      onBlur={(e) => {
+        (e.currentTarget as HTMLFormElement).style.borderColor = "var(--border)";
+      }}
+    >
       <input
         value={q}
         onChange={(e) => setQ(e.target.value)}
-        placeholder="Search your vibe..."
-        className="flex-1 bg-transparent px-4 py-3 text-sm placeholder:text-muted-foreground focus:outline-none"
+        placeholder="Search prompts, tools, workflows..."
+        className="flex-1 bg-transparent px-5 py-3.5 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none"
       />
       <button
         type="submit"
-        className="border-l border-border px-5 py-3 text-xs text-muted-foreground transition-colors hover:bg-foreground hover:text-background"
+        className="shrink-0 border-l px-5 py-3.5 text-xs font-semibold uppercase tracking-widest transition-colors hover:text-foreground"
+        style={{ borderColor: "var(--border)", color: "var(--foreground)" }}
       >
-        →
+        Search
       </button>
     </form>
   );

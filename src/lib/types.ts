@@ -3,6 +3,7 @@ export type Difficulty = "beginner" | "intermediate" | "advanced";
 export type Category = {
   slug: string;
   name: string;
+  shortName: string;
   description: string;
   icon: string;
   count: number;
