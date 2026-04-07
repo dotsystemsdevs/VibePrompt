@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 
 const STEPS = [
@@ -112,16 +112,16 @@ function key(step: string, i: number) {
 }
 
 export function WorkflowChecklist() {
-  const [checked, setChecked] = useState<Record<string, boolean>>({});
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
+  const [checked, setChecked] = useState<Record<string, boolean>>(() => {
+    if (typeof window === "undefined") return {};
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) setChecked(JSON.parse(saved));
-    } catch {}
-    setMounted(true);
-  }, []);
+      return saved ? (JSON.parse(saved) as Record<string, boolean>) : {};
+    } catch {
+      return {};
+    }
+  });
+  const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
 
   function toggle(k: string) {
     setChecked((prev) => {

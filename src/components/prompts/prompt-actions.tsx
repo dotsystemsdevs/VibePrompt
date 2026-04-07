@@ -26,7 +26,7 @@ export function PromptActions({ promptText, sidebar, inline }: PromptActionsProp
       <button
         onClick={copy}
         className="px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-white transition-opacity hover:opacity-85"
-        style={{ backgroundColor: copied ? "var(--accent-blue)" : "var(--accent-blue)" }}
+        style={{ backgroundColor: copied ? "#16a34a" : "var(--accent-blue)" }}
       >
         {copied ? "Copied ✓" : "Copy"}
       </button>

@@ -31,7 +31,7 @@ const FEATURES = [
 ];
 
 export default async function HomePage() {
-  const { prompts } = await getPromptLibrary();
+  await getPromptLibrary();
 
   return (
     <div className="flex h-svh flex-col pt-12">
@@ -85,7 +85,7 @@ export default async function HomePage() {
             >
               {soon && (
                 <span className="absolute right-3 top-3 border border-foreground/15 px-1.5 py-0.5 text-[8px] uppercase tracking-widest text-foreground/30">
-                  Soon
+                  Coming soon
                 </span>
               )}
               <svg

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { Prompt } from "@/lib/types";
-import { CATEGORY_COLOR_MAP } from "@/lib/categories";
 
 interface TopListProps {
   prompts: Prompt[];

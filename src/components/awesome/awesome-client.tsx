@@ -95,28 +95,28 @@ export function AwesomeClient({ categories }: { categories: readonly AwesomeCate
           </span>
         </div>
 
-        <div className="grid grid-cols-5 gap-2 sm:grid-cols-6 lg:grid-cols-6" style={{ gridTemplateRows: "repeat(2, auto)" }}>
+        <div className="flex flex-wrap gap-1.5">
           <button
             onClick={() => selectCat("all")}
-            className={`border-2 px-3 py-2 text-xs transition-colors ${
+            className={`px-3 py-1.5 text-xs transition-colors ${
               activeSlug === "all"
-                ? "border-[var(--accent-blue)] bg-[var(--accent-blue)] text-white"
-                : "border-foreground/25 text-muted-foreground hover:border-foreground/50 hover:text-foreground"
+                ? "bg-[var(--accent-blue)] text-white"
+                : "border border-foreground/20 text-muted-foreground hover:border-foreground/40 hover:text-foreground"
             }`}
           >
             All
           </button>
-          {categories.map((cat, i) => (
+          {categories.map((cat) => (
             <button
               key={cat.slug}
               onClick={() => selectCat(cat.slug)}
-              className={`border-2 px-3 py-2 text-xs transition-colors ${
+              className={`px-3 py-1.5 text-xs transition-colors ${
                 activeSlug === cat.slug
-                  ? "border-[var(--accent-blue)] bg-[var(--accent-blue)] text-white"
-                  : "border-foreground/25 text-muted-foreground hover:border-foreground/50 hover:text-foreground"
+                  ? "bg-[var(--accent-blue)] text-white"
+                  : "border border-foreground/20 text-muted-foreground hover:border-foreground/40 hover:text-foreground"
               }`}
             >
-              <span className="text-[9px] opacity-70">{String(i).padStart(2, "0")}</span> {cat.title}
+              {cat.title}
             </button>
           ))}
         </div>

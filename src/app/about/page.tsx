@@ -22,7 +22,7 @@ export default function AboutPage() {
             <div className="max-w-2xl space-y-5 text-sm leading-[1.9] text-foreground/55">
               <p>
                 I had prompts in Notion, some in notes apps, some saved as bookmarks, some buried in old chats.
-                Every time I started a new project I'd spend the first hour hunting for the same things.
+                Every time I started a new project I&apos;d spend the first hour hunting for the same things.
                 I wanted one place — just the prompts that actually work, organized by when you need them.
                 Solo project, open source, anyone can contribute via GitHub.
               </p>

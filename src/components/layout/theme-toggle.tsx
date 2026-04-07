@@ -3,16 +3,21 @@
 import { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
 
+function getInitialTheme() {
+  if (typeof window === "undefined") return false;
+  return localStorage.getItem("theme") === "light";
+}
+
 export function ThemeToggle() {
-  const [isLight, setIsLight] = useState(false);
+  const [isLight, setIsLight] = useState(getInitialTheme);
 
   useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved === "light") {
+    if (isLight) {
       document.documentElement.classList.add("light");
-      setIsLight(true);
+    } else {
+      document.documentElement.classList.remove("light");
     }
-  }, []);
+  }, [isLight]);
 
   function toggle() {
     const next = !isLight;

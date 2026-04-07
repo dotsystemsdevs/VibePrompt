@@ -514,6 +514,8 @@ export default function WorkflowPage() {
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {s.resources.map((r) => {
                     const domain = r.href.startsWith("http") ? new URL(r.href).hostname : null;
+                    // eslint-disable-next-line @next/next/no-img-element
+                    const favicon = domain ? <img src={`https://www.google.com/s2/favicons?domain=${domain}&sz=32`} alt="" aria-hidden="true" width={18} height={18} className="shrink-0" /> : null;
                     return (
                       <div key={r.label} className="border border-foreground/20 bg-foreground/[0.03] p-4 transition-colors hover:bg-foreground/[0.07]">
                         <a
@@ -522,9 +524,7 @@ export default function WorkflowPage() {
                           rel={r.href.startsWith("http") ? "noopener noreferrer" : undefined}
                           className="group mb-3 flex items-center gap-2.5"
                         >
-                          {domain && (
-                            <img src={`https://www.google.com/s2/favicons?domain=${domain}&sz=32`} alt="" aria-hidden="true" width={18} height={18} className="shrink-0" />
-                          )}
+                          {favicon}
                           <span className="text-sm font-semibold text-foreground transition-colors group-hover:text-foreground/70">
                             {r.label}
                           </span>

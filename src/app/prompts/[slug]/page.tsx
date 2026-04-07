@@ -8,14 +8,14 @@ interface PageProps {
 }
 
 const PLACEHOLDER_RE = /(\[[^\]]+\]|\{\{[^}]+\}\})/g;
+const PLACEHOLDER_TEST_RE = /^\[[^\]]+\]$|^\{\{[^}]+\}\}$/;
 
 function HighlightPlaceholders({ text }: { text: string }) {
   const parts = text.split(PLACEHOLDER_RE);
   return (
     <>
       {parts.map((part, i) => {
-        const isPlaceholder = PLACEHOLDER_RE.test(part);
-        PLACEHOLDER_RE.lastIndex = 0;
+        const isPlaceholder = PLACEHOLDER_TEST_RE.test(part);
         if (!isPlaceholder) return <span key={i}>{part}</span>;
         return (
           <span key={i} style={{ color: "var(--accent-blue)" }}>
