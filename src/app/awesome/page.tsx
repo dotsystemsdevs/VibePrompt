@@ -15,7 +15,7 @@ export default function AwesomePage() {
     <div className="pt-12">
       {/* Header */}
       <Hero
-        title={"Tools that\nvibe coders actually use."}
+        title={"Tools that\n**vibe** coders actually use."}
         description={`${totalItems} curated tools, platforms, and resources — no bloat, no affiliates.`}
         accent="#ffffff"
       />

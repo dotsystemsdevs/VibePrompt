@@ -21,6 +21,16 @@ function splitLines(text: string) {
   return text.split("\n").map((t) => t.trim()).filter(Boolean);
 }
 
+function renderLine(line: string) {
+  const parts = line.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <span key={i} style={{ color: "var(--accent-blue)" }}>{part.slice(2, -2)}</span>;
+    }
+    return part;
+  });
+}
+
 function isExternalHref(href: string) {
   return /^https?:\/\//i.test(href);
 }
@@ -78,7 +88,7 @@ export function Hero({
             <h1 className="hero-display">
               {splitLines(title).map((line, i, arr) => (
                 <span key={i}>
-                  {line}
+                  {renderLine(line)}
                   {i < arr.length - 1 ? <br /> : null}
                 </span>
               ))}

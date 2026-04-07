@@ -442,7 +442,7 @@ export default function WorkflowPage() {
     <div className="pt-12">
       <WorkflowStepNav />
       <Hero
-        title={"8 steps.\nIdea to shipped."}
+        title={"8 steps.\nIdea to **shipped**."}
         description="The complete vibe coding playbook — validation, spec, stack, context, build loops, quality gates, launch, iteration."
         accent="#ffffff"
       />

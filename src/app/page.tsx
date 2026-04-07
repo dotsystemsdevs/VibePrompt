@@ -49,7 +49,7 @@ export default async function HomePage() {
             fontSize: "clamp(2.4rem, 6.5vw, 5.5rem)",
           }}
         >
-          Everything you need<br />to ship with AI.
+          Everything you need<br />to <span style={{ color: "var(--accent-blue)" }}>ship</span> with AI.
         </h1>
 
         <p className="mx-auto mt-6 max-w-md text-sm leading-relaxed text-foreground/45">

@@ -10,7 +10,7 @@ export default function AboutPage() {
   return (
     <div className="pt-12">
       <Hero
-        title={"Built for builders\nwho ship."}
+        title={"Built for **builders**\nwho ship."}
         description="VibePrompt is an open-source toolkit for vibe coders — the people who use AI to build and launch real products."
         accent="#ffffff"
       />
