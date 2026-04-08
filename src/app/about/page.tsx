@@ -19,8 +19,7 @@ export default function AboutPage() {
         <section className="border-t border-foreground/20 py-12 sm:py-16">
           <div className="max-w-2xl space-y-4 text-sm leading-[1.9] text-foreground/55">
             <p>
-              Solo project. Built because I kept rewriting the same prompts every time I started something new.
-              Open source, contribute via GitHub PR.
+              Solo project. Prompts, resources, and tools scattered across Notion, notes apps, bookmarks, and old chats. One place to keep it all. Open source, contribute via GitHub PR.
             </p>
             <a
               href="mailto:dot.systems@proton.me"
