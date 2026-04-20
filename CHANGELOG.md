@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- OG image for social sharing (`/opengraph-image`) — dark background, blue accent, all 9 workflow steps
+- Favicon — solid blue circle (`#2563EB`) shown in browser tab and navbar
+- Mobile homepage redesigned to match desktop — workflow card + left-aligned layout
+- `vibeprompt.tech` domain configured and live
+
+### Changed
+- Renamed all "Before AI" task group headings to "Checklist"
+- Footer tagline: "Open source prompt library" → "Prompts, resources, and tools for vibe coders"
+- Footer contributor avatars: grayscale removed, full color always
+- `next.config.ts`: added Google favicon hostname, removed unused turbopack root
+
+### Removed
+- Clerk auth removed entirely — no login needed
+- `content/prompts/` folder removed (unused legacy content)
+- `scripts/` folder removed (unused utility script)
+- `saves-counter` Supabase dependency removed
+
+## [Unreleased — previous]
+
+### Added
 
 - **Workflow page** — 9-step vibe coding workflow built from top open-source vibe coding repos (KhazP, EnzeD, coleam00, filipecalegario, and others). Steps: Environment, Research, PRD, Stack, Context, Build, Quality, Ship, Iterate
 - **Workflow content** — tasks, resources, and inline link chips with favicons for each of the 9 steps
