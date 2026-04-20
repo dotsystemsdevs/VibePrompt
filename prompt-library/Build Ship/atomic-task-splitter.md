@@ -3,44 +3,56 @@ title: Atomic Task Splitter
 ---
 
 ## When to use
-Before starting any build loop — break your PRD into one-prompt-per-task chunks that each fit in a single AI session with a clear done condition.
+Before starting any build loop — break your PRD into one-task-per-session chunks that each have a clear done condition and a git commit point.
 
 ## Prompt
 
 ```
-Break my PRD into atomic build tasks. Each task must be completable in a single AI coding session and must have a clear, binary done condition. I will give one task to the AI coding agent at a time in order.
+Break my PRD into atomic build tasks. Each task must be completable in a single AI coding session, touch at most 3 files, and end with a git commit.
 
 My PRD / feature list:
 [PASTE YOUR PRD OR FEATURE LIST HERE]
 
 Tech stack: [YOUR STACK]
-Current state of the codebase: [What already exists — e.g. "Next.js app initialized, Tailwind configured, Clerk auth installed and working, no other features built yet"]
+Current codebase state: [What already exists — e.g. "Next.js initialized, Tailwind configured, Clerk auth working, no other features built"]
 
-Rules for breaking tasks into atomic units:
+Rules for atomic tasks:
 
-1. SINGLE SESSION RULE: Each task must be completable in one AI session. If a task would take more than 30-45 minutes for an experienced developer, it is too large. Split it.
+1. SINGLE SESSION RULE
+Each task must fit in one AI session. If it would take more than 30-45 minutes for an experienced developer, split it. One session = one context window = one commit.
 
-2. FILE SCOPE RULE: Each task should touch at most 2-3 files. If a task requires more than 3 files to be modified, it is likely doing too much. Split it by layer (e.g. schema first, then API, then UI as separate tasks).
+2. FILE SCOPE RULE
+Each task should modify at most 3 files. If more files are needed, split by layer: schema first → API → UI as separate tasks.
 
-3. DEPENDENCY ORDER: Tasks must be sequenced so that each task only depends on work that is already done. No task should require another unfinished task to be complete first.
+3. DEPENDENCY ORDER
+Sequence tasks so each one only depends on already-completed work. No task should require an unfinished task.
 
-4. DONE CONDITION: Every task must have a single sentence done condition that is testable without running automated tests — something a human can verify by looking at the running app. Example: "User can click Submit and see a success message. The record appears in the database."
+4. DONE CONDITION
+Every task must have a single testable done condition — something verifiable by looking at the running app. Example: "User clicks Submit and sees a success message. The record appears in the database."
 
-5. NO ORPHAN TASKS: Every task must result in working code. No task should leave the app in a broken state. If a task is foundational (e.g. setting up a schema), its done condition must confirm the foundation works.
+5. NO BROKEN STATE RULE
+Every task must result in working code. No task should leave the app in a broken state. Foundational tasks must confirm their foundation works.
+
+6. COMMIT RULE
+After every completed and verified task: git commit with conventional format (feat: / fix: / chore:). Each commit is a rollback point. List the exact commit message for each task.
+
+7. TASK.MD RULE
+For each task, write the entry that goes in TASK.md: task title, date to add, done condition, and files to touch.
 
 Output format for each task:
 
 ---
 TASK [N]: [SHORT TITLE]
-Files to create or modify: [LIST EXACT FILE PATHS]
-Files that must NOT be touched: [LIST ANY FILES THAT COULD BE TEMPTING BUT ARE OUT OF SCOPE]
-What to build: [2-3 sentences describing exactly what to implement]
+TASK.md entry: "[title] — added [date placeholder]"
+Files to create or modify: [EXACT FILE PATHS — max 3]
+Files to NOT touch: [Any files that could be tempting but are out of scope]
+What to build: [2-3 sentences — exactly what to implement]
 Done condition: [One testable sentence]
-Depends on: [TASK N-1, or "no dependencies — can start immediately"]
+Commit message: [e.g. "feat: add login page with Clerk sign-in component"]
+Depends on: [TASK N-1, or "no dependencies"]
 ---
 
-After listing all tasks:
-TOTAL TASK COUNT: [N]
-ESTIMATED SESSIONS: [N]
-FIRST TASK TO START: Task 1 — confirm this is truly unblocked and ready to build.
+After all tasks:
+TOTAL TASKS: [N]
+FIRST TASK: Task 1 — confirm this is unblocked and ready to start.
 ```

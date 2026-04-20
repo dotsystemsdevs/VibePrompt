@@ -1,47 +1,51 @@
-# Shipping Prompt Playbook
+# Prompt Playbook
 
-This prompt library is designed to work across all common build targets:
+39 prompts organized by workflow stage — from environment setup to post-launch iteration. Every prompt supports real shipping workflows, not just ideation.
 
-- Web apps
-- SaaS products
-- Open-source projects
-- Marketing websites
-- APIs and backend services
-- Browser extensions
-- Internal tools and automations
-- CLI/dev tools
+## Categories
 
-## Core Rule
+| Folder | Site label | What it covers |
+|---|---|---|
+| `Agent Setup/` | Context | AGENTS.md, CLAUDE.md, memory banks, session kickoff protocols |
+| `Research Validate/` | Research | Demand validation, kill criteria, competitive landscape |
+| `PRD Spec/` | PRD | Requirements, acceptance criteria, context engineering blueprints |
+| `Architecture Stack/` | Stack | Stack decisions, system boundaries, implementation strategy |
+| `Build Ship/` | Build | Atomic tasks, plan mode, commit loops, diffs |
+| `Prompting Craft/` | Prompting | Prompt chains, output control, disagreement handling |
+| `Testing Quality/` | Quality | Code review, security audits, pre-ship gates |
+| `Launch Growth/` | Ship | Distribution plans, positioning, user feedback |
+| `Ops Maintenance/` | Iterate | Cost reviews, incident runbooks, dependency checks |
 
-Every prompt should support real shipping workflows, not just ideation.
+## Prompt Format
 
-## Universal Project Types
+Every prompt file uses this structure:
 
-When using any prompt, explicitly set:
+```markdown
+---
+title: Prompt Title
+---
 
-- Project type (`website`, `web-app`, `mobile-app`, `saas`, `open-source`, `api`, `tooling`, `automation`)
-- Deployment target
-- Success metrics
-- Security baseline
-- Testing level
+## When to use
+One or two sentences on the exact situation this prompt is for.
 
-## Folder Structure
+## Prompt
 
-- `PRD Core`
-- `Build Brief`
-- `Architecture Stack`
-- `Feature Shipping`
-- `Testing Release`
-- `Launch Growth`
-- `Ops Maintenance`
+\```
+The prompt text. Use [BRACKETS] for placeholders the user fills in.
+\```
+```
 
-## Prompt Quality Standard
+## Quality Standard
 
-Every prompt should include:
+A good prompt:
+- Has a single clear use case (one job, one output)
+- Uses `[BRACKETS]` for every variable the user needs to fill in
+- Works without modification for its stated use case
+- Includes `ultrathink` or explicit reasoning triggers where it matters
 
-- Purpose
-- Input
-- Instructions
-- Output Format
-- Quality Criteria
-- Variants
+## Contributing a Prompt
+
+1. Pick the right folder (check the table above)
+2. Create a kebab-case `.md` file: `my-prompt-name.md`
+3. Follow the format above exactly
+4. Open a PR with prefix: `prompt(category): add prompt-name`

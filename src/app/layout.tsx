@@ -15,22 +15,24 @@ const getMetadataBase = () => {
 };
 
 export const metadata: Metadata = {
-  title: "VibePrompt, Open-source prompt library",
+  title: "VibePrompt - AI Prompts, Workflow & Tools for Builders",
   description:
-    "Curated prompts, a shipping workflow, and an awesome tool list for AI-first builders. Browse, save, and contribute on GitHub.",
+    "36+ battle-tested prompts for AI development. Free prompt library with workflows and tools for shipping with AI. Copy in one click, no login needed. Join the community of vibe coders.",
+  keywords: "AI prompts, prompt engineering, AI tools, vibe coding, open source prompts",
   metadataBase: getMetadataBase(),
   openGraph: {
-    title: "VibePrompt, Open-source prompt library",
+    title: "VibePrompt - Everything You Need to Ship with AI",
     description:
-      "Curated prompts, a shipping workflow, and an awesome tool list for AI-first builders. Browse, save, and contribute on GitHub.",
+      "Free open-source prompt library with 36+ tested prompts, workflows, and tools for AI developers.",
     siteName: "VibePrompt",
     type: "website",
+    url: "https://vibeprompt.dev",
   },
   twitter: {
     card: "summary_large_image",
-    title: "VibePrompt, Open-source prompt library",
+    title: "VibePrompt - AI Prompts for Builders",
     description:
-      "Curated prompts, a shipping workflow, and an awesome tool list for AI-first builders.",
+      "36+ battle-tested prompts for shipping with AI. Free, open-source, no login required.",
   },
 };
 
@@ -95,7 +97,7 @@ export default function RootLayout({
           }}
         >
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main className="flex min-h-0 flex-1 flex-col">{children}</main>
           <Footer />
         </ClerkProvider>
       </body>

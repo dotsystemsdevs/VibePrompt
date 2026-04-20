@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import type { AwesomeCategory } from "@/lib/awesome-data";
-import { AwesomeSaveButton } from "@/components/awesome/awesome-save-button";
 
 function Favicon({ href, emoji }: { href: string; emoji: string }) {
   const domain = new URL(href).hostname;
@@ -24,7 +23,7 @@ function Favicon({ href, emoji }: { href: string; emoji: string }) {
   );
 }
 
-export function AwesomeClient({ categories, savedHrefs = [] }: { categories: readonly AwesomeCategory[]; savedHrefs?: string[] }) {
+export function AwesomeClient({ categories }: { categories: readonly AwesomeCategory[] }) {
   const [activeSlug, setActiveSlug] = useState("all");
   const [query, setQuery] = useState("");
 
@@ -57,65 +56,42 @@ export function AwesomeClient({ categories, savedHrefs = [] }: { categories: rea
     return [...filteredItems].sort((a, b) => a.name.localeCompare(b.name));
   }, [filteredItems]);
 
-  function selectCat(slug: string) {
-    setActiveSlug(slug);
-  }
-
   return (
-    <article className="border border-foreground/20 overflow-hidden">
-      {/* Search + categories */}
-      <div className="border-b-2 border-foreground/25 bg-foreground/[0.03] px-6 pt-4 pb-4">
-        <div className="flex items-center gap-4 mb-4">
-          <div className="relative flex flex-1 items-center border border-foreground/20 bg-background px-4 py-3 transition-colors focus-within:border-foreground/50">
-            <svg
-              className="mr-3 h-4 w-4 shrink-0 text-muted-foreground"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
-            </svg>
-            <input
-              type="text"
-              placeholder='Search tools… e.g. "deploy", "auth", "analytics"'
-              value={query}
-              onChange={(e) => { setQuery(e.target.value); }}
-              className="w-full bg-transparent text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none"
-            />
-            {query && (
-              <button
-                onClick={() => setQuery("")}
-                className="ml-2 shrink-0 text-xs text-muted-foreground/40 transition-colors hover:text-foreground"
-              >
-                ✕
-              </button>
-            )}
-          </div>
-          <span className="shrink-0 text-xs text-muted-foreground/40 tabular-nums">
-            {sortedFilteredItems.length} tools
-          </span>
+    <div className="border border-foreground/20 overflow-hidden">
+      {/* Search bar — prominent */}
+      <div className="border-b border-foreground/12 px-4 py-4 sm:px-6 sm:py-5">
+        <div className="flex items-center gap-4">
+          <svg className="h-4 w-4 shrink-0 text-muted-foreground/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+          </svg>
+          <input
+            type="text"
+            placeholder="Search tools, categories, open source…"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            className="w-full bg-transparent text-sm text-foreground placeholder:text-muted-foreground/30 focus:outline-none"
+          />
+          {query && (
+            <button onClick={() => setQuery("")} className="shrink-0 text-xs text-muted-foreground/40 hover:text-foreground">✕</button>
+          )}
         </div>
+      </div>
 
-        <div className="flex flex-wrap gap-1.5">
+      {/* Category tabs */}
+      <div className="relative border-b border-foreground/12">
+        <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 z-10 h-full w-12 bg-gradient-to-l from-background to-transparent" />
+        <div className="flex items-center overflow-x-auto no-scrollbar px-4">
           <button
-            onClick={() => selectCat("all")}
-            className={`px-3 py-1.5 text-xs transition-colors ${
-              activeSlug === "all"
-                ? "bg-[var(--accent-blue)] text-white"
-                : "border border-foreground/20 text-muted-foreground hover:border-foreground/40 hover:text-foreground"
-            }`}
+            onClick={() => setActiveSlug("all")}
+            className={`shrink-0 border-b-2 px-3 py-3.5 text-xs transition-colors ${activeSlug === "all" ? "border-foreground text-foreground" : "border-transparent text-muted-foreground hover:text-foreground/80"}`}
           >
             All
           </button>
           {categories.map((cat) => (
             <button
               key={cat.slug}
-              onClick={() => selectCat(cat.slug)}
-              className={`px-3 py-1.5 text-xs transition-colors ${
-                activeSlug === cat.slug
-                  ? "bg-[var(--accent-blue)] text-white"
-                  : "border border-foreground/20 text-muted-foreground hover:border-foreground/40 hover:text-foreground"
-              }`}
+              onClick={() => setActiveSlug(cat.slug)}
+              className={`shrink-0 border-b-2 px-3 py-3.5 text-xs transition-colors ${activeSlug === cat.slug ? "border-foreground text-foreground" : "border-transparent text-muted-foreground hover:text-foreground/80"}`}
             >
               {cat.title}
             </button>
@@ -125,21 +101,32 @@ export function AwesomeClient({ categories, savedHrefs = [] }: { categories: rea
 
       {/* Content */}
       {sortedFilteredItems.length > 0 ? (
-        <div className="divide-y divide-foreground/15">
+        <div className="divide-y divide-foreground/[0.06]">
           {sortedFilteredItems.map((item) => (
             <a
               key={`${item.catSlug}-${item.href}`}
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-4 px-6 py-4 transition-colors hover:bg-card"
+              className="group flex items-center gap-4 px-4 py-4 sm:px-6 sm:py-3.5 transition-colors hover:bg-foreground/[0.03]"
             >
               <Favicon href={item.href} emoji={item.catEmoji} />
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-semibold text-foreground">{item.name}</p>
-                <p className="truncate text-xs text-muted-foreground">{item.description}</p>
+                <p className="text-sm font-semibold text-foreground/90 group-hover:text-foreground transition-colors">{item.name}</p>
+                <div className="mt-0.5 flex items-center gap-2">
+                  <p className="truncate text-xs text-muted-foreground/70">{item.description}</p>
+                </div>
               </div>
-              <AwesomeSaveButton href={item.href} initialSaved={savedHrefs.includes(item.href)} />
+              <div className="flex shrink-0 items-center gap-3">
+                <button
+                  onClick={(e) => { e.preventDefault(); setActiveSlug(item.catSlug); }}
+                  className="text-[10px] transition-opacity hover:opacity-70"
+                  style={{ color: "var(--accent-blue)" }}
+                >
+                  #{item.catTitle.toLowerCase()}
+                </button>
+                <span className="text-xs text-foreground/20 transition-colors group-hover:text-foreground/50">↗</span>
+              </div>
             </a>
           ))}
         </div>
@@ -153,13 +140,13 @@ export function AwesomeClient({ categories, savedHrefs = [] }: { categories: rea
               </button>
             )}
             {activeSlug !== "all" && (
-              <button onClick={() => selectCat("all")} className="text-xs text-foreground hover:underline">
+              <button onClick={() => setActiveSlug("all")} className="text-xs text-foreground hover:underline">
                 Clear filter →
               </button>
             )}
           </div>
         </div>
       )}
-    </article>
+    </div>
   );
 }

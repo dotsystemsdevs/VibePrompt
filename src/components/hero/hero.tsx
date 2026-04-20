@@ -73,7 +73,7 @@ export function Hero({
   const resolvedAccent = accent ?? "var(--lilac)";
   return (
     <section
-      className={`relative overflow-hidden px-6 py-10 sm:py-16 ${className ?? ""}`}
+      className={`relative overflow-hidden px-6 py-8 sm:py-10 ${className ?? ""}`}
       style={{ ["--hero-accent" as never]: resolvedAccent } as React.CSSProperties}
     >
 

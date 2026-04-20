@@ -1,10 +1,10 @@
 export const CATEGORY_DEFINITIONS = [
-  // Matches workflow step order: 00 Setup → 01 Validate → 02 Specify → 03 Stack → 04 Context → 05 Build → 06 Quality → 07 Ship → 08 Iterate
+  // Matches workflow step order: 00 Environment → 01 Research → 02 PRD → 03 Stack → 04 Context → 05 Build → 06 Quality → 07 Ship → 08 Iterate
   {
     slug: "agent-setup",
     dirName: "Agent Setup",
-    name: "Agent Setup",
-    shortName: "Agent Setup",
+    name: "Context",
+    shortName: "Context",
     description: "AGENTS.md, CLAUDE.md, memory banks, and context engineering for AI coding agents.",
     icon: "🤖",
     color: "#f59e0b",
@@ -12,8 +12,8 @@ export const CATEGORY_DEFINITIONS = [
   {
     slug: "research-validate",
     dirName: "Research Validate",
-    name: "Idea Validation",
-    shortName: "Idea Validation",
+    name: "Research",
+    shortName: "Research",
     description: "Validate demand, kill criteria, and competitive landscape before writing a line.",
     icon: "🔍",
     color: "#06b6d4",
@@ -21,8 +21,8 @@ export const CATEGORY_DEFINITIONS = [
   {
     slug: "prd-spec",
     dirName: "PRD Spec",
-    name: "Planning",
-    shortName: "Planning",
+    name: "PRD",
+    shortName: "PRD",
     description: "Requirements, acceptance criteria, and scope before implementation.",
     icon: "📋",
     color: "#8b5cf6",
@@ -30,8 +30,8 @@ export const CATEGORY_DEFINITIONS = [
   {
     slug: "architecture-stack",
     dirName: "Architecture Stack",
-    name: "Architecture",
-    shortName: "Architecture",
+    name: "Stack",
+    shortName: "Stack",
     description: "Stack decisions, system boundaries, and implementation strategy.",
     icon: "🏗️",
     color: "#3b82f6",
@@ -39,7 +39,7 @@ export const CATEGORY_DEFINITIONS = [
   {
     slug: "build-ship",
     dirName: "Build Ship",
-    name: "Build & Ship",
+    name: "Build",
     shortName: "Build",
     description: "Feature implementation, code generation, and iterative shipping prompts.",
     icon: "🚀",
@@ -57,8 +57,8 @@ export const CATEGORY_DEFINITIONS = [
   {
     slug: "testing-quality",
     dirName: "Testing Quality",
-    name: "Testing & QA",
-    shortName: "Testing",
+    name: "Quality",
+    shortName: "Quality",
     description: "Code review, security audits, testing plans, and release gates.",
     icon: "🛡️",
     color: "#ef4444",
@@ -66,8 +66,8 @@ export const CATEGORY_DEFINITIONS = [
   {
     slug: "launch-growth",
     dirName: "Launch Growth",
-    name: "Launch & Growth",
-    shortName: "Launch",
+    name: "Ship",
+    shortName: "Ship",
     description: "Distribution, positioning, and launch execution prompts.",
     icon: "📣",
     color: "#f97316",
@@ -75,8 +75,8 @@ export const CATEGORY_DEFINITIONS = [
   {
     slug: "ops-maintenance",
     dirName: "Ops Maintenance",
-    name: "Scaling",
-    shortName: "Scaling",
+    name: "Iterate",
+    shortName: "Iterate",
     description: "Operations, reliability, and post-launch maintenance workflows.",
     icon: "⚙️",
     color: "#6b7280",

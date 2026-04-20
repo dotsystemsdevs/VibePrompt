@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { SignInButton, useAuth } from "@clerk/nextjs";
-import { toggleAwesomeSave } from "@/lib/actions/awesome-saves";
+import { useEffect, useState } from "react";
+import { isLocallySaved, toggleLocalSave } from "@/lib/local-saves";
+import { incrementSaveCounter } from "@/lib/actions/saves-counter";
 
 interface AwesomeSaveButtonProps {
   href: string;
@@ -10,35 +10,38 @@ interface AwesomeSaveButtonProps {
 }
 
 export function AwesomeSaveButton({ href, initialSaved }: AwesomeSaveButtonProps) {
-  const { isSignedIn } = useAuth();
   const [saved, setSaved] = useState(initialSaved);
   const [loading, setLoading] = useState(false);
+  const key = `awesome:${encodeURIComponent(href)}`;
+
+  useEffect(() => {
+    setSaved(isLocallySaved(key));
+    function onChanged() {
+      setSaved(isLocallySaved(key));
+    }
+    window.addEventListener("vp:saves-changed", onChanged as EventListener);
+    window.addEventListener("storage", onChanged);
+    return () => {
+      window.removeEventListener("vp:saves-changed", onChanged as EventListener);
+      window.removeEventListener("storage", onChanged);
+    };
+  }, [key]);
 
   async function handleSave(e: React.MouseEvent) {
     e.preventDefault();
     if (loading) return;
     setLoading(true);
-    setSaved((v) => !v);
     try {
-      await toggleAwesomeSave(href);
+      const nextSaved = toggleLocalSave(key);
+      setSaved(nextSaved);
+      if (nextSaved) {
+        void incrementSaveCounter();
+      }
     } catch {
-      setSaved((v) => !v);
+      setSaved(isLocallySaved(key));
     } finally {
       setLoading(false);
     }
-  }
-
-  if (!isSignedIn) {
-    return (
-      <SignInButton mode="modal">
-        <button
-          onClick={(e) => e.preventDefault()}
-          className="shrink-0 text-[10px] uppercase tracking-widest text-muted-foreground/40 transition-colors hover:text-foreground"
-        >
-          Save
-        </button>
-      </SignInButton>
-    );
   }
 
   return (

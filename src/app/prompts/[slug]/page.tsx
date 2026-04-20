@@ -1,11 +1,10 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { auth } from "@clerk/nextjs/server";
 import { getPromptBySlug } from "@/lib/prompt-library";
+import { getPromptContributor } from "@/lib/github-prompt-contributor";
 import { PromptActions } from "@/components/prompts/prompt-actions";
-import { SaveButton } from "@/components/prompts/save-button";
+import { PromptContributorBadge } from "@/components/prompts/prompt-contributor";
 import { getCopyCount } from "@/lib/actions/copies";
-import { isSaved } from "@/lib/actions/saves";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -48,13 +47,13 @@ function parseMultiSection(text: string): { title: string; body: string }[] | nu
 
 export default async function PromptPage({ params }: PageProps) {
   const { slug } = await params;
-  const { userId } = await auth();
-  const [prompt, copyCount, savedState] = await Promise.all([
+  const [prompt, copyCount] = await Promise.all([
     getPromptBySlug(slug),
     getCopyCount(slug),
-    userId ? isSaved(slug) : Promise.resolve(false),
   ]);
   if (!prompt) notFound();
+
+  const contributor = await getPromptContributor(prompt.githubPath ?? "");
 
   const sections = parseMultiSection(prompt.prompt);
 
@@ -72,7 +71,12 @@ export default async function PromptPage({ params }: PageProps) {
         <article className="overflow-hidden border border-foreground/20">
 
           {/* Header */}
-          <div className="border-b border-foreground/20 bg-foreground/[0.03] px-4 py-8 sm:px-8 sm:py-10">
+          <div
+            className="border-b border-foreground/20 bg-foreground/[0.03] px-4 py-8 sm:px-8 sm:py-10"
+            data-footer-contributor-login={contributor.login}
+            data-footer-contributor-avatar={contributor.avatarUrl}
+            data-footer-contributor-url={contributor.profileUrl}
+          >
             <div className="mb-4 flex items-center gap-2 text-[10px]">
               <Link href="/browse" className="text-foreground/35 transition-colors hover:text-foreground">
                 Browse
@@ -97,6 +101,7 @@ export default async function PromptPage({ params }: PageProps) {
                 {extraContext}
               </p>
             )}
+            <PromptContributorBadge contributor={contributor} />
           </div>
 
           {/* Prompt section, label + copy in same row */}
@@ -106,7 +111,6 @@ export default async function PromptPage({ params }: PageProps) {
                 Prompt
               </span>
               <div className="flex items-center gap-2">
-                <SaveButton slug={prompt.slug} initialSaved={savedState} />
                 <PromptActions
                   slug={prompt.slug}
                   promptText={prompt.prompt}

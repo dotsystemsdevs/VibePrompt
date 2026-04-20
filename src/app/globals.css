@@ -83,4 +83,23 @@ html {
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
+  .vp-reveal {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 560ms ease, transform 560ms ease;
+    will-change: opacity, transform;
+  }
+  .vp-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .vp-reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
 }

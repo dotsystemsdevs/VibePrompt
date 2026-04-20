@@ -244,6 +244,7 @@ function buildPromptText(content: string): string {
 async function readPromptFile(
   categorySlug: string,
   categoryName: string,
+  categoryDirName: string,
   absolutePath: string,
   fileName: string
 ): Promise<Prompt> {
@@ -273,12 +274,14 @@ async function readPromptFile(
   const promptText = buildPromptText(content);
   const slug = `${categorySlug}-${fileName.replace(/\.md$/i, "").toLowerCase()}`;
   const popularitySeed = hashString(slug);
+  const githubPath = `prompt-library/${categoryDirName}/${fileName}`;
 
   return {
     slug,
     title,
     category: categorySlug,
     categoryName,
+    githubPath,
     tags: buildTags(categorySlug, fileName, content),
     difficulty: "intermediate",
     tools: ["claude-code", "cursor", "codex"],
@@ -313,7 +316,13 @@ const _getPromptLibrary = async (): Promise<{ categories: Category[]; prompts: P
 
     const categoryPrompts = await Promise.all(
       markdownFiles.map((fileName) =>
-        readPromptFile(categoryDef.slug, categoryDef.name, path.join(categoryPath, fileName), fileName)
+        readPromptFile(
+          categoryDef.slug,
+          categoryDef.name,
+          categoryDef.dirName,
+          path.join(categoryPath, fileName),
+          fileName
+        )
       )
     );
 

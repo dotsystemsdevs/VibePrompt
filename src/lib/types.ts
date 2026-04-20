@@ -14,6 +14,8 @@ export type Prompt = {
   title: string;
   category: string;
   categoryName: string;
+  /** Path in the GitHub repo (e.g. `prompt-library/PRD Spec/foo.md`) for contributor lookup */
+  githubPath?: string;
   tags: string[];
   difficulty: Difficulty;
   tools: string[];

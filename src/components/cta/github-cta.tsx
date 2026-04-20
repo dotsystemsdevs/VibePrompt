@@ -28,7 +28,7 @@ export function GithubCta({
 }: GithubCtaProps) {
   return (
     <section
-      className={`${borderTop ? "border-t border-foreground/20" : ""} px-6 py-12 sm:py-16 ${className ?? ""}`}
+      className={`${borderTop ? "border-t border-foreground/20" : ""} px-6 py-10 sm:py-12 ${className ?? ""}`}
     >
       <div className="mx-auto flex max-w-6xl flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
         <div className="max-w-md">

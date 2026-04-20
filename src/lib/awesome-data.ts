@@ -11,7 +11,7 @@ export const AWESOME_CATEGORIES = [
   {
     slug: "setup",
     emoji: "⚙️",
-    title: "00 Setup",
+    title: "Environment",
     description: "Get your environment ready before writing a single line of code.",
     items: [
       { name: "Cursor", description: "The most advanced AI-first code editor, recommended starting point.", href: "https://cursor.com" },
@@ -25,7 +25,7 @@ export const AWESOME_CATEGORIES = [
   {
     slug: "research-validate",
     emoji: "🔍",
-    title: "Idea Validation",
+    title: "Research",
     description: "Prove the idea before writing a line of code.",
     items: [
       { name: "Perplexity", description: "Deep research AI, ask anything, get sourced answers fast.", href: "https://perplexity.ai" },
@@ -43,7 +43,7 @@ export const AWESOME_CATEGORIES = [
   {
     slug: "prd-spec",
     emoji: "📋",
-    title: "Planning",
+    title: "PRD",
     description: "Turn ideas into structured specs and tracked tasks.",
     items: [
       { name: "Claude Task Master", description: "Breaks a spec into structured subtasks for AI to execute.", href: "https://github.com/eyaltoledano/claude-task-master" },
@@ -60,7 +60,7 @@ export const AWESOME_CATEGORIES = [
   {
     slug: "architecture-stack",
     emoji: "🏗️",
-    title: "Architecture",
+    title: "Stack",
     description: "The stack decisions and infrastructure that power vibe coding.",
     items: [
       { name: "Next.js", description: "The default React framework for production web apps.", href: "https://nextjs.org" },
@@ -81,7 +81,7 @@ export const AWESOME_CATEGORIES = [
   {
     slug: "agent-setup",
     emoji: "🤖",
-    title: "Agent Setup",
+    title: "Context",
     description: "AI coding agents, editors, and models, set them up right.",
     items: [
       { name: "Claude Code", description: "Works across codebases, explains code, and automates tasks from the terminal.", href: "https://claude.ai/code" },
@@ -105,7 +105,7 @@ export const AWESOME_CATEGORIES = [
   {
     slug: "build-ship",
     emoji: "🚀",
-    title: "Build & Ship",
+    title: "Build",
     description: "From first prompt to real URL, platforms, deploy, and hosting.",
     items: [
       { name: "Bolt.new", description: "Prototype and launch full web apps entirely by prompting.", href: "https://bolt.new" },
@@ -147,7 +147,7 @@ export const AWESOME_CATEGORIES = [
   {
     slug: "testing-quality",
     emoji: "🛡️",
-    title: "Testing & QA",
+    title: "Quality",
     description: "AI can't self-correct, these gates are yours.",
     items: [
       { name: "Vitest", description: "Fast unit testing framework built for Vite and modern JS.", href: "https://vitest.dev" },
@@ -165,7 +165,7 @@ export const AWESOME_CATEGORIES = [
   {
     slug: "launch-growth",
     emoji: "📣",
-    title: "Launch & Growth",
+    title: "Ship",
     description: "Monetize, distribute, and close the loop with real users.",
     items: [
       { name: "Stripe", description: "The default payments API, subscriptions, one-time, and more.", href: "https://stripe.com" },
@@ -185,7 +185,7 @@ export const AWESOME_CATEGORIES = [
   {
     slug: "ops-maintenance",
     emoji: "⚙️",
-    title: "Scaling",
+    title: "Iterate",
     description: "Observability, reliability, and ops after you ship.",
     items: [
       { name: "BetterStack", description: "Uptime monitoring, log management, and incident alerts.", href: "https://betterstack.com" },

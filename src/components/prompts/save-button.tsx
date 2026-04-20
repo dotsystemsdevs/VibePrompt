@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { SignInButton, useAuth } from "@clerk/nextjs";
-import { toggleSave } from "@/lib/actions/saves";
+import { useEffect, useState } from "react";
+import { isLocallySaved, toggleLocalSave } from "@/lib/local-saves";
+import { incrementSaveCounter } from "@/lib/actions/saves-counter";
 
 interface SaveButtonProps {
   slug: string;
@@ -11,33 +10,36 @@ interface SaveButtonProps {
 }
 
 export function SaveButton({ slug, initialSaved }: SaveButtonProps) {
-  const { isSignedIn } = useAuth();
   const [saved, setSaved] = useState(initialSaved);
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
+
+  useEffect(() => {
+    setSaved(isLocallySaved(slug));
+    function onChanged() {
+      setSaved(isLocallySaved(slug));
+    }
+    window.addEventListener("vp:saves-changed", onChanged as EventListener);
+    window.addEventListener("storage", onChanged);
+    return () => {
+      window.removeEventListener("vp:saves-changed", onChanged as EventListener);
+      window.removeEventListener("storage", onChanged);
+    };
+  }, [slug]);
 
   async function handleSave() {
     if (loading) return;
     setLoading(true);
-    setSaved((v) => !v);
     try {
-      await toggleSave(slug);
-      router.refresh();
+      const nextSaved = toggleLocalSave(slug);
+      setSaved(nextSaved);
+      if (nextSaved) {
+        void incrementSaveCounter();
+      }
     } catch {
-      setSaved((v) => !v);
+      setSaved(isLocallySaved(slug));
     } finally {
       setLoading(false);
     }
-  }
-
-  if (!isSignedIn) {
-    return (
-      <SignInButton mode="modal">
-        <button className="px-3 py-1 text-[10px] uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground border border-foreground/15 hover:border-foreground/30">
-          Save
-        </button>
-      </SignInButton>
-    );
   }
 
   return (

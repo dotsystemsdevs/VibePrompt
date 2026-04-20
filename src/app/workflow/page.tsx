@@ -1,565 +1,640 @@
-import Link from "next/link";
 import type { Metadata } from "next";
-import { GithubCta } from "@/components/cta/github-cta";
+import { WorkflowStepper, type StepData } from "@/components/workflow/workflow-stepper";
 import { Hero } from "@/components/hero/hero";
-import { WorkflowStepNav } from "@/components/workflow/workflow-step-nav";
+import { GithubCta } from "@/components/cta/github-cta";
+import { Reveal } from "@/components/motion/reveal";
 
 export const metadata: Metadata = {
-  title: "Ultimate Vibe Coding Workflow | 8 steps from idea to shipped",
+  title: "Vibe Coding Workflow | From idea to shipped",
   description:
-    "The complete build loop for indie devs: validate the problem, spec it tight, lock the stack, set AI context, build in loops, gate quality, ship fast, and iterate on signal.",
+    "The complete build loop for indie devs: validate, spec, stack, context, build, gate, ship, iterate.",
   alternates: { canonical: "/workflow" },
 };
 
-type Resource = { label: string; href: string; usage?: string[] };
-
-type Step = {
-  step: string;
-  title: string;
-  emoji: string;
-  whatThis: string;
-  why: string;
-  tasks: string[];
-  commonMistakes: string[];
-  resources: Resource[];
-  output: string[];
-  browseSlug: string;
-};
-
-const STEPS: Step[] = [
+const STEPS: StepData[] = [
   {
     step: "00",
-    title: "Setup Your Environment",
+    title: "Environment",
     emoji: "⚙️",
-    whatThis: "Get the minimum tools in place so nothing blocks you later.",
-    why: "A broken environment stops you before you start. Most beginners don't fail because of bad ideas, they get stuck in setup. Get this right once, then forget about it.",
+    whatThis: "Get your terminal, editor, Git, Node.js, and AI tool working before you write a single line of code.",
+    why: "Most beginners fail in setup chaos, not bad ideas. Lock this in once — you'll never think about it again.",
     tasks: [
-      "Install Cursor (recommended) or VS Code as your code editor.",
-      "Install Git and create a GitHub account if you don't have one.",
-      "Create a GitHub repo before writing any code, not after.",
-      "Install Node.js LTS if you're building a web app.",
-      "Run one simple project locally to confirm everything works.",
-    ],
-    commonMistakes: [
-      "Skipping Git, you will lose work",
-      "Not running anything locally before starting, problems compound fast",
-      "Installing every tool you've seen mentioned, you need maybe three",
-      "Following YouTube setup guides, most are outdated",
-    ],
-    resources: [
       {
-        label: "Cursor",
-        href: "https://cursor.com",
-        usage: ["AI-native editor, no plugins or extra config needed"],
+        heading: "Before AI",
+        description: "Confirm each tool works before moving on.",
+        items: [
+          {
+            text: "Open a terminal and run `ls` — confirm files appear.",
+            links: [
+              { label: "Windows Terminal", href: "https://aka.ms/terminal" },
+              { label: "iTerm2", href: "https://iterm2.com" },
+            ],
+          },
+          {
+            text: "Install Claude Code (CLI, the most capable AI coding tool) or Cursor/VS Code if you prefer an IDE.",
+            detail: "Claude Code runs in your terminal and has direct access to your whole codebase. No copy-pasting.",
+            links: [
+              { label: "Claude Code", href: "https://claude.ai/download" },
+              { label: "Cursor", href: "https://cursor.com" },
+              { label: "VS Code", href: "https://code.visualstudio.com" },
+            ],
+          },
+          {
+            text: "Install Git and run `git --version` to confirm.",
+            links: [{ label: "Git", href: "https://git-scm.com" }],
+          },
+          {
+            text: "Create a GitHub account, make a new repo, and push an empty README.",
+            links: [{ label: "GitHub", href: "https://github.com" }],
+          },
+          {
+            text: "Install Node.js LTS (not Current) and run `node -v` to confirm.",
+            links: [{ label: "Node.js", href: "https://nodejs.org" }],
+          },
+          {
+            text: "Run `npx create-next-app@latest` — confirm the project opens at localhost.",
+            detail: "If it installs, starts, and opens — your terminal, Node, and npm are all wired correctly.",
+          },
+          {
+            text: "Create `TASK.md` in the repo root. This is your living task list — add tasks before starting, check them off immediately when done.",
+            detail: "Format: task text + date added. Add a 'Discovered During Work' section for tasks that surface mid-session.",
+          },
+        ],
       },
       {
-        label: "GitHub",
-        href: "https://github.com",
-        usage: ["Create the repo before writing any code, not after"],
-      },
-      {
-        label: "Node.js",
-        href: "https://nodejs.org",
-        usage: ["LTS version only, the current release often breaks things"],
+        heading: "Learn",
+        description: "Watch before or during setup.",
+        items: [
+          {
+            text: "Watch: Terminal and command line basics for beginners",
+            links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=terminal+command+line+basics+beginners" }],
+          },
+          {
+            text: "Watch: Git explained in 100 seconds",
+            links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=git+explained+100+seconds+fireship" }],
+          },
+          {
+            text: "Watch: Claude Code getting started tutorial",
+            links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=claude+code+getting+started+tutorial+2024" }],
+          },
+        ],
       },
     ],
-    output: [
-      "Code editor installed and open",
-      "GitHub account created and first repo ready",
-      "node -v returns a version number",
-      "One project running locally",
-    ],
-    browseSlug: "agent-setup",
+    commonMistakes: [],
+    resources: [],
+    output: [],
+    browseSlug: "",
   },
   {
     step: "01",
-    title: "Validate",
+    title: "Research",
     emoji: "🔍",
-    whatThis: "Confirm the problem is real before writing a single line of code.",
-    why: "Most projects fail before the build starts. The two killers: no real demand, no real differentiation. An hour here saves weeks of building the wrong thing.",
+    whatThis: "Confirm the problem is real before writing any code. Use a chat AI with web search for deep research — not your IDE.",
+    why: "Most projects fail before the build starts. One hour here saves weeks of building the wrong thing.",
     tasks: [
-      "Google your idea like a user would. No results = red flag, not opportunity.",
-      "Open Google Trends. Compare 2–3 keywords over 12 months. Spikes don't count.",
-      'Search Reddit and X for complaints. Try: "niche + annoying" or "tool + problem". No complaints = weak problem.',
-      "List 3 competitors. One thing each does well, one specific thing each misses.",
-      'Write kill criteria before you start. Example: "Can\'t find 10 real complaints → I stop."',
-    ],
-    commonMistakes: [
-      "Treating your own excitement as evidence of demand",
-      "Finding no competitors and calling it a blue ocean",
-      "Researching with AI instead of real users",
-      "Skipping kill criteria, without them, you'll never stop",
-      "Validating the solution instead of the problem",
-    ],
-    resources: [
       {
-        label: "Google Trends",
-        href: "https://trends.google.com",
-        usage: ["Compare keywords side by side, 12 months minimum", "Flat or declining = shrinking market"],
+        heading: "Before AI",
+        description: "Manual signal first — AI will hallucinate demand if you skip this.",
+        items: [
+          {
+            text: "Google your idea exactly as a user would search for it.",
+            detail: "No results = red flag. 10 existing tools = good signal — people want this.",
+          },
+          {
+            text: "Check Google Trends with 12 months of data. Rising or flat = healthy. One spike then nothing = hype.",
+            links: [{ label: "Google Trends", href: "https://trends.google.com" }],
+          },
+          {
+            text: "Search Reddit and X for real complaints. Try '[topic] annoying' or '[tool] broken'. No complaints in 2 years = pain isn't strong enough.",
+            links: [
+              { label: "Reddit", href: "https://reddit.com/search" },
+              { label: "X", href: "https://x.com/search" },
+            ],
+          },
+          {
+            text: "Find 3 direct competitors on Product Hunt or SimilarWeb. Write one strength and one gap for each.",
+            detail: "Can't find 3 = you probably don't have a market. All 3 share the same gap = that's your opening.",
+            links: [
+              { label: "Product Hunt", href: "https://producthunt.com" },
+              { label: "SimilarWeb", href: "https://similarweb.com" },
+            ],
+          },
+          {
+            text: "Open Claude.ai or ChatGPT with web search on. Paste: 'Research this market for me: [your idea]. Who are the competitors? What are users complaining about? What gaps exist?' Save the output to `docs/research.md`.",
+            detail: "Use a chat AI with web search for research — not your coding IDE. This is the right tool for this phase.",
+            links: [
+              { label: "Claude.ai", href: "https://claude.ai" },
+              { label: "ChatGPT", href: "https://chatgpt.com" },
+            ],
+          },
+          {
+            text: "Write kill criteria before any code: 'If I can't find 10 real complaints in 1 hour → I stop.'",
+            detail: "Write it now, in writing, before any code. You won't enforce it later if you don't commit now.",
+          },
+        ],
       },
       {
-        label: "Reddit search",
-        href: "https://reddit.com/search",
-        usage: ['Search: "niche + problem", sort by Top, past year', "No results or no frustration = the pain isn't strong enough"],
-      },
-      {
-        label: "Perplexity AI",
-        href: "https://perplexity.ai",
-        usage: ['Ask: "What are alternatives to X and what do they miss?"', "Use it to surface competitors you wouldn't have Googled"],
-      },
-      {
-        label: "SimilarWeb",
-        href: "https://similarweb.com",
-        usage: ["Check if competitor sites have real traffic, zero traffic usually means no market"],
+        heading: "Learn",
+        description: "Understand validation before you collect signal.",
+        items: [
+          {
+            text: "Watch: How to validate a startup idea",
+            links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=how+to+validate+startup+idea+indie+hacker" }],
+          },
+          {
+            text: "Watch: Finding startup ideas that work",
+            links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=how+to+find+startup+ideas+that+work" }],
+          },
+          {
+            text: "Read: How to Get Startup Ideas — Paul Graham",
+            links: [{ label: "paulgraham.com", href: "https://paulgraham.com/startupideas.html" }],
+          },
+        ],
       },
     ],
-    output: [
-      "3 competitors listed with one specific gap each",
-      "5–10 real complaints saved (links, not paraphrases)",
-      "Differentiator written in one sentence",
-      "Kill criteria written before any code",
-    ],
+    commonMistakes: [],
+    resources: [],
+    output: [],
     browseSlug: "research-validate",
   },
   {
     step: "02",
-    title: "Specify",
+    title: "PRD",
     emoji: "📝",
-    whatThis: "Write a one-page document that defines what you're building, and what you're not.",
-    why: "Without a spec, AI fills every gap with assumptions, and those assumptions ship. Every vague sentence in your PRD becomes a bug or an unplanned feature.",
+    whatThis: "Write one file that says exactly what you're building, why, and what success looks like. This is what you hand to AI at the start of every session.",
+    why: "Without a spec, AI fills every gap with assumptions — and those assumptions ship. Most agent failures are context failures, not model failures.",
     tasks: [
-      "Name one target user. A real person in a real situation, not a demographic.",
-      "Write the problem in one sentence. No solution. Just the pain.",
-      "List MVP features. Five maximum. No exceptions.",
-      "Write the out-of-scope list. AI builds what you didn't explicitly forbid.",
-      "Define done as a testable condition, not 'feels finished.'",
-    ],
-    commonMistakes: [
-      "Writing 'users' as your target, pick one specific person",
-      "Including the solution inside the problem statement",
-      "Listing 10+ features and calling it an MVP",
-      "Skipping the out-of-scope list",
-      "Leaving done undefined, you'll never know when to stop",
-    ],
-    resources: [
       {
-        label: "Claude",
-        href: "https://claude.ai",
-        usage: ['Prompt: "I\'m building X for Y who struggles with Z. Write a tight one-page PRD."', "Then cut everything it adds that you didn't ask for"],
+        heading: "Before AI",
+        description: "Write this yourself. A vague PRD produces a vague product.",
+        items: [
+          {
+            text: "Name one target user. One real person, one real situation.",
+            detail: "Not 'developers'. Example: 'a freelance designer with 3–5 clients who loses track of client feedback threads'.",
+          },
+          {
+            text: "Write Goal: what the product does in one sentence.",
+            detail: "Example: 'A minimal client portal where freelancers collect and track feedback in one place.'",
+          },
+          {
+            text: "Write Why: what business value this creates and what problem it solves.",
+            detail: "Who benefits? What metric improves? Why does this matter to ship?",
+          },
+          {
+            text: "List max 5 MVP features under What. If your list has 12 — that's a roadmap. Cut to 5.",
+            links: [{ label: "Shape Up", href: "https://basecamp.com/shapeup" }],
+          },
+          {
+            text: "Write the out-of-scope list with at least 3 explicit exclusions.",
+            detail: "'No user profiles', 'no notifications', 'no admin dashboard'. Without this, every feature you didn't mention becomes a maybe.",
+          },
+          {
+            text: "Write Success Criteria as testable conditions. Not 'auth works' — 'a new user signs up, verifies email, and reaches the dashboard in under 60 seconds without errors'.",
+          },
+          {
+            text: "Save as `docs/PRD.md` in the repo root. You will paste this into every AI session and load it into AGENTS.md.",
+          },
+        ],
       },
       {
-        label: "Notion",
-        href: "https://notion.so",
-        usage: ["One page, not a nested wiki", "Paste the direct link into every new AI session"],
-      },
-      {
-        label: "VibePrompt PRD prompts",
-        href: "/browse?category=prd-spec",
-        usage: ["Use the clarify-requirements prompt before writing", "Use the vague-goal-to-spec prompt to sharpen scope"],
+        heading: "Learn",
+        description: "Understand what a spec is and why cutting features is the point.",
+        items: [
+          {
+            text: "Watch: How to write a product requirements document (PRD)",
+            links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=how+to+write+product+requirements+document+PRD" }],
+          },
+          {
+            text: "Watch: What is an MVP — and why cutting features is the point",
+            links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=what+is+minimum+viable+product+mvp+explained" }],
+          },
+          {
+            text: "Read: Context Engineering intro — how PRDs feed AI context",
+            links: [{ label: "github.com/coleam00", href: "https://github.com/coleam00/context-engineering-intro" }],
+          },
+        ],
       },
     ],
-    output: [
-      "One target user described in two sentences",
-      "Problem written in one sentence with no solution in it",
-      "Five or fewer MVP features listed",
-      "Out-of-scope list with at least three explicit exclusions",
-      "Done condition written as a testable statement",
-    ],
+    commonMistakes: [],
+    resources: [],
+    output: [],
     browseSlug: "prd-spec",
   },
   {
     step: "03",
-    title: "Design Stack",
+    title: "Stack",
     emoji: "🎨",
-    whatThis: "Lock every technology decision before writing code.",
-    why: "Mid-build stack changes cost ten times more than upfront decisions. The AI picks whatever it's trained on most, not what fits your project. Undecided dependencies become blocked work.",
+    whatThis: "Lock every technology decision in one file before writing any code. The AI picks whatever it was trained on most — not what fits your project.",
+    why: "Mid-build stack changes cost ten times more than upfront decisions. No open choices past this step.",
     tasks: [
-      "Pick your frontend framework and UI system. Write them down, no 'we'll decide later.'",
-      "Pick your database and auth provider. One each.",
-      "Pick your deployment target. Vercel, Railway, or Fly, commit to one.",
-      "Pin every dependency to an exact version in package.json.",
-      "Write all decisions in TechDesign.md before writing any code.",
-    ],
-    commonMistakes: [
-      "Leaving the stack 'flexible', the AI will decide for you",
-      "Picking tech you've never used on a deadline project",
-      "Not pinning versions, a breaking change mid-sprint will cost you hours",
-      "Skipping TechDesign.md, undocumented decisions get relitigated every session",
-      "Switching stacks mid-build because something shinier appeared",
-    ],
-    resources: [
       {
-        label: "v0.dev",
-        href: "https://v0.dev",
-        usage: ["Prototype UI before writing any component code", "UI scaffolding only, don't use it for logic"],
+        heading: "Before AI",
+        description: "Make every decision now. Ask AI: 'What is the simplest yet most robust stack for this PRD?'",
+        items: [
+          {
+            text: "Pick a frontend framework. Next.js is the default for 90% of indie projects — SEO, one-click Vercel deploy, massive ecosystem. Use Remix if your app is form-heavy. If unsure: Next.js.",
+            links: [
+              { label: "Next.js", href: "https://nextjs.org" },
+              { label: "Remix", href: "https://remix.run" },
+            ],
+          },
+          {
+            text: "Pick a UI system. Tailwind CSS + shadcn/ui is the indie standard — components you copy and own, no dependency lock-in.",
+            links: [
+              { label: "Tailwind CSS", href: "https://tailwindcss.com" },
+              { label: "shadcn/ui", href: "https://ui.shadcn.com" },
+            ],
+          },
+          {
+            text: "Pick a database and auth. Supabase handles Postgres + auth + storage in one service. Use Clerk for auth as a standalone product.",
+            links: [
+              { label: "Supabase", href: "https://supabase.com" },
+              { label: "Clerk", href: "https://clerk.com" },
+            ],
+          },
+          {
+            text: "Connect your repo to Vercel today — not at launch. Every push to main deploys automatically. Every PR gets a preview URL.",
+            links: [
+              { label: "Vercel", href: "https://vercel.com" },
+              { label: "Railway", href: "https://railway.app" },
+            ],
+          },
+          {
+            text: "Write all decisions in `docs/TechDesign.md`. Include framework, UI, DB, auth, deploy — and why you chose each.",
+            detail: "This file gets loaded into every AI session alongside your PRD. No open decisions allowed.",
+          },
+          {
+            text: "Install Context7 MCP if using Claude Code — it pulls the current docs for any library directly into the LLM context window.",
+            detail: "Prevents hallucinated APIs. AI sees the actual API for your exact version, not what it was trained on.",
+            links: [{ label: "Context7", href: "https://context7.com" }],
+          },
+        ],
       },
       {
-        label: "Supabase",
-        href: "https://supabase.com",
-        usage: ["DB + auth + storage in one service, sensible default for most projects", "Generate TypeScript types from your schema before writing any queries"],
-      },
-      {
-        label: "Vercel",
-        href: "https://vercel.com",
-        usage: ["Connect the repo on day one, not at launch", "Env vars go in the dashboard, never in code"],
+        heading: "Learn",
+        description: "Get familiar with the tools before you build with them.",
+        items: [
+          {
+            text: "Watch: Next.js App Router crash course",
+            links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=nextjs+app+router+crash+course+2024" }],
+          },
+          {
+            text: "Watch: shadcn/ui — add and customize components",
+            links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=shadcn+ui+tutorial+crash+course" }],
+          },
+          {
+            text: "Watch: Supabase crash course for beginners",
+            links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=supabase+crash+course+beginner" }],
+          },
+        ],
       },
     ],
-    output: [
-      "Framework and UI system chosen and written in TechDesign.md",
-      "Database and auth provider chosen, no open decisions",
-      "Deployment target connected and working",
-      "All dependency versions pinned in package.json",
-    ],
+    commonMistakes: [],
+    resources: [],
+    output: [],
     browseSlug: "architecture-stack",
   },
   {
     step: "04",
-    title: "Context Setup",
+    title: "Context",
     emoji: "🗂️",
-    whatThis: "Write a file that gives every AI session the same rules from the start.",
-    why: "Every new AI chat is a blank agent, no memory, no rules, no conventions. Without a context file, sessions drift. Patterns diverge. Decisions get made twice. One file fixes all of this.",
+    whatThis: "Build the memory system every AI session reads from — AGENTS.md plus a memory-bank folder. This is what separates a codebase that stays coherent from one that doesn't.",
+    why: "Every new chat is a blank slate. Without a persistent context layer, every session drifts — different decisions, different conventions, broken consistency.",
     tasks: [
-      "Create AGENTS.md in the repo root.",
-      "Write your stack, folder structure, and naming conventions in plain English.",
-      "Add a no-touch list: files the AI must never modify without explicit permission.",
-      "Paste a 3-sentence PRD summary directly into AGENTS.md.",
-      "Start every new session with: 'Read AGENTS.md before doing anything.'",
-    ],
-    commonMistakes: [
-      "Re-explaining context in every session instead of loading a file",
-      "Writing vague conventions, 'use good naming' is not a rule",
-      "Not updating AGENTS.md when scope or stack changes",
-      "Skipping the no-touch list, the AI will rewrite files you didn't think to protect",
-    ],
-    resources: [
       {
-        label: "Claude Code",
-        href: "https://claude.ai/code",
-        usage: ["Reads AGENTS.md automatically, still reference it explicitly in your first message", "Update it when conventions change, not after something breaks"],
+        heading: "Before AI",
+        description: "Set this up once. Every session reads from it — no more re-explaining your stack.",
+        items: [
+          {
+            text: "Create `AGENTS.md` (or `CLAUDE.md`) in the repo root. Claude Code reads it automatically at the start of every session.",
+            links: [
+              { label: "Claude Code memory docs", href: "https://docs.anthropic.com/en/docs/claude-code/memory" },
+              { label: "KhazP template", href: "https://github.com/KhazP/vibe-coding-prompt-template/blob/main/AGENTS.md" },
+            ],
+          },
+          {
+            text: "Write your stack, folder structure, and naming conventions in plain English. Not code — sentences.",
+            detail: "'We use Next.js App Router. All components go in src/components. File names are kebab-case. No file exceeds 500 lines — refactor into modules instead.'",
+          },
+          {
+            text: "Add the 500-line rule: never create a file longer than 500 lines. If you're approaching the limit, refactor into modules first.",
+            detail: "This single rule prevents the monolith problem that makes vibe-coded codebases unmaintainable.",
+          },
+          {
+            text: "Add the never-overwrite rule: never delete or overwrite existing code unless explicitly instructed.",
+            detail: "Prevents silent regressions. The AI that wrote the code is primed to defend it — this rule forces an explicit ask.",
+          },
+          {
+            text: "Add the test rule: every new feature needs 3 tests — 1 expected use, 1 edge case, 1 failure case.",
+          },
+          {
+            text: "Add a no-touch list: files the AI must never modify. Examples: `.env`, `package-lock.json`, critical config files.",
+          },
+          {
+            text: "Create a `memory-bank/` folder with these files: `@architecture.md` (file map, always read), `@design-doc.md` (your PRD, always read), `progress.md` (completed steps), `implementation-plan.md` (ordered task list).",
+            detail: "Files prefixed with @ are set as 'Always' rules in your tool. The AI reads them before every session.",
+            links: [{ label: "EnzeD memory-bank pattern", href: "https://github.com/EnzeD/vibe-coding" }],
+          },
+          {
+            text: "Start every AI session: 'Read AGENTS.md, docs/PRD.md, and memory-bank/@architecture.md before doing anything. Summarize what you understand before coding.'",
+          },
+        ],
       },
       {
-        label: "Cursor",
-        href: "https://cursor.com",
-        usage: ["Use .cursorrules as the equivalent of AGENTS.md", "Keep rules short, long files get skimmed or ignored"],
-      },
-      {
-        label: "VibePrompt agent setup prompts",
-        href: "/browse?category=agent-setup",
-        usage: ["The AGENTS.md master template is a solid starting point"],
+        heading: "Learn",
+        description: "See how experienced builders set up context files.",
+        items: [
+          {
+            text: "Watch: AGENTS.md and Claude Code memory setup",
+            links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=claude+code+agents+md+memory+setup+tutorial" }],
+          },
+          {
+            text: "Read: Context Engineering intro — the full pattern",
+            links: [{ label: "github.com/coleam00", href: "https://github.com/coleam00/context-engineering-intro" }],
+          },
+          {
+            text: "Read: KhazP vibe coding template — full project scaffold",
+            links: [{ label: "github.com/KhazP", href: "https://github.com/KhazP/vibe-coding-prompt-template" }],
+          },
+        ],
       },
     ],
-    output: [
-      "AGENTS.md in repo root with stack, structure, and conventions",
-      "No-touch list with at least three critical files named",
-      "PRD summary (3 sentences) inside AGENTS.md",
-      "First session run with AGENTS.md loaded",
-    ],
+    commonMistakes: [],
+    resources: [],
+    output: [],
     browseSlug: "agent-setup",
   },
   {
     step: "05",
-    title: "Build in Loops",
+    title: "Build",
     emoji: "🔄",
-    whatThis: "Ship one small task at a time. Verify it. Commit it. Repeat.",
-    why: "Big prompts produce big diffs. Big diffs don't get properly reviewed. Small loops mean smaller diffs, clean rollback points, and a codebase you can actually trust.",
+    whatThis: "One task. Plan first. Execute. Verify. Commit. Start a new chat. Repeat. Planning is everything — do not let the AI plan autonomously.",
+    why: "Big prompts produce big diffs. Big diffs don't get reviewed. Small loops mean smaller diffs, clean rollback points, and a codebase you can understand.",
     tasks: [
-      "Break your PRD into 20–30 atomic tasks. Each should fit in one prompt.",
-      "Give the AI exactly one task per session. Not two. One.",
-      "Read every changed line before accepting. Don't understand it, reject it.",
-      "Commit after every verified task with a clear one-line message.",
-      "Start a fresh session between features. Load AGENTS.md again.",
-    ],
-    commonMistakes: [
-      "Giving the AI the full PRD and asking it to 'build the app'",
-      "Accepting diffs without reading them because they look right",
-      "Not committing between tasks, you lose rollback when something breaks",
-      "Carrying broken context across sessions instead of resetting",
-      "Treating a passing build as a verified feature",
-    ],
-    resources: [
       {
-        label: "Claude Code",
-        href: "https://claude.ai/code",
-        usage: ["Review the diff in the terminal before approving", "Use /clear between features, don't carry stale context forward"],
+        heading: "Before AI",
+        description: "Plan first, always. The AI builds what it understands — you define what that is.",
+        items: [
+          {
+            text: "Break your PRD into 20–30 atomic tasks in `TASK.md`. 'Add auth' is not atomic. 'Add /login route that renders the Clerk sign-in component' is. If a task touches more than 3 files, split it.",
+          },
+          {
+            text: "Use Plan Mode before every task. In Claude Code: press `shift+tab` before executing. In Cursor: start your prompt with 'DO NOT code yet — just plan.' Approve the plan. Then execute.",
+            detail: "Never let the AI make architectural decisions unsupervised. Review the plan first.",
+          },
+          {
+            text: "Add `ultrathink` to prompts before complex tasks: 'ultrathink this before coding.' Use `think` for simple tasks, `think hard` for moderate, `ultrathink` for anything architectural.",
+            detail: "These are escalating reasoning triggers for Claude. They produce significantly better plans on hard problems.",
+          },
+          {
+            text: "Give the AI one task per session. After it's done, review every changed line, then commit: `git commit -m 'feat: add login page'`. Then start a new chat.",
+            detail: "New chat per step is the key habit. A fresh context window produces better output than a long, noisy one.",
+            links: [{ label: "Conventional Commits", href: "https://conventionalcommits.org" }],
+          },
+          {
+            text: "Monitor your context window. Keep it above 50–60% capacity. Use `/compact` in Claude Code to compress history — not `/clear`. Clearing loses your session state.",
+          },
+          {
+            text: "Pause before irreversible actions. Before deleting, before a major refactor, before deploying: ask 'What are the risks? What can't be undone?' Then proceed.",
+          },
+          {
+            text: "Troubleshoot with these prompts — AI ignoring docs: 'Read AGENTS.md, PRD, and TechDesign. Summarize key requirements before coding.' AI overcomplicating: 'Prioritize MVP scope. Give me the simplest working implementation.'",
+          },
+          {
+            text: "Add this suffix to any prompt where quality matters: 'Think as long as needed. What matters is that you follow precisely what I asked and execute it perfectly. Ask me questions if I am not precise enough.'",
+          },
+        ],
       },
       {
-        label: "Cursor",
-        href: "https://cursor.com",
-        usage: ["If the diff touches files it shouldn't, reject and re-prompt"],
-      },
-      {
-        label: "VibePrompt build prompts",
-        href: "/browse?category=build-ship",
-        usage: ["The no-unwanted-changes guard is worth running before every session"],
+        heading: "Learn",
+        description: "How experienced builders structure AI build loops.",
+        items: [
+          {
+            text: "Watch: Claude Code build loop and Plan Mode walkthrough",
+            links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=claude+code+plan+mode+build+loop+workflow" }],
+          },
+          {
+            text: "Watch: Agentic coding workflow — one task, one diff",
+            links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=agentic+coding+workflow+cursor+claude+build+loop" }],
+          },
+          {
+            text: "Read: EnzeD vibe coding guide — the full build loop methodology",
+            links: [{ label: "github.com/EnzeD", href: "https://github.com/EnzeD/vibe-coding" }],
+          },
+        ],
       },
     ],
-    output: [
-      "PRD broken into 20–30 atomic tasks",
-      "At least one feature shipped with a clean commit history",
-      "Zero unreviewed diffs accepted",
-    ],
+    commonMistakes: [],
+    resources: [],
+    output: [],
     browseSlug: "build-ship",
   },
   {
     step: "06",
-    title: "Quality Gates",
+    title: "Quality",
     emoji: "🛡️",
-    whatThis: "Run a structured check before any code reaches production.",
-    why: "AI code passes surface checks and misses the subtle ones. Secrets leak. Spec drift accumulates quietly. You are the only gate, and it can't be handed back to the model that wrote the code.",
+    whatThis: "Run a structured check before any code reaches production. You are the only gate. The AI that wrote the code is primed to defend it.",
+    why: "AI code passes surface checks and misses subtle ones. Secrets leak. Spec drift accumulates quietly. Vibe-coded codebases have systematic blind spots.",
     tasks: [
-      "Review every changed file against your PRD. Does it do exactly what was specced?",
-      "Scan for secrets: API keys, tokens, hardcoded URLs, .env values in source.",
-      "Run the TypeScript build. Zero errors before any merge, non-negotiable.",
-      "Run at least one E2E test covering the primary user flow.",
-      "Send the diff to a second model with fresh context. Ask what's wrong.",
-    ],
-    commonMistakes: [
-      "Accepting 'it works on my machine' as a quality gate",
-      "Skipping the secrets scan, one leaked key can kill a project",
-      "Treating TypeScript errors as warnings",
-      "Writing no tests because 'the AI tested it'",
-      "Using the same model that wrote the code to review it",
-    ],
-    resources: [
       {
-        label: "Playwright",
-        href: "https://playwright.dev",
-        usage: ["One E2E test per primary user flow, not per component", "If it fails, don't ship"],
+        heading: "Before AI",
+        description: "Run these yourself. Don't ask the model that wrote the code to review it.",
+        items: [
+          {
+            text: "Check every changed file against your PRD. If it wasn't specced, it doesn't ship until you explicitly approve it.",
+          },
+          {
+            text: "Check no file exceeds 500 lines. If it does, open a new session and ask the AI to refactor it into modules before merging.",
+          },
+          {
+            text: "Verify the test triangle for every new feature: 1 expected-use test, 1 edge-case test, 1 failure-case test.",
+          },
+          {
+            text: "Scan for exposed secrets: `sk-`, `API_KEY`, `Bearer`, `SUPABASE_`, `password`. Confirm `.env` is in `.gitignore`.",
+            detail: "One leaked key can rack up bills overnight. Run `git log --all --grep='API_KEY'` to check history too.",
+            links: [{ label: "git-secrets", href: "https://github.com/awslabs/git-secrets" }],
+          },
+          {
+            text: "Run `npm audit` — critical and high severity = deploy blockers.",
+          },
+          {
+            text: "Run `npx tsc --noEmit` — zero TypeScript errors, non-negotiable.",
+          },
+          {
+            text: "Write one E2E test for your primary flow. Run `npx playwright codegen` — record by clicking through your app. Landing → sign up → core action → success.",
+            links: [{ label: "Playwright", href: "https://playwright.dev" }],
+          },
+          {
+            text: "Send the diff to a second AI with a fresh context window. Ask: 'What's wrong with this code? What security risks do you see?' Fresh context finds what the author can't.",
+          },
+        ],
       },
       {
-        label: "Vitest",
-        href: "https://vitest.dev",
-        usage: ["Unit test pure functions and data transforms, not framework behavior"],
-      },
-      {
-        label: "Snyk",
-        href: "https://snyk.io",
-        usage: ["Run on every dependency update", "Critical vulnerabilities are deploy blockers"],
+        heading: "Learn",
+        description: "Learn what to check and why vibe-coded code has specific failure modes.",
+        items: [
+          {
+            text: "Watch: How to keep API keys and secrets out of GitHub",
+            links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=keep+api+keys+secrets+out+of+github" }],
+          },
+          {
+            text: "Watch: Playwright E2E testing crash course",
+            links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=playwright+testing+crash+course+beginners" }],
+          },
+          {
+            text: "Read: OWASP Top 10 — check your app against at least the first three",
+            links: [{ label: "owasp.org", href: "https://owasp.org/www-project-top-ten" }],
+          },
+        ],
       },
     ],
-    output: [
-      "All changed files reviewed against PRD, no undocumented features",
-      "No secrets in code or git history",
-      "TypeScript build passes with zero errors",
-      "At least one E2E test passes on the primary flow",
-    ],
+    commonMistakes: [],
+    resources: [],
+    output: [],
     browseSlug: "testing-quality",
   },
   {
     step: "07",
-    title: "Ship & Observe",
+    title: "Ship",
     emoji: "🚀",
-    whatThis: "Get a real URL in front of real people and watch what they do.",
-    why: "Localhost is fiction. Real users break assumptions you didn't know you had. One real session beats a week of testing in isolation.",
+    whatThis: "Get a real URL in front of real people. Watch what they actually do.",
+    why: "Localhost is fiction. Real users break assumptions you didn't know you had.",
     tasks: [
-      "Connect your repo to Vercel. Enable auto-deploys from main. Do this on day one.",
-      "Share the URL the moment it's live. Rough is fine. Waiting is not.",
-      "Add PostHog (free tier): pageviews, click events, session recordings.",
-      "Add Sentry (free tier): catch errors before users report them.",
-      "Watch at least one real session end to end before making any changes.",
-    ],
-    commonMistakes: [
-      "Waiting until it's 'ready', it never is, and you're delaying learning",
-      "Deploying without analytics, you'll have no idea what actually happened",
-      "Skipping error tracking, silent failures are the hardest to debug",
-      "Sharing only with friends who won't be honest",
-      "Making product decisions without watching a single real session",
-    ],
-    resources: [
       {
-        label: "Vercel",
-        href: "https://vercel.com",
-        usage: ["Connect the repo on day one, preview deploys catch bugs before they hit main", "Env vars in the dashboard only, never in code"],
+        heading: "Before AI",
+        description: "Set up observability before you share the URL — not after.",
+        items: [
+          {
+            text: "Connect your repo to Vercel — every push to main deploys, every PR gets a preview URL.",
+            links: [{ label: "Vercel", href: "https://vercel.com" }],
+          },
+          {
+            text: "Install PostHog and enable session recording immediately. Free tier. Early sessions are the most revealing.",
+            links: [{ label: "PostHog Next.js quickstart", href: "https://posthog.com/docs/libraries/next-js" }],
+          },
+          {
+            text: "Install Sentry before sharing the URL — it catches unhandled exceptions with full stack traces.",
+            links: [{ label: "Sentry Next.js setup", href: "https://docs.sentry.io/platforms/javascript/guides/nextjs/" }],
+          },
+          {
+            text: "Share the URL the moment it's live. Rough is fine.",
+            detail: "Post in relevant subreddits, Discord servers, X. People who try rough versions give the most honest feedback.",
+          },
+          {
+            text: "Watch one full session recording before making any changes.",
+            detail: "Don't open dashboards first. Watch a recording. One recording = more insight than 1000 pageviews.",
+          },
+        ],
       },
       {
-        label: "PostHog",
-        href: "https://posthog.com",
-        usage: ["Enable session recording on setup, not after something goes wrong", "Build a funnel for your core flow immediately"],
-      },
-      {
-        label: "Sentry",
-        href: "https://sentry.io",
-        usage: ["Set up error alerts before you share the URL with anyone", "Every new error type is a blocker until triaged"],
+        heading: "Learn",
+        description: "Set up analytics and learn how to get first users.",
+        items: [
+          {
+            text: "Watch: PostHog setup — session recordings and analytics",
+            links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=posthog+session+recording+analytics+setup" }],
+          },
+          {
+            text: "Watch: How to get your first users as an indie hacker",
+            links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=how+to+get+first+users+indie+hacker+saas+launch" }],
+          },
+          {
+            text: "Watch: Sentry setup for Next.js",
+            links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=sentry+nextjs+error+tracking+setup" }],
+          },
+        ],
       },
     ],
-    output: [
-      "Live URL accessible without a login wall",
-      "PostHog installed and recording sessions",
-      "Sentry installed and catching errors",
-      "At least one real user session watched end to end",
-    ],
-    browseSlug: "build-ship",
+    commonMistakes: [],
+    resources: [],
+    output: [],
+    browseSlug: "launch-growth",
   },
   {
     step: "08",
     title: "Iterate",
     emoji: "🔁",
-    whatThis: "Use real usage data to decide what to fix next.",
-    why: "What users say and what users do are different data. Behavior doesn't lie. Iterating without session data is just guessing with extra steps.",
+    whatThis: "Use real behavior data to decide what to fix next. Not gut feelings. Not user requests. Behavior.",
+    why: "What users say and what users do are different data. Iterating without session data is guessing with extra steps.",
     tasks: [
-      "Open PostHog. Find where users drop off, rage-click, or stop.",
-      "Pick exactly three friction points. Not ten. Three.",
-      "Update your PRD with the new scope before re-entering the build loop.",
-      "Run the build loop again from Step 05 with the updated spec.",
-      "Ship the update. Check if the specific friction point actually improved.",
-    ],
-    commonMistakes: [
-      "Iterating on what users said instead of what they did",
-      "Picking ten things to fix at once and doing none of them well",
-      "Skipping the PRD update before the next build loop",
-      "Shipping without measuring whether it moved the specific metric",
-      "Thinking iteration is a phase, it's the whole job",
-    ],
-    resources: [
       {
-        label: "PostHog",
-        href: "https://posthog.com",
-        usage: ["Start with session recordings, not dashboards", "Rage clicks and dead clicks show you exactly where the UX breaks"],
+        heading: "Before AI",
+        description: "Do this analysis before you open a new build session.",
+        items: [
+          {
+            text: "Watch 5 PostHog session recordings before opening any dashboard. Rage clicks and dead clicks show exactly where the UX breaks.",
+            links: [{ label: "PostHog session replays", href: "https://posthog.com/docs/session-replay/how-to-use-session-replays" }],
+          },
+          {
+            text: "Set up a PostHog funnel for your main user flow. Drop-off rate per step = most actionable early metric.",
+            links: [{ label: "PostHog funnels", href: "https://posthog.com/docs/product-analytics/funnels" }],
+          },
+          {
+            text: "Pick exactly 3 friction points to fix. Not ten.",
+            detail: "Pick the ones that appear in 3+ recordings — not one-off edge cases.",
+          },
+          {
+            text: "Update your PRD before re-entering the build loop.",
+            detail: "The spec you have is for v0.1. Update done conditions and out-of-scope before any AI session.",
+          },
+          {
+            text: "Note the baseline metric before shipping.",
+            detail: "Example: 60% drop-off at step 2. Check again in 48–72 hours. If it didn't move, your root cause theory was wrong.",
+          },
+        ],
       },
       {
-        label: "Hotjar",
-        href: "https://hotjar.com",
-        usage: ["Scroll maps reveal what content nobody reaches", "Pair with PostHog, they answer different questions"],
-      },
-      {
-        label: "Typeform",
-        href: "https://typeform.com",
-        usage: ["3 questions max", "Treat every answer as a hypothesis, verify it with behavior data"],
+        heading: "Learn",
+        description: "Learn how to read behavior data and act on it.",
+        items: [
+          {
+            text: "Watch: How to analyze session recordings",
+            links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=how+to+analyze+session+recordings+posthog+ux" }],
+          },
+          {
+            text: "Watch: Product analytics fundamentals — funnels and retention",
+            links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=product+analytics+funnels+retention+beginners" }],
+          },
+          {
+            text: "Read: How to use session replays — PostHog guide",
+            links: [{ label: "posthog.com", href: "https://posthog.com/docs/session-replay/how-to-use-session-replays" }],
+          },
+        ],
       },
     ],
-    output: [
-      "3 friction points identified from session data, not assumptions",
-      "PRD updated to reflect new scope",
-      "Update shipped and live",
-      "Specific metric checked to confirm improvement",
-    ],
-    browseSlug: "launch-growth",
+    commonMistakes: [],
+    resources: [],
+    output: [],
+    browseSlug: "ops-maintenance",
   },
 ];
 
 export default function WorkflowPage() {
   return (
     <div className="pt-12">
-      <WorkflowStepNav />
-      <Hero
-        title={"8 steps.\nIdea to shipped."}
-        description="The complete vibe coding playbook, validation, spec, stack, context, build loops, quality gates, launch, iteration."
-        accent="#ffffff"
-      />
-
-      <div className="mx-auto max-w-6xl pt-12">
-        <section className="grid grid-cols-1 gap-3">
-          {STEPS.map((s) => (
-            <article key={s.step} id={`step-${s.step}`} className="border border-foreground/20 overflow-hidden">
-
-              {/* Header */}
-              <div className="relative border-b border-foreground/20 bg-foreground/[0.03] px-4 py-6 sm:px-8 sm:py-8">
-                <span className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 select-none text-[8rem] font-bold leading-none text-foreground/5">
-                  {s.step}
-                </span>
-                <div className="relative">
-                  <h2 className="hero-display leading-none">
-                    <Link href={`/browse?category=${s.browseSlug}`} className="hover:text-foreground/70 transition-colors">
-                      {s.title}
-                    </Link>
-                  </h2>
-                  <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/70">{s.whatThis} {s.why}</p>
-                </div>
-              </div>
-
-              {/* What to do */}
-              <div className="border-b border-foreground/20 px-4 py-6 sm:px-8">
-                <p className="mb-4 text-[10px] font-bold uppercase tracking-widest text-foreground/40">What to do</p>
-                <ol className="space-y-3">
-                  {s.tasks.map((t, i) => (
-                    <li key={i} className="flex items-baseline gap-4">
-                      <span className="shrink-0 text-xs tabular-nums text-foreground/30">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span className="text-sm text-foreground">{t}</span>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-
-              {/* Mistakes + Done */}
-              <div className="grid grid-cols-1 border-b border-foreground/20 sm:grid-cols-2">
-                <div className="border-b border-foreground/20 px-4 py-6 sm:border-b-0 sm:border-r sm:px-8">
-                  <p className="mb-4 text-[10px] font-bold uppercase tracking-widest text-red-400/80">Common mistakes</p>
-                  <ul className="space-y-3">
-                    {s.commonMistakes.map((m, i) => (
-                      <li key={i} className="flex items-baseline gap-3">
-                        <span className="shrink-0 text-xs font-bold text-red-400/70">✕</span>
-                        <span className="text-sm text-foreground/80">{m}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="px-8 py-6">
-                  <p className="mb-4 text-[10px] font-bold uppercase tracking-widest text-emerald-400/80">Done when</p>
-                  <ul className="space-y-3">
-                    {s.output.map((o, i) => (
-                      <li key={i} className="flex items-baseline gap-3">
-                        <span className="shrink-0 text-xs font-bold text-emerald-400/90">✓</span>
-                        <span className="text-sm text-foreground">{o}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* Resources */}
-              <div className="px-4 py-6 sm:px-8">
-                <p className="mb-4 text-[10px] font-bold uppercase tracking-widest text-foreground/40">Resources, use like this</p>
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                  {s.resources.map((r) => {
-                    const domain = r.href.startsWith("http") ? new URL(r.href).hostname : null;
-                    // eslint-disable-next-line @next/next/no-img-element
-                    const favicon = domain ? <img src={`https://www.google.com/s2/favicons?domain=${domain}&sz=32`} alt="" aria-hidden="true" width={18} height={18} className="shrink-0" /> : null;
-                    return (
-                      <div key={r.label} className="border border-foreground/20 bg-foreground/[0.03] p-4 transition-colors hover:bg-foreground/[0.07]">
-                        <a
-                          href={r.href}
-                          target={r.href.startsWith("http") ? "_blank" : undefined}
-                          rel={r.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                          className="group mb-3 flex items-center gap-2.5"
-                        >
-                          {favicon}
-                          <span className="text-sm font-semibold text-foreground transition-colors group-hover:text-foreground/70">
-                            {r.label}
-                          </span>
-                          <span className="ml-auto text-xs text-foreground/30">↗</span>
-                        </a>
-                        {r.usage && (
-                          <ul className="space-y-1.5 border-t border-foreground/10 pt-2.5">
-                            {r.usage.map((u) => (
-                              <li key={u} className="flex gap-2">
-                                <span className="mt-0.5 shrink-0 text-[9px] text-foreground/30">→</span>
-                                <span className="text-xs leading-relaxed text-foreground/60">{u}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-            </article>
-          ))}
-        </section>
-        <GithubCta
-          title={"Something\nmissing?"}
-          description="Suggest a step, task, resource, or fix. If it makes the workflow better, it goes in."
+      <Reveal>
+        <Hero
+          title={"The vibe coding\nworkflow."}
+          description="9 steps from idea to shipped. Built from the most-starred vibe coding repos — what to do, what to learn, what to check."
           accent="#ffffff"
-          primaryHref="https://github.com/dotsystemsdevs/VibePrompt/issues/new?template=suggest-workflow.yml"
-          primaryLabel="Suggest an improvement"
-          secondaryHref="https://github.com/dotsystemsdevs/VibePrompt"
-          secondaryLabel="Submit a PR instead"
         />
+      </Reveal>
+      <div className="mx-auto max-w-6xl px-4 pt-6 sm:px-0">
+        <WorkflowStepper steps={STEPS} />
+        <Reveal>
+          <GithubCta
+            title={"Something\nmissing?"}
+            description="Suggest a step, a resource, or a fix. If it belongs here, it goes in."
+            accent="#ffffff"
+            primaryHref="https://github.com/dotsystemsdevs/VibePrompt/issues/new"
+            primaryLabel="Suggest a change"
+            secondaryHref="https://github.com/dotsystemsdevs/VibePrompt"
+            secondaryLabel="Submit a PR"
+            borderTop={false}
+            className="mt-6"
+          />
+        </Reveal>
       </div>
-
     </div>
   );
 }
