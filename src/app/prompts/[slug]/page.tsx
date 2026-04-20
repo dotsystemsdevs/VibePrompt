@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getPromptBySlug } from "@/lib/prompt-library";
@@ -8,6 +9,25 @@ import { getCopyCount } from "@/lib/actions/copies";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const prompt = await getPromptBySlug(slug);
+  if (!prompt) return {};
+  const description = prompt.useCase.slice(0, 155);
+  return {
+    title: `${prompt.title} — VibePrompt`,
+    description,
+    alternates: { canonical: `/prompts/${slug}` },
+    openGraph: {
+      title: prompt.title,
+      description,
+      url: `https://vibeprompt.tech/prompts/${slug}`,
+      type: "article",
+    },
+    twitter: { card: "summary", title: prompt.title, description },
+  };
 }
 
 const PLACEHOLDER_RE = /(\[[^\]]+\]|\{\{[^}]+\}\})/g;

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { BrowseClient } from "@/components/prompts/browse-client";
 import { getPromptLibrary } from "@/lib/prompt-library";
 import { Hero } from "@/components/hero/hero";
@@ -6,6 +7,18 @@ import { Suspense } from "react";
 import { Reveal } from "@/components/motion/reveal";
 
 export const dynamic = "force-static";
+
+export const metadata: Metadata = {
+  title: "AI Prompt Library | 40 Prompts for Vibe Coders — VibePrompt",
+  description:
+    "Browse 40 free, copy-ready AI prompts for every stage of your build: context setup, PRD writing, code review, shipping, and more.",
+  alternates: { canonical: "/browse" },
+  openGraph: {
+    title: "AI Prompt Library — 40 Prompts for Vibe Coders",
+    description: "Copy-ready prompts for context, PRD, build, quality, and ship. Free and open source.",
+    url: "https://vibeprompt.tech/browse",
+  },
+};
 
 export default async function BrowsePage() {
   const { categories, prompts } = await getPromptLibrary();

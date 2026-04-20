@@ -8,10 +8,13 @@ const SCHEMA_ORG = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "VibePrompt",
-  description: "Curated prompts, workflow, and tools for AI-first builders",
+  description: "40 battle-tested AI prompts, a 9-step vibe coding workflow, and a curated tool list — free and open source.",
   url: "https://vibeprompt.tech",
-  applicationCategory: "UtilityApplication",
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Web",
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  keywords: "AI prompts, vibe coding, prompt library, Claude prompts, AI workflow, open source",
+  creator: { "@type": "Organization", name: "VibePrompt", url: "https://vibeprompt.tech" },
 };
 
 export default async function HomePage() {

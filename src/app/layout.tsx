@@ -22,8 +22,9 @@ export const metadata: Metadata = {
   title: "VibePrompt - AI Prompts, Workflow & Tools for Builders",
   description:
     "40 battle-tested prompts for AI development. Free prompt library with workflows and tools for shipping with AI. Copy in one click, no login needed.",
-  keywords: "AI prompts, prompt engineering, AI tools, vibe coding, open source prompts",
+  keywords: "AI prompts, vibe coding, prompt library, Claude prompts, AI workflow, prompt engineering, open source prompts, vibe coders",
   metadataBase: getMetadataBase(),
+  alternates: { canonical: "https://vibeprompt.tech" },
   openGraph: {
     title: "VibePrompt - Everything You Need to Ship with AI",
     description:
