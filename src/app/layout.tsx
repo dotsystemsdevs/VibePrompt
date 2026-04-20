@@ -5,7 +5,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 
 const getMetadataBase = () => {
-  const fallback = "https://vibeprompt.dev";
+  const fallback = "https://vibeprompt.tech";
   const raw = process.env.NEXT_PUBLIC_SITE_URL ?? fallback;
   try {
     return new URL(raw);
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
       "Free open-source prompt library with 36+ tested prompts, workflows, and tools for AI developers.",
     siteName: "VibePrompt",
     type: "website",
-    url: "https://vibeprompt.dev",
+    url: "https://vibeprompt.tech",
   },
   twitter: {
     card: "summary_large_image",

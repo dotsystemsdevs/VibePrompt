@@ -14,7 +14,7 @@ Repository: [dotsystemsdevs/VibePrompt](https://github.com/dotsystemsdevs/VibePr
 
 ## Quick links
 
-- **Site**: https://vibeprompt.dev
+- **Site**: https://vibeprompt.tech
 - **Issues**: https://github.com/dotsystemsdevs/VibePrompt/issues
 - **Pull requests**: https://github.com/dotsystemsdevs/VibePrompt/pulls
 

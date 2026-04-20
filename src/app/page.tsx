@@ -9,7 +9,7 @@ const SCHEMA_ORG = {
   "@type": "WebApplication",
   name: "VibePrompt",
   description: "Curated prompts, workflow, and tools for AI-first builders",
-  url: "https://vibeprompt.dev",
+  url: "https://vibeprompt.tech",
   applicationCategory: "UtilityApplication",
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
 };

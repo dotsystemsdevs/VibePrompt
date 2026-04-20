@@ -141,7 +141,7 @@ export const AWESOME_CATEGORIES = [
       { name: "Together AI", description: "Run open-source models at scale with a simple API.", href: "https://together.ai" },
       { name: "Replicate", description: "Deploy and run any open-source model with one API call.", href: "https://replicate.com" },
       { name: "Mistral", description: "Efficient open-weight models, strong at code and reasoning.", href: "https://mistral.ai" },
-      { name: "VibePrompt", description: "Curated prompt library built for vibe coders, you're here.", href: "https://vibeprompt.dev" },
+      { name: "VibePrompt", description: "Curated prompt library built for vibe coders, you're here.", href: "https://vibeprompt.tech" },
     ],
   },
   {
