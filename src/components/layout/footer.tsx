@@ -109,7 +109,7 @@ export function Footer() {
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-sm font-semibold tracking-tight text-foreground">vibeprompt</p>
-              <p className="mt-1 text-xs text-muted-foreground">Open source prompt library for vibe coders.</p>
+              <p className="mt-1 text-xs text-muted-foreground">Prompts, resources, and tools for vibe coders.</p>
               {showContributorStrip && contributors && contributors.length > 0 && (
                 <div className="mt-4 flex items-center gap-3">
                   <div className="flex items-center">
@@ -128,7 +128,7 @@ export function Footer() {
                           alt={c.login}
                           width={24}
                           height={24}
-                          className="rounded-full border border-background grayscale transition-all duration-200 hover:grayscale-0"
+                          className="rounded-full border border-background"
                         />
                       </a>
                     ))}
