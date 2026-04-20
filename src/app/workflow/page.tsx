@@ -20,7 +20,7 @@ const STEPS: StepData[] = [
     why: "Most beginners fail in setup chaos, not bad ideas. Lock this in once — you'll never think about it again.",
     tasks: [
       {
-        heading: "Before AI",
+        heading: "Checklist",
         description: "Confirm each tool works before moving on.",
         items: [
           {
@@ -93,7 +93,7 @@ const STEPS: StepData[] = [
     why: "Most projects fail before the build starts. One hour here saves weeks of building the wrong thing.",
     tasks: [
       {
-        heading: "Before AI",
+        heading: "Checklist",
         description: "Manual signal first — AI will hallucinate demand if you skip this.",
         items: [
           {
@@ -165,7 +165,7 @@ const STEPS: StepData[] = [
     why: "Without a spec, AI fills every gap with assumptions — and those assumptions ship. Most agent failures are context failures, not model failures.",
     tasks: [
       {
-        heading: "Before AI",
+        heading: "Checklist",
         description: "Write this yourself. A vague PRD produces a vague product.",
         items: [
           {
@@ -228,7 +228,7 @@ const STEPS: StepData[] = [
     why: "Mid-build stack changes cost ten times more than upfront decisions. No open choices past this step.",
     tasks: [
       {
-        heading: "Before AI",
+        heading: "Checklist",
         description: "Make every decision now. Ask AI: 'What is the simplest yet most robust stack for this PRD?'",
         items: [
           {
@@ -302,7 +302,7 @@ const STEPS: StepData[] = [
     why: "Every new chat is a blank slate. Without a persistent context layer, every session drifts — different decisions, different conventions, broken consistency.",
     tasks: [
       {
-        heading: "Before AI",
+        heading: "Checklist",
         description: "Set this up once. Every session reads from it — no more re-explaining your stack.",
         items: [
           {
@@ -372,7 +372,7 @@ const STEPS: StepData[] = [
     why: "Big prompts produce big diffs. Big diffs don't get reviewed. Small loops mean smaller diffs, clean rollback points, and a codebase you can understand.",
     tasks: [
       {
-        heading: "Before AI",
+        heading: "Checklist",
         description: "Plan first, always. The AI builds what it understands — you define what that is.",
         items: [
           {
@@ -437,7 +437,7 @@ const STEPS: StepData[] = [
     why: "AI code passes surface checks and misses subtle ones. Secrets leak. Spec drift accumulates quietly. Vibe-coded codebases have systematic blind spots.",
     tasks: [
       {
-        heading: "Before AI",
+        heading: "Checklist",
         description: "Run these yourself. Don't ask the model that wrote the code to review it.",
         items: [
           {
@@ -501,7 +501,7 @@ const STEPS: StepData[] = [
     why: "Localhost is fiction. Real users break assumptions you didn't know you had.",
     tasks: [
       {
-        heading: "Before AI",
+        heading: "Checklist",
         description: "Set up observability before you share the URL — not after.",
         items: [
           {
@@ -558,7 +558,7 @@ const STEPS: StepData[] = [
     why: "What users say and what users do are different data. Iterating without session data is guessing with extra steps.",
     tasks: [
       {
-        heading: "Before AI",
+        heading: "Checklist",
         description: "Do this analysis before you open a new build session.",
         items: [
           {
