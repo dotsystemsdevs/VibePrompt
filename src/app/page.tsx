@@ -146,67 +146,100 @@ export default async function HomePage() {
 
         </div>
 
-        {/* ── Mobile: centered ── */}
-        <div className="flex flex-1 flex-col items-center justify-center px-6 py-8 lg:hidden">
-          <div className="w-full max-w-md text-center">
-            <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground/30">
-              {prompts.length} prompts &nbsp;·&nbsp; {categories.length} categories &nbsp;·&nbsp; free
-            </p>
-            <h1
-              className="font-bold leading-[1.05] tracking-[-0.04em] text-foreground"
-              style={{ fontSize: "clamp(2.1rem, 6vw, 3.2rem)" }}
+        {/* ── Mobile ── */}
+        <div className="flex flex-1 flex-col px-5 py-10 lg:hidden">
+
+          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground/30">
+            {prompts.length} prompts &nbsp;·&nbsp; {categories.length} categories &nbsp;·&nbsp; free
+          </p>
+
+          <h1
+            className="font-bold leading-[1.05] tracking-[-0.04em] text-foreground"
+            style={{ fontSize: "clamp(2.2rem, 8vw, 3rem)" }}
+          >
+            Everything you need
+            <br />to ship with AI.
+          </h1>
+
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-foreground/50">
+            The 9-step vibe coding playbook from idea to shipped — plus {prompts.length} battle-tested prompts.
+          </p>
+
+          <div className="mt-7 flex items-center gap-3">
+            <Link
+              href="/workflow"
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-85"
+              style={{ background: "linear-gradient(135deg, #3b82f6, #2563eb)" }}
             >
-              Everything you need
-              <br />to ship with AI.
-            </h1>
-            <p className="mx-auto mt-4 max-w-xs text-sm leading-relaxed text-foreground/50">
-              The 9-step vibe coding playbook from idea to shipped — plus {prompts.length} battle-tested prompts.
-            </p>
-            <div className="mt-7 flex flex-col items-center gap-3">
-              <Link
-                href="/workflow"
-                className="inline-flex items-center gap-2 px-7 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-85"
-                style={{ background: "linear-gradient(135deg, #3b82f6, #2563eb)" }}
-              >
-                See the workflow →
-              </Link>
-              <Link
-                href="/browse"
-                className="text-xs text-foreground/40 transition-colors hover:text-foreground/70"
-              >
-                or browse the {prompts.length} prompts →
+              See the workflow →
+            </Link>
+            <Link
+              href="/browse"
+              className="text-xs text-foreground/40 transition-colors hover:text-foreground/70"
+            >
+              Browse prompts →
+            </Link>
+          </div>
+
+          {/* Workflow card */}
+          <div className="mt-8 border border-foreground/20">
+            <div className="flex items-center justify-between border-b border-foreground/12 px-4 py-2.5">
+              <div className="flex items-center gap-1.5">
+                <span className="h-2 w-2 rounded-full bg-[#ff5f57]" />
+                <span className="h-2 w-2 rounded-full bg-[#febc2e]" />
+                <span className="h-2 w-2 rounded-full bg-[#28c840]" />
+              </div>
+              <span className="text-[9px] font-medium uppercase tracking-widest text-foreground/25">vibe-coding-workflow</span>
+            </div>
+            <div className="divide-y divide-foreground/[0.06]">
+              {WORKFLOW_STEPS.map(({ step, title }) => (
+                <Link
+                  key={step}
+                  href={`/workflow#step-${step}`}
+                  className="group flex items-center gap-3 px-4 py-2.5 transition-colors hover:bg-foreground/[0.04]"
+                >
+                  <span className="w-6 shrink-0 font-mono text-[10px] tabular-nums text-foreground/25">{step}</span>
+                  <span className="flex-1 text-[11px] text-foreground/55 transition-colors group-hover:text-foreground/80">{title}</span>
+                  <span className="text-[9px] text-foreground/20">→</span>
+                </Link>
+              ))}
+            </div>
+            <div className="border-t border-foreground/10 px-4 py-3">
+              <Link href="/workflow" className="text-[11px] font-medium text-foreground/30 transition-colors hover:text-foreground/65">
+                See full workflow →
               </Link>
             </div>
-
-            {contributors.length > 0 && (
-              <div className="mt-7 flex flex-col items-center gap-2">
-                <div className="flex items-center">
-                  {contributors.slice(0, 6).map((c, i) => (
-                    <a
-                      key={c.login}
-                      href={c.profileUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title={c.login}
-                      className="relative block transition-transform hover:scale-110"
-                      style={{ marginLeft: i === 0 ? 0 : "-8px" }}
-                    >
-                      <Image
-                        src={c.avatarUrl}
-                        alt={c.login}
-                        width={26}
-                        height={26}
-                        className="rounded-full border border-background transition-transform"
-                      />
-                    </a>
-                  ))}
-                </div>
-                <p className="text-[11px] text-foreground/30">
-                  Built by {contributors.length} contributor{contributors.length !== 1 ? "s" : ""}
-                </p>
-              </div>
-            )}
           </div>
+
+          {contributors.length > 0 && (
+            <div className="mt-7 flex items-center gap-3">
+              <div className="flex items-center">
+                {contributors.slice(0, 6).map((c, i) => (
+                  <a
+                    key={c.login}
+                    href={c.profileUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={c.login}
+                    className="relative block transition-transform hover:scale-110"
+                    style={{ marginLeft: i === 0 ? 0 : "-8px" }}
+                  >
+                    <Image
+                      src={c.avatarUrl}
+                      alt={c.login}
+                      width={26}
+                      height={26}
+                      className="rounded-full border border-background"
+                    />
+                  </a>
+                ))}
+              </div>
+              <p className="text-[11px] text-foreground/30">
+                Built by {contributors.length} contributor{contributors.length !== 1 ? "s" : ""}
+              </p>
+            </div>
+          )}
+
         </div>
 
       </div>
