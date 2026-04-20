@@ -1,22 +1,48 @@
 # VibePrompt
 
-Open-source prompt library and learning hub for vibe coders, prompt engineers, and AI-assisted builders.
+Open-source prompt library and workflow hub for vibe coders — built so you always know what to do next, what to check, and how to ship faster with AI.
+
+[![CI](https://github.com/dotsystemsdevs/VibePrompt/actions/workflows/ci.yml/badge.svg)](https://github.com/dotsystemsdevs/VibePrompt/actions/workflows/ci.yml)
+![License](https://img.shields.io/github/license/dotsystemsdevs/VibePrompt)
+![Stars](https://img.shields.io/github/stars/dotsystemsdevs/VibePrompt?style=flat)
+![Issues](https://img.shields.io/github/issues/dotsystemsdevs/VibePrompt?style=flat)
+![PRs](https://img.shields.io/github/issues-pr/dotsystemsdevs/VibePrompt?style=flat)
 
 Repository: [dotsystemsdevs/VibePrompt](https://github.com/dotsystemsdevs/VibePrompt)
 
 ---
 
+## Quick links
+
+- **Site**: https://vibeprompt.dev
+- **Issues**: https://github.com/dotsystemsdevs/VibePrompt/issues
+- **Pull requests**: https://github.com/dotsystemsdevs/VibePrompt/pulls
+
 ## What This Is
 
 VibePrompt is a Next.js app that makes it easy to find, use, and learn from high-quality prompts for AI-assisted development.
 
-- Browse a curated prompt library organized by category
-- Follow structured workflows for building with AI
-- Explore the Awesome list of vibe coding tools and resources
-- Save prompts to your personal library (auth via Clerk)
-- Built on Supabase for persistence
+- **Browse** a curated prompt library organized by workflow stage
+- **Follow** a 9-step workflow built from top vibe coding repos
+- **Explore** the Awesome list of AI coding tools and resources
+- **Save** prompts locally — no account required
 
 The goal: make prompt-based building easier to start, learn, and ship.
+
+---
+
+## Contribute
+
+This project is **open source** and actively improved. If you ship with AI, you can help make VibePrompt better.
+
+- **Good first contributions**: fix copy, tighten UI spacing, improve mobile, add a prompt, or add a tool/resource
+- **Public discussions**: open an issue → we’ll track it openly
+- **Code changes**: open a PR (small + focused is perfect)
+
+Links:
+- [Open an Issue](https://github.com/dotsystemsdevs/VibePrompt/issues)
+- [Open a Pull Request](https://github.com/dotsystemsdevs/VibePrompt/pulls)
+- [Contributing Guide](./CONTRIBUTING.md)
 
 ---
 
@@ -27,11 +53,10 @@ The goal: make prompt-based building easier to start, learn, and ship.
 | `/` | Homepage |
 | `/browse` | Browse all prompts by category |
 | `/prompts/[slug]` | Individual prompt detail page |
-| `/workflow` | Step-by-step vibe coding workflow |
+| `/workflow` | 9-step vibe coding workflow |
 | `/awesome` | Curated list of AI/vibe coding tools |
-| `/library` | Your saved prompts (requires sign-in) |
-| `/learn` | Learning resources |
 | `/about` | About the project |
+| `/contact` | Contact |
 
 ---
 
@@ -46,32 +71,33 @@ VibePrompt/
 │  │  ├─ cta/               # Call-to-action components
 │  │  ├─ hero/              # Hero section
 │  │  ├─ layout/            # Navbar, footer, theme toggle
-│  │  ├─ library/           # Personal library components
+│  │  ├─ motion/            # Animation wrappers
 │  │  ├─ prompts/           # Prompt cards, browse, actions
-│  │  ├─ workflow/          # Workflow step components
-│  │  └─ ui/                # Base UI primitives
+│  │  └─ workflow/          # Workflow step components
 │  └─ lib/                  # Data, types, and utilities
 │     ├─ actions/           # Server actions (saves, etc.)
-│     ├─ prompt-library.ts  # Prompt data loading
-│     ├─ categories.ts      # Category definitions
-│     ├─ awesome-data.ts    # Awesome list data
+│     ├─ categories.ts      # Category definitions and slug→folder mappings
+│     ├─ awesome-data.ts    # Awesome list entries
+│     ├─ prompt-library.ts  # Prompt data loading from markdown
+│     ├─ workflow-steps.ts  # Workflow step metadata
+│     ├─ local-saves.ts     # localStorage save helpers
 │     ├─ supabase.ts        # Supabase client
-│     └─ types.ts           # Shared types
+│     └─ types.ts           # Shared TypeScript types
 ├─ content/
-│  └─ prompts/              # Markdown prompt source files
-├─ prompt-library/          # Organized prompt playbook (markdown)
-│  ├─ Agent Setup/
-│  ├─ Architecture Stack/
-│  ├─ Build Ship/
-│  ├─ Launch Growth/
-│  ├─ Ops Maintenance/
-│  ├─ PRD Spec/
-│  ├─ Prompting Craft/
-│  ├─ Research Validate/
-│  └─ Testing Quality/
+│  └─ prompts/              # Markdown prompt source files (one per prompt)
+├─ prompt-library/          # Standalone prompt playbook (39 prompts, 9 categories)
+│  ├─ Agent Setup/          # → "Context" on site
+│  ├─ Architecture Stack/   # → "Stack" on site
+│  ├─ Build Ship/           # → "Build" on site
+│  ├─ Launch Growth/        # → "Ship" on site
+│  ├─ Ops Maintenance/      # → "Iterate" on site
+│  ├─ PRD Spec/             # → "PRD" on site
+│  ├─ Prompting Craft/      # → "Prompting" on site
+│  ├─ Research Validate/    # → "Research" on site
+│  └─ Testing Quality/      # → "Quality" on site
 ├─ public/                  # Static assets
 ├─ scripts/                 # Utility scripts
-├─ AGENTS.md                # AI agent guidance for this repo
+├─ AGENTS.md                # AI agent guidance for contributors
 └─ CLAUDE.md                # Claude Code project instructions
 ```
 
@@ -81,7 +107,7 @@ VibePrompt/
 
 | Layer | Technology |
 |---|---|
-| Framework | Next.js 16.2 (App Router) |
+| Framework | Next.js 16 (App Router) |
 | UI | React 19, Tailwind CSS v4, shadcn/ui |
 | Auth | Clerk |
 | Database | Supabase |
@@ -128,19 +154,36 @@ npm run build
 
 ## Prompt Library
 
-The `prompt-library/` directory contains standalone markdown prompt files organized by category. These are the source of truth for prompts shown in the app. Each file follows a consistent format with title, description, use case, and the prompt itself.
+The `prompt-library/` directory contains 39 standalone markdown prompt files organized by workflow stage. These are the source of truth for prompts shown in the app. Each file follows this format:
 
-Categories:
+```markdown
+---
+title: Prompt Title
+---
 
-- **Agent Setup** — configure AI agents, session protocols, file guards
-- **Architecture Stack** — API contracts, DB schema, tech stack decisions
-- **Build Ship** — atomic tasks, diffs, commit messages, single-task framing
-- **Launch Growth** — distribution plans, positioning, user feedback
-- **Ops Maintenance** — cost reviews, incident runbooks, dependency checks
-- **PRD Spec** — PRDs, MVP scoping, acceptance criteria
-- **Prompting Craft** — prompt chains, output constraints, disagreement handling
-- **Research Validate** — competitor gaps, demand signals, kill criteria
-- **Testing Quality** — e2e tests, pre-ship gates, secret scanning, code review
+## When to use
+[One or two sentences on the use case]
+
+## Prompt
+
+\```
+[The prompt text]
+\```
+```
+
+**Categories** (folder name → display name on site):
+
+| Folder | Site label | What it covers |
+|---|---|---|
+| `Agent Setup/` | Context | AGENTS.md, CLAUDE.md, memory banks, context engineering |
+| `Research Validate/` | Research | Demand validation, kill criteria, competitive landscape |
+| `PRD Spec/` | PRD | Requirements, acceptance criteria, scope definition |
+| `Architecture Stack/` | Stack | Stack decisions, system boundaries, implementation strategy |
+| `Build Ship/` | Build | Feature implementation, atomic tasks, commit loops |
+| `Prompting Craft/` | Prompting | Prompt chains, output control, disagreement handling |
+| `Testing Quality/` | Quality | Code review, security audits, testing plans |
+| `Launch Growth/` | Ship | Distribution, positioning, launch execution |
+| `Ops Maintenance/` | Iterate | Operations, reliability, post-launch maintenance |
 
 ---
 
@@ -152,12 +195,27 @@ Contributions are welcome — especially new prompts, content fixes, and UI impr
 - [Code of Conduct](./CODE_OF_CONDUCT.md)
 - [Security Policy](./SECURITY.md)
 
-When submitting prompts:
+**Fast path (5 minutes):**
 
-- One prompt per file
-- Follow the existing frontmatter format
-- Include a clear use case and example output if possible
-- Keep PRs focused and small
+1. Pick one small thing (copy/UI/prompt/tool)
+2. Make the change
+3. Open a PR with a clear title and screenshot if it’s UI
+
+**Adding a prompt:**
+
+1. Pick the right folder in `prompt-library/`
+2. Create a `.md` file with a kebab-case filename
+3. Use the frontmatter + `## When to use` + `## Prompt` structure
+4. Keep it focused — one prompt per file, real use case, no fluff
+5. Open a PR with the category in the title: `prompt(context): add AGENTS.md generator`
+
+**Adding to the Awesome list:**
+
+Edit `src/lib/awesome-data.ts`. Each entry needs `title`, `href`, `description`, and `category`.
+
+**UI contributions:**
+
+Read `AGENTS.md` before touching any code — it has stack-specific rules that differ from standard Next.js.
 
 ---
 
