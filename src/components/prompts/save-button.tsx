@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { isLocallySaved, toggleLocalSave } from "@/lib/local-saves";
-import { incrementSaveCounter } from "@/lib/actions/saves-counter";
 
 interface SaveButtonProps {
   slug: string;
@@ -32,9 +31,6 @@ export function SaveButton({ slug, initialSaved }: SaveButtonProps) {
     try {
       const nextSaved = toggleLocalSave(slug);
       setSaved(nextSaved);
-      if (nextSaved) {
-        void incrementSaveCounter();
-      }
     } catch {
       setSaved(isLocallySaved(slug));
     } finally {

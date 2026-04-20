@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { isLocallySaved, toggleLocalSave } from "@/lib/local-saves";
-import { incrementSaveCounter } from "@/lib/actions/saves-counter";
 
 interface AwesomeSaveButtonProps {
   href: string;
@@ -34,9 +33,6 @@ export function AwesomeSaveButton({ href, initialSaved }: AwesomeSaveButtonProps
     try {
       const nextSaved = toggleLocalSave(key);
       setSaved(nextSaved);
-      if (nextSaved) {
-        void incrementSaveCounter();
-      }
     } catch {
       setSaved(isLocallySaved(key));
     } finally {
