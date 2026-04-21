@@ -29,7 +29,7 @@ function InlineText({ text }: { text: string }) {
 function getFavicon(href: string) {
   try {
     const domain = new URL(href).hostname;
-    return `https://www.google.com/s2/favicons?domain=${domain}&sz=16`;
+    return `https://icons.duckduckgo.com/ip3/${domain}.ico`;
   } catch { return null; }
 }
 
