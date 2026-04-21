@@ -24,13 +24,13 @@ export function Footer() {
   const compact = pathname === "/";
 
   const showContributorStrip = useMemo(() => {
-    if (compact) return false;
+    if (pathname === "/") return true;
     if (pathname === "/browse") return true;
     if (pathname.startsWith("/prompts/")) return true;
     if (pathname === "/workflow") return true;
     if (pathname === "/awesome") return true;
     return false;
-  }, [compact, pathname]);
+  }, [pathname]);
 
   const [contributors, setContributors] = useState<FooterContributor[] | null>(null);
 
@@ -102,8 +102,41 @@ export function Footer() {
       {/* Bottom links */}
       <div className={`mx-auto max-w-6xl px-6 ${compact ? "py-4" : "py-10"}`}>
         {compact ? (
-          <div className="flex items-center justify-center text-[11px] text-muted-foreground">
-            <Link href="/about" className="transition-colors hover:text-foreground">About</Link>
+          <div className="flex flex-col items-center gap-3">
+            {showContributorStrip && contributors && contributors.length > 0 && (
+              <div className="flex items-center gap-3">
+                <div className="flex items-center">
+                  {contributors.slice(0, 8).map((c, i) => (
+                    <a
+                      key={c.login}
+                      href={c.profileUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={c.login}
+                      className="relative block transition-transform hover:z-10 hover:scale-110"
+                      style={{ marginLeft: i === 0 ? 0 : "-7px" }}
+                    >
+                      <Image
+                        src={c.avatarUrl}
+                        alt={c.login}
+                        width={24}
+                        height={24}
+                        className="rounded-full border border-background"
+                      />
+                    </a>
+                  ))}
+                </div>
+                <a
+                  href={`${GITHUB_URL}/graphs/contributors`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[11px] text-foreground/30 transition-colors hover:text-foreground/60"
+                >
+                  {contributors.length} contributor{contributors.length !== 1 ? "s" : ""} ↗
+                </a>
+              </div>
+            )}
+            <Link href="/about" className="text-[11px] text-muted-foreground transition-colors hover:text-foreground">About</Link>
           </div>
         ) : (
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">

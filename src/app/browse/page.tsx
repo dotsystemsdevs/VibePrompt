@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     title: "AI Prompt Library — 40 Prompts for Vibe Coders",
     description: "Copy-ready prompts for context, PRD, build, quality, and ship. Free and open source.",
     url: "https://vibeprompt.tech/browse",
+    images: [{ url: "https://vibeprompt.tech/opengraph-image", width: 1200, height: 630 }],
   },
 };
 
@@ -33,7 +34,7 @@ export default async function BrowsePage() {
         />
       </Reveal>
       <div className="mx-auto max-w-6xl pt-6">
-        <Suspense fallback={<div className="px-6 py-10 text-sm text-muted-foreground">Loading prompts...</div>}>
+        <Suspense fallback={<div className="border border-foreground/20 overflow-hidden" style={{ minHeight: "640px" }} />}>
           <BrowseClient categories={categories} prompts={prompts} />
         </Suspense>
         <Reveal>

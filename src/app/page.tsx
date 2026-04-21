@@ -36,7 +36,7 @@ export default async function HomePage() {
           {/* Left */}
           <div className="flex flex-1 flex-col">
 
-            <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground/30">
+            <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground/50">
               {prompts.length} prompts &nbsp;·&nbsp; {categories.length} categories &nbsp;·&nbsp; free &amp; open source
             </p>
 
@@ -98,7 +98,7 @@ export default async function HomePage() {
                     </a>
                   ))}
                 </div>
-                <p className="text-[11px] text-foreground/30">
+                <p className="text-[11px] text-foreground/50">
                   Built by {contributors.length} contributor{contributors.length !== 1 ? "s" : ""}
                 </p>
               </div>
@@ -152,11 +152,12 @@ export default async function HomePage() {
         {/* ── Mobile ── */}
         <div className="flex flex-1 flex-col px-5 py-10 lg:hidden">
 
-          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground/30">
+          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground/50">
             {prompts.length} prompts &nbsp;·&nbsp; {categories.length} categories &nbsp;·&nbsp; free
           </p>
 
           <h1
+            aria-hidden="true"
             className="font-bold leading-[1.05] tracking-[-0.04em] text-foreground"
             style={{ fontSize: "clamp(2.2rem, 8vw, 3rem)" }}
           >

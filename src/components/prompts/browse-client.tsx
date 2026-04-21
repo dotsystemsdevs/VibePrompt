@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import type { Category, Prompt } from "@/lib/types";
@@ -14,17 +14,6 @@ export function BrowseClient({ categories, prompts }: BrowseClientProps) {
   const searchParams = useSearchParams();
   const [category, setCategory] = useState(searchParams.get("category") ?? "all");
   const [query, setQuery] = useState(searchParams.get("q") ?? "");
-  const [sort, setSort] = useState<"new" | "popular">("new");
-  const [copyCounts, setCopyCounts] = useState<Record<string, number>>({});
-
-  useEffect(() => {
-    if (sort === "popular") {
-      fetch("/api/copy-counts")
-        .then((r) => r.json())
-        .then((data: Record<string, number>) => setCopyCounts(data))
-        .catch(() => {});
-    }
-  }, [sort]);
 
   const normalize = (v: string) =>
     v.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
@@ -38,35 +27,28 @@ export function BrowseClient({ categories, prompts }: BrowseClientProps) {
         normalize(`${p.title} ${p.useCase} ${p.whenToUse} ${p.categoryName} ${p.tags.join(" ")} ${p.prompt}`).includes(q)
       );
     }
-    if (sort === "popular") {
-      list.sort((a, b) => (copyCounts[b.slug] ?? 0) - (copyCounts[a.slug] ?? 0));
-    } else {
-      list.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
-    }
+    list.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
     return list;
-  }, [category, prompts, query, sort, copyCounts]);
+  }, [category, prompts, query]);
 
   return (
     <div className="border border-foreground/20 overflow-hidden">
       {/* Search */}
       <div className="border-b border-foreground/12 px-4 py-4 sm:px-6 sm:py-5">
-        <div className="flex items-center gap-4">
-          <svg className="h-4 w-4 shrink-0 text-muted-foreground/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="flex items-center gap-4 focus-within:ring-1 focus-within:ring-foreground/20 rounded-sm">
+          <label htmlFor="browse-search" className="sr-only">Search prompts</label>
+          <svg className="h-4 w-4 shrink-0 text-muted-foreground/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
           </svg>
           <input
+            id="browse-search"
             type="text"
             placeholder="Search prompts…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full bg-transparent text-sm text-foreground placeholder:text-muted-foreground/30 focus:outline-none"
+            className="w-full bg-transparent text-base sm:text-sm text-foreground placeholder:text-muted-foreground/30 focus:outline-none"
           />
-          {query && <button onClick={() => setQuery("")} className="shrink-0 text-xs text-muted-foreground/40 hover:text-foreground">✕</button>}
-          <div className="flex shrink-0 items-center gap-1 border-l border-foreground/12 pl-4">
-            <button onClick={() => setSort("new")} className={`text-[10px] uppercase tracking-widest transition-colors ${sort === "new" ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}>New</button>
-            <span className="text-foreground/15">|</span>
-            <button onClick={() => setSort("popular")} className={`text-[10px] uppercase tracking-widest transition-colors ${sort === "popular" ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}>Popular</button>
-          </div>
+          {query && <button onClick={() => setQuery("")} aria-label="Clear search" className="shrink-0 text-xs text-muted-foreground/40 hover:text-foreground">✕</button>}
         </div>
       </div>
 

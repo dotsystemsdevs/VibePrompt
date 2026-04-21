@@ -75,7 +75,7 @@ async function fetchContributorsUncached(): Promise<PromptContributor[]> {
 
 const getRepoContributorsCached = unstable_cache(
   async () => fetchContributorsUncached(),
-  ["github-repo-contributors-list"],
+  ["github-repo-contributors-list-v2"],
   { revalidate: 3600 }
 );
 

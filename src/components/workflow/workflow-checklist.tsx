@@ -143,21 +143,23 @@ function DocumentChecklist({ step, items, startIndex, checked, toggle }: {
                     const firstLink = item.links?.[0];
 
                     return (
-                      <div
+                      <label
                         key={ii}
-                        onClick={() => toggle(k)}
-                        role="checkbox"
-                        aria-checked={done}
-                        tabIndex={0}
-                        onKeyDown={(e) => e.key === " " && toggle(k)}
+                        onClick={(e) => { if ((e.target as HTMLElement).closest("a")) e.preventDefault(); }}
                         className={`group flex cursor-pointer items-center gap-4 px-5 py-3.5 transition-colors ${
                           done ? "opacity-20" : "hover:bg-foreground/[0.03]"
                         }`}
                       >
+                        <input
+                          type="checkbox"
+                          checked={done}
+                          onChange={() => toggle(k)}
+                          className="sr-only"
+                        />
                         {/* Checkbox */}
                         <span className={`shrink-0 flex h-4 w-4 items-center justify-center border-2 transition-colors ${
                           done ? "border-white/20 text-white/30" : "border-white/40 group-hover:border-white text-white"
-                        }`}>
+                        }`} aria-hidden="true">
                           {done && <svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
                         </span>
 
@@ -199,7 +201,7 @@ function DocumentChecklist({ step, items, startIndex, checked, toggle }: {
                             )}
                           </a>
                         )}
-                      </div>
+                      </label>
                     );
                   })}
                 </div>
@@ -316,17 +318,21 @@ export function StepChecklist({ step, items, storageKey, startIndex = 0, variant
                 // Watch/Read — link row with YouTube icon
                 if (isWatch || isRead) {
                   return (
-                    <div key={ii} className={`group flex items-center gap-4 px-4 py-4 sm:px-6 sm:py-3.5 transition-colors ${done ? "opacity-30" : "hover:bg-foreground/[0.03]"}`}>
-                      <button
-                        onClick={() => toggle(k)}
-                        role="checkbox"
-                        aria-checked={done}
-                        className={`shrink-0 flex h-3.5 w-3.5 items-center justify-center border transition-colors ${
+                    <div key={ii} className={`group flex items-center gap-4 px-4 py-5 sm:px-6 sm:py-3.5 transition-colors ${done ? "opacity-30" : "hover:bg-foreground/[0.03]"}`}>
+                      <label className="shrink-0 flex cursor-pointer items-center">
+                        <input
+                          type="checkbox"
+                          checked={done}
+                          onChange={() => toggle(k)}
+                          className="sr-only"
+                          aria-label={label}
+                        />
+                        <span className={`flex h-3.5 w-3.5 items-center justify-center border transition-colors ${
                           done ? "border-foreground/15 bg-foreground/10" : "border-foreground/20 hover:border-foreground/45"
-                        }`}
-                      >
-                        {done && <svg width="7" height="5" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
-                      </button>
+                        }`} aria-hidden="true">
+                          {done && <svg width="7" height="5" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+                        </span>
+                      </label>
                       {firstLink ? (
                         <a href={firstLink.href} target="_blank" rel="noopener noreferrer" className="flex flex-1 min-w-0 items-center gap-3">
                           {isWatch ? (
@@ -353,18 +359,20 @@ export function StepChecklist({ step, items, storageKey, startIndex = 0, variant
 
                 // Regular task — clean text, favicon links on the right
                 return (
-                  <div
+                  <label
                     key={ii}
-                    onClick={() => toggle(k)}
-                    role="checkbox"
-                    aria-checked={done}
-                    tabIndex={0}
-                    onKeyDown={(e) => e.key === " " && toggle(k)}
+                    onClick={(e) => { if ((e.target as HTMLElement).closest("a")) e.preventDefault(); }}
                     className={`group flex cursor-pointer items-start gap-4 px-4 py-4 sm:px-6 sm:py-3.5 transition-colors ${done ? "opacity-30" : "hover:bg-foreground/[0.03]"}`}
                   >
+                    <input
+                      type="checkbox"
+                      checked={done}
+                      onChange={() => toggle(k)}
+                      className="sr-only"
+                    />
                     <span className={`mt-0.5 shrink-0 flex h-4.5 w-4.5 sm:h-3.5 sm:w-3.5 items-center justify-center border transition-colors ${
                       done ? "border-foreground/15 bg-foreground/10" : "border-foreground/20 group-hover:border-foreground/45"
-                    }`}>
+                    }`} aria-hidden="true">
                       {done && <svg width="7" height="5" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
                     </span>
                     <div className="flex-1 min-w-0">
@@ -388,11 +396,11 @@ export function StepChecklist({ step, items, storageKey, startIndex = 0, variant
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={(e) => e.stopPropagation()}
-                                className="inline-flex items-center gap-1 border border-foreground/[0.15] px-2.5 py-1 sm:px-2 sm:py-0.5 text-[11px] sm:text-[10px] text-foreground/55 transition-colors hover:border-foreground/30 hover:text-foreground/90"
+                                className="inline-flex min-h-6 items-center gap-1 border border-foreground/[0.15] px-2.5 py-1.5 sm:px-2 sm:py-1.5 text-[11px] sm:text-[10px] text-foreground/55 transition-colors hover:border-foreground/30 hover:text-foreground/90"
                               >
                                 {fav && (
                                   // eslint-disable-next-line @next/next/no-img-element
-                                  <img src={fav} alt="" width={11} height={11} className="h-[11px] w-[11px] rounded-sm" />
+                                  <img src={fav} alt="" width={11} height={11} className="h-[11px] w-[11px] rounded-sm" onError={(e) => { e.currentTarget.style.display = "none"; }} />
                                 )}
                                 {link.label}
                               </a>
@@ -401,7 +409,7 @@ export function StepChecklist({ step, items, storageKey, startIndex = 0, variant
                         </div>
                       )}
                     </div>
-                  </div>
+                  </label>
                 );
               })}
             </div>
@@ -498,10 +506,16 @@ export function WorkflowChecklist() {
                       return (
                         <li key={i}>
                           <label className="group flex cursor-pointer items-start gap-3">
-                            <span onClick={() => toggle(k)} className={`mt-0.5 flex h-3.5 w-3.5 shrink-0 items-center justify-center border transition-colors ${done ? "border-foreground/30 bg-foreground/10 text-foreground/50" : "border-foreground/20 text-transparent group-hover:border-foreground/35"}`} role="checkbox" aria-checked={done} tabIndex={0} onKeyDown={(e) => e.key === " " && toggle(k)}>
+                            <input
+                              type="checkbox"
+                              checked={done}
+                              onChange={() => toggle(k)}
+                              className="sr-only"
+                            />
+                            <span className={`mt-0.5 flex h-3.5 w-3.5 shrink-0 items-center justify-center border transition-colors ${done ? "border-foreground/30 bg-foreground/10 text-foreground/50" : "border-foreground/20 text-transparent group-hover:border-foreground/35"}`} aria-hidden="true">
                               {done && <svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>}
                             </span>
-                            <span onClick={() => toggle(k)} className={`text-xs leading-relaxed transition-colors ${done ? "text-foreground/30 line-through" : "text-foreground/70"}`}>{item}</span>
+                            <span className={`text-xs leading-relaxed transition-colors ${done ? "text-foreground/30 line-through" : "text-foreground/70"}`}>{item}</span>
                           </label>
                         </li>
                       );
