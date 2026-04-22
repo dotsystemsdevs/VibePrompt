@@ -376,6 +376,14 @@ const STEPS: StepData[] = [
         description: "Plan first, always. The AI builds what it understands — you define what that is.",
         items: [
           {
+            text: "Go slow at the start. The first week sets the patterns every future session inherits — naming conventions, file structure, component shape. Rushing this produces a codebase that's hard to reason about by week three. Slow at the start is fast overall.",
+            detail: "This is the most consistent difference between projects that ship cleanly and projects that get stuck in debugging loops. The foundation compounds.",
+          },
+          {
+            text: "Build vertical slices — one complete feature at a time (UI + API + test together). Never build a full frontend and connect it to the backend later. Disconnected layers accumulate mismatched assumptions that take longer to reconcile than they would have taken to align from the start.",
+            detail: "The most common vibe coding failure mode is 'I built the whole UI, now I need to wire it to the API.' By that point, the data shapes don't match, the auth logic doesn't align, and half the state management is wrong. One slice at a time prevents all of it.",
+          },
+          {
             text: "Break your PRD into 20–30 atomic tasks in `TASK.md`. 'Add auth' is not atomic. 'Add /login route that renders the Clerk sign-in component' is. If a task touches more than 3 files, split it.",
           },
           {

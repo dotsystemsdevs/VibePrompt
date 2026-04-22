@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { href: "/browse", label: "Prompts" },
   { href: "/awesome", label: "Awesome" },
   { href: "/articles", label: "Articles" },
+  { href: "/audit", label: "Scan" },
 ];
 
 const GITHUB_URL = "https://github.com/dotsystemsdevs/VibePrompt";

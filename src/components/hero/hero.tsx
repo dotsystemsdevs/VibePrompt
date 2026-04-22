@@ -10,6 +10,7 @@ type HeroProps = {
   eyebrow?: string;
   title: string;
   description?: string;
+  descriptionSlot?: React.ReactNode;
   primaryAction?: HeroAction;
   secondaryAction?: HeroAction;
   rightSlot?: React.ReactNode;
@@ -64,6 +65,7 @@ export function Hero({
   eyebrow,
   title,
   description,
+  descriptionSlot,
   primaryAction,
   secondaryAction,
   rightSlot,
@@ -97,6 +99,11 @@ export function Hero({
             {description && (
               <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground">
                 {description}
+              </p>
+            )}
+            {descriptionSlot && (
+              <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground">
+                {descriptionSlot}
               </p>
             )}
 
