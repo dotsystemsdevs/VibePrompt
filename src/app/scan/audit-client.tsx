@@ -265,7 +265,7 @@ export function AuditClient() {
       const data = await res.json();
       if (!res.ok || data.error) { setState({ status: "error", message: data.error ?? "Unknown error" }); return; }
       setState({ status: "result", data });
-      window.history.pushState(null, "", `/audit?url=${encodeURIComponent(url)}`);
+      window.history.pushState(null, "", `/scan?url=${encodeURIComponent(url)}`);
     } catch {
       setState({ status: "error", message: "Network error — check your connection and try again." });
     }
@@ -286,7 +286,7 @@ export function AuditClient() {
   function reset() {
     setState({ status: "idle" });
     if (inputRef.current) inputRef.current.value = "";
-    window.history.pushState(null, "", "/audit");
+    window.history.pushState(null, "", "/scan");
     setTimeout(() => inputRef.current?.focus(), 50);
   }
 
