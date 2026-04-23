@@ -239,16 +239,10 @@ function FeedbackCopyCard({ data }: { data?: AuditResult }) {
     <>
       {/* Header */}
       <div className="flex items-center gap-2.5 px-5 py-3 border-b border-foreground/8">
-        <div className="w-5 h-5 rounded-sm border border-blue-500/30 bg-blue-500/10 flex items-center justify-center shrink-0">
-          <svg className="w-3 h-3 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
-            <path d="M12 2v3M9 5h6" strokeLinecap="round" />
-            <rect x="4" y="8" width="16" height="11" rx="2" />
-            <rect x="7" y="11" width="3" height="3" rx="0.5" fill="currentColor" stroke="none" />
-            <rect x="14" y="11" width="3" height="3" rx="0.5" fill="currentColor" stroke="none" />
-            <path d="M9 17.5h6" strokeLinecap="round" />
-            <path d="M2 12h2M20 12h2" strokeLinecap="round" />
-          </svg>
-        </div>
+        <svg className="w-4 h-4 text-blue-400 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2a1 1 0 0 1 1 1v1h2a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h2V3a1 1 0 0 1 1-1ZM9 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm6 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm-5 5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4Z" />
+          <path d="M5 10a1 1 0 1 0-2 0v4a1 1 0 1 0 2 0v-4ZM21 10a1 1 0 1 0-2 0v4a1 1 0 1 0 2 0v-4Z" />
+        </svg>
         <span className="text-[9px] uppercase tracking-[0.18em] text-foreground/30">Feedback</span>
       </div>
 
