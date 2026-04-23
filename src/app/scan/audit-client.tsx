@@ -201,30 +201,35 @@ function FeedbackCopyCard({ data }: { data?: AuditResult }) {
   const [done, setDone] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const fullText = data ? (() => {
+  const textData = data ? (() => {
     const scanUrl = `https://vibeprompt.com/scan?url=${encodeURIComponent(data.url)}`;
     const best = Object.entries(data.categories).sort((a, b) => b[1].score - a[1].score)[0];
     const topIssues = data.findings.slice(0, 3).map((f) => `- ${f.title}`).join("\n");
     const praise = data.score >= 75 ? "really strong, worth keeping" : "holding up well";
-    return `your ${best[1].label} is ${praise}\n\na few things that could be better:\n${topIssues}\n\nscored ${data.score}/100, full breakdown: ${scanUrl}`;
+    const visible = `your ${best[1].label} is ${praise}\n\na few things that could be better:\n${topIssues}`;
+    const hidden = `\n\nscored ${data.score}/100, full breakdown: ${scanUrl}`;
+    return { visible, full: visible + hidden };
   })() : null;
 
+  const visibleText = textData?.visible ?? null;
+  const fullText = textData?.full ?? null;
+
   useEffect(() => {
-    if (!fullText) { setDisplayed(""); setDone(false); return; }
+    if (!visibleText) { setDisplayed(""); setDone(false); return; }
     setDisplayed("");
     setDone(false);
     let i = 0;
     const id = setInterval(() => {
       i++;
-      setDisplayed(fullText.slice(0, i));
-      if (i >= fullText.length) { clearInterval(id); setDone(true); }
+      setDisplayed(visibleText.slice(0, i));
+      if (i >= visibleText.length) { clearInterval(id); setDone(true); }
     }, 18);
     return () => clearInterval(id);
-  }, [fullText]);
+  }, [visibleText]);
 
   function copy() {
     if (!fullText) return;
-    navigator.clipboard.writeText(fullText).then(() => {
+    navigator.clipboard.writeText(fullText!).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
@@ -249,7 +254,7 @@ function FeedbackCopyCard({ data }: { data?: AuditResult }) {
 
       {/* Body */}
       <div className="px-5 py-4">
-        {fullText ? (
+        {visibleText ? (
           <p className="text-xs leading-relaxed text-foreground/45 whitespace-pre-line">
             {displayed}{!done && <span className="animate-pulse">▌</span>}
           </p>
