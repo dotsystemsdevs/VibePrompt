@@ -303,7 +303,8 @@ export function AuditClient() {
         <button
           type="submit"
           disabled={state.status === "loading"}
-          className="shrink-0 border border-l-0 border-foreground/20 px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-foreground/[0.06] disabled:opacity-40"
+          className="shrink-0 px-5 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-85 disabled:opacity-40"
+          style={{ background: "linear-gradient(135deg, #3b82f6, #2563eb)" }}
         >
           {state.status === "loading"
             ? <span className="flex items-center gap-2"><span className="h-3 w-3 animate-spin rounded-full border border-foreground/30 border-t-foreground/70" />Scanning</span>
