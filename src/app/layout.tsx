@@ -48,6 +48,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
+      <head>
+        <link rel="preconnect" href="https://avatars.githubusercontent.com" />
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://api.github.com" />
+      </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <Navbar />
         <main className="flex min-h-0 flex-1 flex-col">{children}</main>

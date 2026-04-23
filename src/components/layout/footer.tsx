@@ -137,6 +137,8 @@ export function Footer() {
               </div>
             )}
             <Link href="/about" className="text-[11px] text-muted-foreground transition-colors hover:text-foreground">About</Link>
+            <span className="text-[11px] text-foreground/20 mx-1">·</span>
+            <Link href="/privacy" className="text-[11px] text-muted-foreground transition-colors hover:text-foreground">Privacy</Link>
           </div>
         ) : (
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
@@ -179,6 +181,8 @@ export function Footer() {
             </div>
             <div className="flex items-center text-xs text-muted-foreground">
               <Link href="/about" className="transition-colors hover:text-foreground">About</Link>
+              <span className="mx-2 text-foreground/20">·</span>
+              <Link href="/privacy" className="transition-colors hover:text-foreground">Privacy</Link>
             </div>
           </div>
         )}

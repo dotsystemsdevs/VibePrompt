@@ -1,0 +1,15 @@
+# VibePrompt
+> Free, open-source prompt library and vibe coding workflow for developers building with AI.
+
+## About
+VibePrompt provides battle-tested prompts for AI-assisted development and a 9-step workflow from idea to shipped product. No login required, no cost, MIT licensed.
+
+## Key Pages
+- /workflow - The 9-step vibe coding workflow (idea, PRD, architecture, scaffolding, building, debugging, shipping)
+- /browse - Full prompt library with 40+ prompts across planning, coding, debugging, and shipping categories
+- /scan - Landing page scanner that checks SEO, conversion, security, and AI discoverability
+- /articles - Articles on vibe coding workflow, common mistakes, and how to use AI effectively
+- /awesome - Curated list of AI coding tools (Claude Code, Cursor, Windsurf, etc.)
+
+## Usage Policy
+All content is free to use, cite, and index. No restrictions on AI crawling or citation.
