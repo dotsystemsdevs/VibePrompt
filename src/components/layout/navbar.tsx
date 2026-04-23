@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { href: "/workflow", label: "Workflow" },
   { href: "/browse", label: "Prompts" },
   { href: "/awesome", label: "Awesome" },
-  { href: "/articles", label: "Articles" },
+
   { href: "/scan", label: "Scan" },
 ];
 
