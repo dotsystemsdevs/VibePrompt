@@ -205,8 +205,8 @@ function FeedbackCopyCard({ data }: { data?: AuditResult }) {
     const scanUrl = `https://vibeprompt.com/scan?url=${encodeURIComponent(data.url)}`;
     const best = Object.entries(data.categories).sort((a, b) => b[1].score - a[1].score)[0];
     const topIssues = data.findings.slice(0, 3).map((f) => `- ${f.title}`).join("\n");
-    const praise = data.score >= 75 ? "genuinely solid" : "actually doing well";
-    return `your ${best[1].label} is ${praise}, not something you see on every site\n\na few things that could be better:\n${topIssues}\n\nI scanned it properly, scored ${data.score}/100, full breakdown here: ${scanUrl}`;
+    const praise = data.score >= 75 ? "really strong, worth keeping" : "holding up well";
+    return `your ${best[1].label} is ${praise}\n\na few things that could be better:\n${topIssues}\n\nscored ${data.score}/100, full breakdown: ${scanUrl}`;
   })() : null;
 
   useEffect(() => {
@@ -231,36 +231,46 @@ function FeedbackCopyCard({ data }: { data?: AuditResult }) {
   }
 
   return (
-    <div className="flex items-start gap-3 px-5 py-4">
-      <div className="shrink-0 mt-0.5 w-6 h-6 rounded-sm border border-blue-500/30 bg-blue-500/10 flex items-center justify-center">
-        <svg className="w-3.5 h-3.5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
-          <path d="M12 2v3M9 5h6" strokeLinecap="round" />
-          <rect x="4" y="8" width="16" height="11" rx="2" />
-          <rect x="7" y="11" width="3" height="3" rx="0.5" fill="currentColor" stroke="none" />
-          <rect x="14" y="11" width="3" height="3" rx="0.5" fill="currentColor" stroke="none" />
-          <path d="M9 17.5h6" strokeLinecap="round" />
-          <path d="M2 12h2M20 12h2" strokeLinecap="round" />
-        </svg>
+    <>
+      {/* Header */}
+      <div className="flex items-center gap-2.5 px-5 py-3 border-b border-foreground/8">
+        <div className="w-5 h-5 rounded-sm border border-blue-500/30 bg-blue-500/10 flex items-center justify-center shrink-0">
+          <svg className="w-3 h-3 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
+            <path d="M12 2v3M9 5h6" strokeLinecap="round" />
+            <rect x="4" y="8" width="16" height="11" rx="2" />
+            <rect x="7" y="11" width="3" height="3" rx="0.5" fill="currentColor" stroke="none" />
+            <rect x="14" y="11" width="3" height="3" rx="0.5" fill="currentColor" stroke="none" />
+            <path d="M9 17.5h6" strokeLinecap="round" />
+            <path d="M2 12h2M20 12h2" strokeLinecap="round" />
+          </svg>
+        </div>
+        <span className="text-[9px] uppercase tracking-[0.18em] text-foreground/30">Feedback</span>
       </div>
-      <div className="flex-1 min-w-0">
+
+      {/* Body */}
+      <div className="px-5 py-4">
         {fullText ? (
-          <p className="text-xs leading-relaxed text-foreground/40 whitespace-pre-line">
+          <p className="text-xs leading-relaxed text-foreground/45 whitespace-pre-line">
             {displayed}{!done && <span className="animate-pulse">▌</span>}
           </p>
         ) : (
           <p className="text-xs text-foreground/20">Scan a site to generate feedback.</p>
         )}
       </div>
+
+      {/* Footer */}
       {done && (
-        <button
-          type="button"
-          onClick={copy}
-          className="shrink-0 text-[10px] text-foreground/25 hover:text-foreground/55 transition-colors mt-0.5"
-        >
-          {copied ? "✓" : "Copy"}
-        </button>
+        <div className="border-t border-foreground/8 px-5 py-2.5 flex justify-end">
+          <button
+            type="button"
+            onClick={copy}
+            className="text-[11px] px-3 py-1 border border-foreground/12 hover:border-foreground/25 text-foreground/35 hover:text-foreground/65 transition-colors"
+          >
+            {copied ? "Copied ✓" : "Copy →"}
+          </button>
+        </div>
       )}
-    </div>
+    </>
   );
 }
 
