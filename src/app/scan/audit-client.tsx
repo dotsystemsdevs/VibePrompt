@@ -199,6 +199,7 @@ function ResultPanel({ data }: { data: AuditResult }) {
 function FeedbackCopyCard({ data }: { data?: AuditResult }) {
   const [displayed, setDisplayed] = useState("");
   const [done, setDone] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const fullText = data ? (() => {
     const scanUrl = `https://vibeprompt.com/scan?url=${encodeURIComponent(data.url)}`;
@@ -221,6 +222,14 @@ function FeedbackCopyCard({ data }: { data?: AuditResult }) {
     return () => clearInterval(id);
   }, [fullText]);
 
+  function copy() {
+    if (!fullText) return;
+    navigator.clipboard.writeText(fullText).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
+
   return (
     <div className="flex items-start gap-3 px-5 py-4">
       <div className="shrink-0 mt-0.5 w-6 h-6 rounded-sm border border-blue-500/30 bg-blue-500/10 flex items-center justify-center">
@@ -233,12 +242,23 @@ function FeedbackCopyCard({ data }: { data?: AuditResult }) {
           <path d="M2 12h2M20 12h2" strokeLinecap="round" />
         </svg>
       </div>
-      {fullText ? (
-        <p className="text-xs leading-relaxed text-foreground/40 whitespace-pre-line">
-          {displayed}{!done && <span className="animate-pulse">▌</span>}
-        </p>
-      ) : (
-        <p className="text-xs text-foreground/20">Scan a site to generate feedback.</p>
+      <div className="flex-1 min-w-0">
+        {fullText ? (
+          <p className="text-xs leading-relaxed text-foreground/40 whitespace-pre-line">
+            {displayed}{!done && <span className="animate-pulse">▌</span>}
+          </p>
+        ) : (
+          <p className="text-xs text-foreground/20">Scan a site to generate feedback.</p>
+        )}
+      </div>
+      {done && (
+        <button
+          type="button"
+          onClick={copy}
+          className="shrink-0 text-[10px] text-foreground/25 hover:text-foreground/55 transition-colors mt-0.5"
+        >
+          {copied ? "✓" : "Copy"}
+        </button>
       )}
     </div>
   );
