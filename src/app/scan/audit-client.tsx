@@ -202,7 +202,8 @@ function FeedbackCopyCard({ data }: { data?: AuditResult }) {
   const [copied, setCopied] = useState(false);
 
   const textData = data ? (() => {
-    const scanUrl = `https://vibeprompt.tech/scan?url=${encodeURIComponent(data.url)}`;
+    const canonicalUrl = data.url.replace(/vibeprompt\.com/gi, "vibeprompt.tech");
+    const scanUrl = `https://vibeprompt.tech/scan?url=${encodeURIComponent(canonicalUrl)}`;
     const best = Object.entries(data.categories).sort((a, b) => b[1].score - a[1].score)[0];
     const catSuffix: Record<string, string> = {
       conversion: "kills conversion", seo: "hurts search visibility",
