@@ -102,9 +102,9 @@ export function Footer() {
       {/* Bottom links */}
       <div className={`mx-auto max-w-6xl px-6 ${compact ? "py-4" : "py-10"}`}>
         {compact ? (
-          <div className="flex flex-col items-center gap-3">
-            {showContributorStrip && contributors && contributors.length > 0 && (
-              <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between gap-4">
+            {showContributorStrip && contributors && contributors.length > 0 ? (
+              <div className="flex items-center gap-2.5">
                 <div className="flex items-center">
                   {contributors.slice(0, 8).map((c, i) => (
                     <a
@@ -135,10 +135,12 @@ export function Footer() {
                   {contributors.length} contributor{contributors.length !== 1 ? "s" : ""} ↗
                 </a>
               </div>
-            )}
-            <Link href="/about" className="text-[11px] text-muted-foreground transition-colors hover:text-foreground">About</Link>
-            <span className="text-[11px] text-foreground/20 mx-1">·</span>
-            <Link href="/privacy" className="text-[11px] text-muted-foreground transition-colors hover:text-foreground">Privacy</Link>
+            ) : <div />}
+            <div className="flex items-center gap-3 text-[11px]">
+              <Link href="/about" className="text-muted-foreground transition-colors hover:text-foreground">About</Link>
+              <span className="text-foreground/20">·</span>
+              <Link href="/privacy" className="text-muted-foreground transition-colors hover:text-foreground">Privacy</Link>
+            </div>
           </div>
         ) : (
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
