@@ -77,26 +77,43 @@ export function AwesomeClient({ categories }: { categories: readonly AwesomeCate
         </div>
       </div>
 
-      {/* Category tabs */}
-      <div className="relative border-b border-foreground/12">
-        <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 z-10 h-full w-12 bg-gradient-to-l from-background to-transparent" />
-        <div className="flex items-center overflow-x-auto no-scrollbar px-4">
-          <button
-            onClick={() => setActiveSlug("all")}
-            className={`shrink-0 border-b-2 px-3 py-3.5 text-xs transition-colors ${activeSlug === "all" ? "border-foreground text-foreground" : "border-transparent text-muted-foreground hover:text-foreground/80"}`}
+      {/* Category filter — select on mobile, tabs on desktop */}
+      <div className="border-b border-foreground/12">
+        {/* Mobile: compact select */}
+        <div className="sm:hidden px-4 py-2.5">
+          <select
+            value={activeSlug}
+            onChange={(e) => setActiveSlug(e.target.value)}
+            className="w-full bg-transparent text-xs text-foreground/70 outline-none cursor-pointer py-1"
           >
-            All
-          </button>
-          {categories.map((cat) => (
+            <option value="all">All categories</option>
+            {categories.map((cat) => (
+              <option key={cat.slug} value={cat.slug}>{cat.emoji} {cat.title}</option>
+            ))}
+          </select>
+        </div>
+
+        {/* Desktop: scrollable tabs */}
+        <div className="relative hidden sm:block">
+          <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 z-10 h-full w-12 bg-gradient-to-l from-background to-transparent" />
+          <div className="flex items-center overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] px-4">
             <button
-              key={cat.slug}
-              onClick={() => setActiveSlug(cat.slug)}
-              className={`shrink-0 flex items-center gap-1.5 border-b-2 px-3 py-3.5 text-xs transition-colors ${activeSlug === cat.slug ? "border-foreground text-foreground" : "border-transparent text-muted-foreground hover:text-foreground/80"}`}
+              onClick={() => setActiveSlug("all")}
+              className={`shrink-0 border-b-2 px-3 py-3 text-xs transition-colors ${activeSlug === "all" ? "border-foreground text-foreground" : "border-transparent text-muted-foreground hover:text-foreground/80"}`}
             >
-              <span className="text-sm leading-none">{cat.emoji}</span>
-              {cat.title}
+              All
             </button>
-          ))}
+            {categories.map((cat) => (
+              <button
+                key={cat.slug}
+                onClick={() => setActiveSlug(cat.slug)}
+                className={`shrink-0 flex items-center gap-1.5 border-b-2 px-3 py-3 text-xs transition-colors ${activeSlug === cat.slug ? "border-foreground text-foreground" : "border-transparent text-muted-foreground hover:text-foreground/80"}`}
+              >
+                <span className="text-sm leading-none">{cat.emoji}</span>
+                {cat.title}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
