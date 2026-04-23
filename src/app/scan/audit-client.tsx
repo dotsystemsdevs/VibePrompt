@@ -192,20 +192,19 @@ function ResultPanel({ data }: { data: AuditResult }) {
 
 // ── Reddit reply generator ────────────────────────────────────────────────────
 
-function RedditReplyCard({ scannedUrl }: { scannedUrl?: string }) {
+function FeedbackCopyCard({ data }: { data?: AuditResult }) {
   const [copied, setCopied] = useState(false);
 
-  const scanUrl = scannedUrl
-    ? `${typeof window !== "undefined" ? window.location.origin : "https://vibeprompt.com"}/scan?url=${encodeURIComponent(scannedUrl)}`
-    : null;
-
-  const replyText = scanUrl
-    ? `ran your site through a quick landing page scanner\n\n${scanUrl}\n\nchecks SEO, conversion, security and AI discoverability in one go, shows exactly what to fix`
-    : null;
+  const feedbackText = data ? (() => {
+    const origin = typeof window !== "undefined" ? window.location.origin : "https://vibeprompt.com";
+    const scanUrl = `${origin}/scan?url=${encodeURIComponent(data.url)}`;
+    const topIssues = data.findings.slice(0, 3).map((f) => `- ${f.title} (${CAT_LABEL[f.category] ?? f.category})`).join("\n");
+    return `ran your site through a landing page scanner, scored ${data.score}/100\n\nmain issues:\n${topIssues}\n\nfull breakdown: ${scanUrl}`;
+  })() : null;
 
   function copy() {
-    if (!replyText) return;
-    navigator.clipboard.writeText(replyText).then(() => {
+    if (!feedbackText) return;
+    navigator.clipboard.writeText(feedbackText).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
@@ -215,26 +214,26 @@ function RedditReplyCard({ scannedUrl }: { scannedUrl?: string }) {
     <div className="mt-10">
       <div className="flex items-center gap-3 mb-5">
         <div className="h-px flex-1 bg-foreground/8" />
-        <span className="text-[9px] uppercase tracking-[0.18em] text-foreground/30">Reply on Reddit</span>
+        <span className="text-[9px] uppercase tracking-[0.18em] text-foreground/30">Feedback</span>
         <div className="h-px flex-1 bg-foreground/8" />
       </div>
 
       <div className="border border-foreground/12 overflow-hidden">
         <div className="px-5 py-4 min-h-[80px]">
-          {replyText ? (
-            <p className="text-xs leading-relaxed text-foreground/50 whitespace-pre-line">{replyText}</p>
+          {feedbackText ? (
+            <p className="text-xs leading-relaxed text-foreground/50 whitespace-pre-line">{feedbackText}</p>
           ) : (
-            <p className="text-xs text-foreground/20">Scan a site above to generate a ready-to-paste Reddit reply.</p>
+            <p className="text-xs text-foreground/20">Scan a site above to generate a ready-to-copy feedback summary.</p>
           )}
         </div>
         <div className="border-t border-foreground/8 px-5 py-3 flex justify-end">
           <button
             type="button"
             onClick={copy}
-            disabled={!replyText}
+            disabled={!feedbackText}
             className="text-[11px] font-medium px-4 py-1.5 border border-foreground/15 hover:border-foreground/30 text-foreground/50 hover:text-foreground/80 transition-colors disabled:opacity-25 disabled:cursor-not-allowed"
           >
-            {copied ? "Copied ✓" : "Copy reply →"}
+            {copied ? "Copied ✓" : "Copy →"}
           </button>
         </div>
       </div>
@@ -408,7 +407,7 @@ export function AuditClient() {
 
       {state.status === "result" && <ResultPanel data={state.data} />}
       {state.status === "idle" && <DemoPanel />}
-      <RedditReplyCard scannedUrl={state.status === "result" ? state.data.url : undefined} />
+      <FeedbackCopyCard data={state.status === "result" ? state.data : undefined} />
     </div>
   );
 }
