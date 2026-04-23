@@ -82,7 +82,7 @@ export function Hero({
 
       <div className="relative mx-auto max-w-6xl">
         <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:justify-between">
-          <div className={`${!rightSlot ? "" : "max-w-2xl"}`}>
+          <div className={`${!rightSlot ? "mx-auto max-w-4xl text-center" : "max-w-2xl"}`}>
             {eyebrow && (
               <p className="hero-kicker mb-5">{eyebrow}</p>
             )}
