@@ -1,19 +1,19 @@
 ---
 title: "The 7 Most Common Vibe Coding Mistakes"
-description: "Every project failure follows the same pattern. Here's what actually goes wrong when you build with AI — and the exact fix for each one."
+description: "Every project failure follows the same pattern. Here's what actually goes wrong when you build with AI, and the exact fix for each one."
 date: "2026-04-21"
 image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=80"
 imageAlt: "Abstract neural network visualization"
 author: "VibePrompt"
 ---
 
-After analyzing hundreds of posts across r/vibecoding, r/ClaudeAI, r/cursor, and r/ClaudeCode, the same failures keep appearing. Different projects, different stacks — same mistakes.
+After analyzing hundreds of posts across r/vibecoding, r/ClaudeAI, r/cursor, and r/ClaudeCode, the same failures keep appearing. Different projects, different stacks, same mistakes.
 
 Here's what's actually going wrong, and how to fix it.
 
 ---
 
-## 1. No AGENTS.md — the AI forgets everything between sessions
+## 1. No AGENTS.md, the AI forgets everything between sessions
 
 Every new chat is a blank slate. If you haven't written down your stack, your conventions, and your rules, the AI fills every gap with its own defaults. Those defaults ship.
 
@@ -21,7 +21,7 @@ Every new chat is a blank slate. If you haven't written down your stack, your co
 
 ---
 
-## 2. Tasks that are too big — "add auth" is not a task
+## 2. Tasks that are too big, "add auth" is not a task
 
 "Add authentication" sent to an AI produces a massive diff you can't review. You accept it, deploy it, and discover three sessions later that it hardcoded something, missed an edge case, or quietly replaced code that was working.
 
@@ -29,15 +29,15 @@ Every new chat is a blank slate. If you haven't written down your stack, your co
 
 ---
 
-## 3. Skipping Plan Mode — executing before thinking
+## 3. Skipping Plan Mode, executing before thinking
 
 The AI will immediately start writing code if you let it. The first thing it writes is almost never the right architecture.
 
-**The fix:** In Claude Code, press `Shift+Tab` before every non-trivial task — this activates Plan Mode. In Cursor, start your prompt with "DO NOT code yet — just plan." Review the plan. Approve it. Then execute. One plan review prevents most of the "wait, that's not what I meant" sessions.
+**The fix:** In Claude Code, press `Shift+Tab` before every non-trivial task, this activates Plan Mode. In Cursor, start your prompt with "DO NOT code yet, just plan." Review the plan. Approve it. Then execute. One plan review prevents most of the "wait, that's not what I meant" sessions.
 
 ---
 
-## 4. Context window bloat — coding in a 10,000-message thread
+## 4. Context window bloat, coding in a 10,000-message thread
 
 A long context window degrades output quality. The AI starts forgetting earlier decisions, contradicting itself, and hallucinating APIs that don't exist in your codebase.
 
@@ -45,7 +45,7 @@ A long context window degrades output quality. The AI starts forgetting earlier 
 
 ---
 
-## 5. No kill criteria — building past the point of no return
+## 5. No kill criteria, building past the point of no return
 
 "I'll validate after I build the MVP" is how you end up six weeks deep in something nobody wants. The community calls this the sunk-cost loop.
 
@@ -53,11 +53,11 @@ A long context window degrades output quality. The AI starts forgetting earlier 
 
 ---
 
-## 6. Leaking secrets — API keys in git history
+## 6. Leaking secrets, API keys in git history
 
 This one is not theoretical. There are bots scanning GitHub for API keys in real time. One leaked Supabase key or Stripe secret key can drain an account in minutes.
 
-**The fix:** `.env.local` must be in `.gitignore` before the first commit. Run `git log --all --grep='API_KEY'` before every deploy to check history. Use `git-secrets` as a pre-commit hook. The AI will never remind you of this — it's your job.
+**The fix:** `.env.local` must be in `.gitignore` before the first commit. Run `git log --all --grep='API_KEY'` before every deploy to check history. Use `git-secrets` as a pre-commit hook. The AI will never remind you of this, it's your job.
 
 ---
 
@@ -65,7 +65,7 @@ This one is not theoretical. There are bots scanning GitHub for API keys in real
 
 The most common failure mode: the AI writes 400 lines of changes, you skim it, it looks right, you accept it. Three sessions later something is broken and you don't know where it started.
 
-**The fix:** Review every changed line before accepting. Not every file — every line. Check each change against your PRD: was this specced? If a function is longer than 40 lines, that's a flag. If a new dependency appeared, that's a flag. If something outside the task scope changed, reject it and ask why.
+**The fix:** Review every changed line before accepting. Not every file, every line. Check each change against your PRD: was this specced? If a function is longer than 40 lines, that's a flag. If a new dependency appeared, that's a flag. If something outside the task scope changed, reject it and ask why.
 
 ---
 
@@ -73,6 +73,6 @@ The most common failure mode: the AI writes 400 lines of changes, you skim it, i
 
 Every mistake on this list is the same mistake: letting the AI make a decision that you should have made.
 
-The AI is a very fast executor. It is not a product manager, not an architect, and not a code reviewer. Every gap you leave in your spec, your context, or your review process gets filled by the AI's training data — which is optimized for general correctness, not your specific project.
+The AI is a very fast executor. It is not a product manager, not an architect, and not a code reviewer. Every gap you leave in your spec, your context, or your review process gets filled by the AI's training data, which is optimized for general correctness, not your specific project.
 
 The vibe coding workflow exists to keep those decisions yours.

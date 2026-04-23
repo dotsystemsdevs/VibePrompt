@@ -10,7 +10,7 @@ export default function AboutPage() {
         <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">About</p>
         <h1 className="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Built for builders who ship.</h1>
         <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-          VibePrompt is an open-source toolkit for vibe coders — builders who use AI to go from idea → prototype → shipped
+          VibePrompt is an open-source toolkit for vibe coders, builders who use AI to go from idea → prototype → shipped
           product. Use the prompts, follow the workflow, and keep momentum.
         </p>
 
@@ -37,7 +37,7 @@ export default function AboutPage() {
 
         <h2 className="mt-12 text-sm font-semibold tracking-tight text-foreground">Contact</h2>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-          Feedback, bugs, or ideas — use GitHub issues for anything public, or email for private questions.
+          Feedback, bugs, or ideas, use GitHub issues for anything public, or email for private questions.
         </p>
         <ul className="mt-5 space-y-3 text-sm">
           <li>

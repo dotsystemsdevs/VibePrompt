@@ -6,7 +6,7 @@ import { kv } from "@vercel/kv";
 export const metadata: Metadata = {
   title: "Scan | VibePrompt",
   description:
-    "Paste any URL and get a prioritized scan of your landing page — SEO, conversion, AI discoverability, and security in seconds.",
+    "Paste any URL and get a prioritized scan of your landing page, SEO, conversion, AI discoverability, and security in seconds.",
 };
 
 async function getScanCount(): Promise<number> {

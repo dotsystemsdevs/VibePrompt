@@ -8,7 +8,7 @@ const SCHEMA_ORG = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "VibePrompt",
-  description: "40 battle-tested AI prompts, a 9-step vibe coding workflow, and a curated tool list — free and open source.",
+  description: "40 battle-tested AI prompts, a 9-step vibe coding workflow, and a curated tool list, free and open source.",
   url: "https://vibeprompt.tech",
   applicationCategory: "DeveloperApplication",
   operatingSystem: "Web",
@@ -50,7 +50,7 @@ export default async function HomePage() {
             </h1>
 
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-foreground/50">
-              The 9-step vibe coding playbook from idea to shipped —
+              The 9-step vibe coding playbook from idea to shipped , 
               plus {prompts.length} battle-tested prompts to use at every stage.
             </p>
 
@@ -106,7 +106,7 @@ export default async function HomePage() {
 
           </div>
 
-          {/* Right — workflow card */}
+          {/* Right, workflow card */}
           <div className="w-[340px] shrink-0">
             <div className="border border-foreground/20 bg-[#0a0a0a]">
 
@@ -162,7 +162,7 @@ export default async function HomePage() {
           </h1>
 
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-foreground/50">
-            The 9-step vibe coding playbook from idea to shipped — plus {prompts.length} battle-tested prompts.
+            The 9-step vibe coding playbook from idea to shipped, plus {prompts.length} battle-tested prompts.
           </p>
 
           <div className="mt-7 flex items-center gap-3">

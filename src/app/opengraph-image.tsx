@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "VibePrompt — Prompts, workflow & tools for vibe coders";
+export const alt = "VibePrompt, Prompts, workflow & tools for vibe coders";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -51,7 +51,7 @@ export default function OGImage() {
             <span style={{ color: "#2563EB" }}>to ship with AI.</span>
           </div>
           <div style={{ color: "#71717a", fontSize: "24px", fontWeight: "400" }}>
-            40 prompts · 9-step workflow · tools — free &amp; open source
+            40 prompts · 9-step workflow · tools, free &amp; open source
           </div>
         </div>
 

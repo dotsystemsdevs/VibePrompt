@@ -65,7 +65,7 @@ export function WorkflowStepper({ steps }: { steps: StepData[] }) {
   return (
     <div className="border border-foreground/20 overflow-hidden">
 
-      {/* Step tabs — same as category tabs in browse/awesome */}
+      {/* Step tabs, same as category tabs in browse/awesome */}
       <div className="relative border-b border-foreground/12">
         <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 z-10 h-full w-12 bg-gradient-to-l from-background to-transparent" />
         <div className="flex items-center overflow-x-auto no-scrollbar px-4">
@@ -94,7 +94,7 @@ export function WorkflowStepper({ steps }: { steps: StepData[] }) {
       <div className="border-b border-foreground/12 px-4 py-4 sm:px-6 sm:py-5">
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
-            {s.step !== "—" && (
+            {s.step !== ", " && (
               <p className="mb-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-foreground/30">
                 Step {s.step}
               </p>
@@ -138,7 +138,7 @@ export function WorkflowStepper({ steps }: { steps: StepData[] }) {
             ))}
           </div>
           <div className="border-t border-foreground/[0.06] px-4 py-4 sm:px-6">
-            <p className="text-xs italic text-muted-foreground/50">— {s.intro.origin}</p>
+            <p className="text-xs italic text-muted-foreground/50">,  {s.intro.origin}</p>
           </div>
         </>
       )}
@@ -153,7 +153,7 @@ export function WorkflowStepper({ steps }: { steps: StepData[] }) {
         />
       )}
 
-      {/* Prompts CTA — as row */}
+      {/* Prompts CTA, as row */}
       {s.browseSlug && (
         <Link
           href={`/browse?category=${s.browseSlug}`}
@@ -167,7 +167,7 @@ export function WorkflowStepper({ steps }: { steps: StepData[] }) {
         </Link>
       )}
 
-      {/* Prev / Next — as footer row */}
+      {/* Prev / Next, as footer row */}
       <div className="flex border-t border-foreground/12">
         <button
           onClick={() => go(current - 1)}

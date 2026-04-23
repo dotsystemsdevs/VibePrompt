@@ -79,7 +79,7 @@ function DocumentChecklist({ step, items, startIndex, checked, toggle }: {
     <div className="overflow-hidden border border-foreground/12">
       {/* Header */}
       <div className="flex items-center justify-between gap-4 border-b border-foreground/10 bg-foreground/[0.03] px-5 py-3">
-        <span className="font-mono text-[10px] uppercase tracking-widest text-white/40">Spec — {items.length} sections</span>
+        <span className="font-mono text-[10px] uppercase tracking-widest text-white/40">Spec, {items.length} sections</span>
         <div className="flex items-center gap-3">
           <span className="font-mono text-[10px] tabular-nums text-white/40">{totalDone}/{totalAll}</span>
           <div className="h-1.5 w-20 overflow-hidden border border-white/10 bg-white/5">
@@ -100,7 +100,7 @@ function DocumentChecklist({ step, items, startIndex, checked, toggle }: {
         return (
           <div key={gi} className={`border-b last:border-b-0 ${sectionDone ? "border-foreground/[0.04]" : "border-foreground/[0.08]"}`}>
 
-            {/* Section heading — clickable to collapse */}
+            {/* Section heading, clickable to collapse */}
             <button
               onClick={() => setOpen((prev) => ({ ...prev, [gi]: !isOpen }))}
               className={`group w-full flex items-center gap-4 px-5 py-3.5 text-left transition-colors ${sectionDone ? "bg-foreground/[0.01]" : isActive ? "bg-blue-400/[0.05] hover:bg-blue-400/[0.08]" : "bg-foreground/[0.03] hover:bg-foreground/[0.05]"}`}
@@ -315,7 +315,7 @@ export function StepChecklist({ step, items, storageKey, startIndex = 0, variant
                 const label = item.text.replace(/^(Watch|Read): /, "");
                 const firstLink = item.links?.[0];
 
-                // Watch/Read — link row with YouTube icon
+                // Watch/Read, link row with YouTube icon
                 if (isWatch || isRead) {
                   return (
                     <div key={ii} className={`group flex items-center gap-4 px-4 py-5 sm:px-6 sm:py-3.5 transition-colors ${done ? "opacity-30" : "hover:bg-foreground/[0.03]"}`}>
@@ -357,7 +357,7 @@ export function StepChecklist({ step, items, storageKey, startIndex = 0, variant
                   );
                 }
 
-                // Regular task — clean text, favicon links on the right
+                // Regular task, clean text, favicon links on the right
                 return (
                   <label
                     key={ii}

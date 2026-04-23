@@ -94,13 +94,13 @@ function ResultPanel({ data }: { data: AuditResult }) {
     <div className="mt-8 space-y-6">
       {data.isSPA && (
         <div className="border border-yellow-500/20 bg-yellow-500/[0.03] px-4 py-3">
-          <p className="text-xs font-medium text-yellow-400/70">Client-rendered page — results may be incomplete</p>
+          <p className="text-xs font-medium text-yellow-400/70">Client-rendered page, results may be incomplete</p>
         </div>
       )}
 
       {/* ── Score card ── */}
       <div className="border border-foreground/12 overflow-hidden">
-        {/* Header — favicon + hostname + overall score */}
+        {/* Header, favicon + hostname + overall score */}
         <div className="flex items-center gap-2.5 px-5 py-4 border-b border-foreground/8">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={`https://icons.duckduckgo.com/ip3/${hostname}.ico`} alt="" width={16} height={16} className="shrink-0 rounded-sm ring-1 ring-foreground/15" />
@@ -111,7 +111,7 @@ function ResultPanel({ data }: { data: AuditResult }) {
           </div>
         </div>
 
-        {/* Category rows — clickable to filter */}
+        {/* Category rows, clickable to filter */}
         <div className="divide-y divide-foreground/[0.05]">
           {(Object.entries(data.categories) as [string, { score: number; label: string }][]).map(([key, cat]) => {
             const c = scoreColor(cat.score);
@@ -212,7 +212,7 @@ function DemoPanel() {
         <div className="h-px flex-1 bg-foreground/8" />
       </div>
 
-      {/* Score card — matches real ResultPanel */}
+      {/* Score card, matches real ResultPanel */}
       <div className="border border-foreground/10 overflow-hidden">
         <div className="flex items-center gap-2.5 px-5 py-3.5 border-b border-foreground/8">
           <div className="w-4 h-4 rounded-sm bg-foreground/15 shrink-0" />
@@ -235,7 +235,7 @@ function DemoPanel() {
         </div>
       </div>
 
-      {/* Findings — matches real FindingRow */}
+      {/* Findings, matches real FindingRow */}
       <div className="mt-4 border border-foreground/8 overflow-hidden">
         {DEMO_FINDINGS.map((f) => (
           <div key={f.id} className="flex gap-3 px-5 py-3 border-b border-foreground/6 last:border-0">
@@ -272,7 +272,7 @@ export function AuditClient() {
       setState({ status: "result", data });
       window.history.pushState(null, "", `/scan?url=${encodeURIComponent(url)}`);
     } catch {
-      setState({ status: "error", message: "Network error — check your connection and try again." });
+      setState({ status: "error", message: "Network error, check your connection and try again." });
     }
   }
 

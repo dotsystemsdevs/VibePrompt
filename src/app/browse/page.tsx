@@ -9,12 +9,12 @@ import { Reveal } from "@/components/motion/reveal";
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: "AI Prompt Library | 40 Prompts for Vibe Coders — VibePrompt",
+  title: "AI Prompt Library | 40 Prompts for Vibe Coders, VibePrompt",
   description:
     "Browse 40 free, copy-ready AI prompts for every stage of your build: context setup, PRD writing, code review, shipping, and more.",
   alternates: { canonical: "/browse" },
   openGraph: {
-    title: "AI Prompt Library — 40 Prompts for Vibe Coders",
+    title: "AI Prompt Library, 40 Prompts for Vibe Coders",
     description: "Copy-ready prompts for context, PRD, build, quality, and ship. Free and open source.",
     url: "https://vibeprompt.tech/browse",
     images: [{ url: "https://vibeprompt.tech/opengraph-image", width: 1200, height: 630 }],

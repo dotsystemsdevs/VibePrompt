@@ -8,11 +8,11 @@ import { Reveal } from "@/components/motion/reveal";
 
 export const metadata: Metadata = {
   title: "Articles | VibePrompt",
-  description: "Practical guides and insights for vibe coders — what actually works when building with AI.",
+  description: "Practical guides and insights for vibe coders, what actually works when building with AI.",
   alternates: { canonical: "/articles" },
   openGraph: {
-    title: "Articles — VibePrompt",
-    description: "Practical guides and insights for vibe coders — what actually works when building with AI.",
+    title: "Articles, VibePrompt",
+    description: "Practical guides and insights for vibe coders, what actually works when building with AI.",
     url: "https://vibeprompt.tech/articles",
     images: [{ url: "https://vibeprompt.tech/opengraph-image", width: 1200, height: 630 }],
   },
@@ -26,7 +26,7 @@ export default async function ArticlesPage() {
       <Reveal>
         <Hero
           title={"What actually\nworks."}
-          description="Practical guides for building with AI — no fluff, no theory."
+          description="Practical guides for building with AI, no fluff, no theory."
           accent="#ffffff"
         />
       </Reveal>
@@ -80,7 +80,7 @@ export default async function ArticlesPage() {
         <Reveal>
           <GithubCta
             title={"Got an article\nidea?"}
-            description="Practical guides, lessons learned, or tools that work — if it helps vibe coders ship, suggest it."
+            description="Practical guides, lessons learned, or tools that work, if it helps vibe coders ship, suggest it."
             accent="#ffffff"
             primaryHref="https://github.com/dotsystemsdevs/VibePrompt/issues"
             primaryLabel="Suggest an article"

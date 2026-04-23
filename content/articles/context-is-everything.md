@@ -11,7 +11,7 @@ There's a moment every vibe coder knows.
 
 You paste a feature request into Claude. It writes something. It looks plausible. You run it. Something breaks. You ask it to fix the thing. It breaks something else. You spend the next two hours chasing it around your codebase.
 
-The problem usually isn't the prompt. It's the context — or the complete absence of it.
+The problem usually isn't the prompt. It's the context, or the complete absence of it.
 
 ## Why AI writes bad code in your project
 
@@ -27,7 +27,7 @@ Good AI context comes in three layers, and most people only think about one of t
 
 **Layer 1: Project rules (CLAUDE.md / AGENTS.md)**
 
-This is a file at the root of your repo that tells the AI how your project works. Not what to build — how to work. Think of it as onboarding documentation for a new engineer who happens to be an AI.
+This is a file at the root of your repo that tells the AI how your project works. Not what to build, how to work. Think of it as onboarding documentation for a new engineer who happens to be an AI.
 
 A good project rules file includes:
 
@@ -37,11 +37,11 @@ A good project rules file includes:
 - What NOT to do (hardcode colors, create files over 500 lines, use `any`)
 - How to run the project and what commands matter
 
-The more specific, the better. "Use Tailwind CSS v4 — no `tailwind.config.js`, CSS variables only" is useful. "Use Tailwind" is not.
+The more specific, the better. "Use Tailwind CSS v4, no `tailwind.config.js`, CSS variables only" is useful. "Use Tailwind" is not.
 
 **Layer 2: Current task context**
 
-Before you ask the AI to build something, give it a mental model of what you're building and why. This doesn't need to be long — two or three sentences usually cover it.
+Before you ask the AI to build something, give it a mental model of what you're building and why. This doesn't need to be long, two or three sentences usually cover it.
 
 Bad: "Add user authentication."
 
@@ -53,7 +53,7 @@ The second version gives the AI enough to make correct decisions without asking 
 
 When you're working on something that touches existing code, show the AI the relevant files. Don't make it guess what your `Button` component looks like or how your API routes are structured. Paste the relevant parts, or in tools like Claude Code, let it read the files directly.
 
-"Here's how the existing auth middleware works — follow the same pattern" eliminates an entire class of inconsistency.
+"Here's how the existing auth middleware works, follow the same pattern" eliminates an entire class of inconsistency.
 
 ## The CLAUDE.md / AGENTS.md file
 
@@ -64,18 +64,18 @@ A minimal but effective version:
 ```markdown
 # Stack
 - Next.js 16 (App Router)
-- Tailwind CSS v4 — no config file, CSS variables only
-- TypeScript strict mode — no `any`
+- Tailwind CSS v4, no config file, CSS variables only
+- TypeScript strict mode, no `any`
 - Supabase for database and auth
 
 # Conventions
 - Pages in src/app/ using App Router
 - Client components suffixed -client.tsx
-- No file over 500 lines — split before adding
+- No file over 500 lines, split before adding
 
 # Never
-- Hardcode colors — use CSS variables
-- Silent overwrites — check before writing
+- Hardcode colors, use CSS variables
+- Silent overwrites, check before writing
 ```
 
 That's it. Fifty lines of this beats a thousand tokens of prompting.
@@ -86,7 +86,7 @@ Here's what changes when you invest in context: the AI stops making the same mis
 
 Without a project rules file, every session starts from zero. You correct the same patterns over and over. The AI writes Pages Router code in an App Router project. It uses `any`. It creates 800-line components.
 
-With a project rules file, those corrections happen once — when you write the file. Every subsequent session benefits from them automatically.
+With a project rules file, those corrections happen once, when you write the file. Every subsequent session benefits from them automatically.
 
 The best vibe coders aren't better at prompting. They're better at setup. They invest ten minutes writing a project rules file and save hours of correction across the entire project.
 

@@ -5,11 +5,11 @@ import { Hero } from "@/components/hero/hero";
 import { Reveal } from "@/components/motion/reveal";
 
 export const metadata = {
-  title: "Awesome Vibe Coding — Tools & Resources for AI Builders | VibePrompt",
-  description: "Curated list of tools, AI coding platforms, and resources for vibe coders. No bloat, no affiliates — just what actually works.",
+  title: "Awesome Vibe Coding, Tools & Resources for AI Builders | VibePrompt",
+  description: "Curated list of tools, AI coding platforms, and resources for vibe coders. No bloat, no affiliates, just what actually works.",
   alternates: { canonical: "/awesome" },
   openGraph: {
-    title: "Awesome Vibe Coding — Tools for AI Builders",
+    title: "Awesome Vibe Coding, Tools for AI Builders",
     description: "Curated tools, platforms, and resources for vibe coders. No bloat, no affiliates.",
     url: "https://vibeprompt.tech/awesome",
   },

@@ -293,7 +293,7 @@ const RULES: Rule[] = [
   {
     id: "seo_meta_desc_short", category: "seo", severity: "low", effort: "quick",
     title: "Meta description too short",
-    description: "Meta description is under 50 characters — too brief to be useful in search results.",
+    description: "Meta description is under 50 characters, too brief to be useful in search results.",
     fix: "Expand your meta description to 120–160 characters. Include your core value proposition.",
     scoreImpact: 3, check: (p) => p.metaDescription.length > 0 && p.metaDescription.length < 50,
   },
@@ -373,7 +373,7 @@ const RULES: Rule[] = [
     id: "conv_no_form", category: "conversion", severity: "low", effort: "moderate",
     title: "No inline email capture",
     description: "No form or email input found. Capturing emails directly on the page converts better than linking to a separate signup page.",
-    fix: "Add an email input in the hero — even a single field with 'Get early access' increases conversion.",
+    fix: "Add an email input in the hero, even a single field with 'Get early access' increases conversion.",
     scoreImpact: 3, check: (p) => !p.hasForm,
   },
   {
@@ -563,7 +563,7 @@ const RULES: Rule[] = [
   {
     id: "sec_no_x_frame", category: "security", severity: "medium", effort: "quick",
     title: "Missing X-Frame-Options",
-    description: "No X-Frame-Options header. Your page can be embedded in an iframe — enabling clickjacking attacks.",
+    description: "No X-Frame-Options header. Your page can be embedded in an iframe, enabling clickjacking attacks.",
     fix: "Add: X-Frame-Options: SAMEORIGIN (or DENY if you never need iframes).",
     scoreImpact: 5, check: (p) => !p.hasXFrameOptions,
   },
@@ -714,7 +714,7 @@ export async function GET(req: NextRequest) {
   } catch (err) {
     clearTimeout(timeout);
     if (err instanceof Error && err.name === "AbortError") {
-      return NextResponse.json({ error: "Request timed out — the site took too long to respond" }, { status: 504 });
+      return NextResponse.json({ error: "Request timed out, the site took too long to respond" }, { status: 504 });
     }
     const detail = err instanceof Error ? err.message : String(err);
     return NextResponse.json(

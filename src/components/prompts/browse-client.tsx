@@ -52,7 +52,7 @@ export function BrowseClient({ categories, prompts }: BrowseClientProps) {
         </div>
       </div>
 
-      {/* Category filter — select on mobile, tabs on desktop */}
+      {/* Category filter, select on mobile, tabs on desktop */}
       <div className="border-b border-foreground/12">
         {/* Mobile */}
         <div className="sm:hidden px-4 py-3">

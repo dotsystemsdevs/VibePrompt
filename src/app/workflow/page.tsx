@@ -17,14 +17,14 @@ const STEPS: StepData[] = [
     title: "Environment",
     emoji: "⚙️",
     whatThis: "Get your terminal, editor, Git, Node.js, and AI tool working before you write a single line of code.",
-    why: "Most beginners fail in setup chaos, not bad ideas. Lock this in once — you'll never think about it again.",
+    why: "Most beginners fail in setup chaos, not bad ideas. Lock this in once, you'll never think about it again.",
     tasks: [
       {
         heading: "Checklist",
         description: "Confirm each tool works before moving on.",
         items: [
           {
-            text: "Open a terminal and run `ls` — confirm files appear.",
+            text: "Open a terminal and run `ls`, confirm files appear.",
             links: [
               { label: "Windows Terminal", href: "https://aka.ms/terminal" },
               { label: "iTerm2", href: "https://iterm2.com" },
@@ -52,11 +52,11 @@ const STEPS: StepData[] = [
             links: [{ label: "Node.js", href: "https://nodejs.org" }],
           },
           {
-            text: "Run `npx create-next-app@latest` — confirm the project opens at localhost.",
-            detail: "If it installs, starts, and opens — your terminal, Node, and npm are all wired correctly.",
+            text: "Run `npx create-next-app@latest`, confirm the project opens at localhost.",
+            detail: "If it installs, starts, and opens, your terminal, Node, and npm are all wired correctly.",
           },
           {
-            text: "Create `TASK.md` in the repo root. This is your living task list — add tasks before starting, check them off immediately when done.",
+            text: "Create `TASK.md` in the repo root. This is your living task list, add tasks before starting, check them off immediately when done.",
             detail: "Format: task text + date added. Add a 'Discovered During Work' section for tasks that surface mid-session.",
           },
         ],
@@ -89,16 +89,16 @@ const STEPS: StepData[] = [
     step: "01",
     title: "Research",
     emoji: "🔍",
-    whatThis: "Confirm the problem is real before writing any code. Use a chat AI with web search for deep research — not your IDE.",
+    whatThis: "Confirm the problem is real before writing any code. Use a chat AI with web search for deep research, not your IDE.",
     why: "Most projects fail before the build starts. One hour here saves weeks of building the wrong thing.",
     tasks: [
       {
         heading: "Checklist",
-        description: "Manual signal first — AI will hallucinate demand if you skip this.",
+        description: "Manual signal first, AI will hallucinate demand if you skip this.",
         items: [
           {
             text: "Google your idea exactly as a user would search for it.",
-            detail: "No results = red flag. 10 existing tools = good signal — people want this.",
+            detail: "No results = red flag. 10 existing tools = good signal, people want this.",
           },
           {
             text: "Check Google Trends with 12 months of data. Rising or flat = healthy. One spike then nothing = hype.",
@@ -121,7 +121,7 @@ const STEPS: StepData[] = [
           },
           {
             text: "Open Claude.ai or ChatGPT with web search on. Paste: 'Research this market for me: [your idea]. Who are the competitors? What are users complaining about? What gaps exist?' Save the output to `docs/research.md`.",
-            detail: "Use a chat AI with web search for research — not your coding IDE. This is the right tool for this phase.",
+            detail: "Use a chat AI with web search for research, not your coding IDE. This is the right tool for this phase.",
             links: [
               { label: "Claude.ai", href: "https://claude.ai" },
               { label: "ChatGPT", href: "https://chatgpt.com" },
@@ -146,7 +146,7 @@ const STEPS: StepData[] = [
             links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=how+to+find+startup+ideas+that+work" }],
           },
           {
-            text: "Read: How to Get Startup Ideas — Paul Graham",
+            text: "Read: How to Get Startup Ideas, Paul Graham",
             links: [{ label: "paulgraham.com", href: "https://paulgraham.com/startupideas.html" }],
           },
         ],
@@ -162,7 +162,7 @@ const STEPS: StepData[] = [
     title: "PRD",
     emoji: "📝",
     whatThis: "Write one file that says exactly what you're building, why, and what success looks like. This is what you hand to AI at the start of every session.",
-    why: "Without a spec, AI fills every gap with assumptions — and those assumptions ship. Most agent failures are context failures, not model failures.",
+    why: "Without a spec, AI fills every gap with assumptions, and those assumptions ship. Most agent failures are context failures, not model failures.",
     tasks: [
       {
         heading: "Checklist",
@@ -181,7 +181,7 @@ const STEPS: StepData[] = [
             detail: "Who benefits? What metric improves? Why does this matter to ship?",
           },
           {
-            text: "List max 5 MVP features under What. If your list has 12 — that's a roadmap. Cut to 5.",
+            text: "List max 5 MVP features under What. If your list has 12, that's a roadmap. Cut to 5.",
             links: [{ label: "Shape Up", href: "https://basecamp.com/shapeup" }],
           },
           {
@@ -189,7 +189,7 @@ const STEPS: StepData[] = [
             detail: "'No user profiles', 'no notifications', 'no admin dashboard'. Without this, every feature you didn't mention becomes a maybe.",
           },
           {
-            text: "Write Success Criteria as testable conditions. Not 'auth works' — 'a new user signs up, verifies email, and reaches the dashboard in under 60 seconds without errors'.",
+            text: "Write Success Criteria as testable conditions. Not 'auth works', 'a new user signs up, verifies email, and reaches the dashboard in under 60 seconds without errors'.",
           },
           {
             text: "Save as `docs/PRD.md` in the repo root. You will paste this into every AI session and load it into AGENTS.md.",
@@ -205,11 +205,11 @@ const STEPS: StepData[] = [
             links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=how+to+write+product+requirements+document+PRD" }],
           },
           {
-            text: "Watch: What is an MVP — and why cutting features is the point",
+            text: "Watch: What is an MVP, and why cutting features is the point",
             links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=what+is+minimum+viable+product+mvp+explained" }],
           },
           {
-            text: "Read: Context Engineering intro — how PRDs feed AI context",
+            text: "Read: Context Engineering intro, how PRDs feed AI context",
             links: [{ label: "github.com/coleam00", href: "https://github.com/coleam00/context-engineering-intro" }],
           },
         ],
@@ -224,7 +224,7 @@ const STEPS: StepData[] = [
     step: "03",
     title: "Stack",
     emoji: "🎨",
-    whatThis: "Lock every technology decision in one file before writing any code. The AI picks whatever it was trained on most — not what fits your project.",
+    whatThis: "Lock every technology decision in one file before writing any code. The AI picks whatever it was trained on most, not what fits your project.",
     why: "Mid-build stack changes cost ten times more than upfront decisions. No open choices past this step.",
     tasks: [
       {
@@ -232,14 +232,14 @@ const STEPS: StepData[] = [
         description: "Make every decision now. Ask AI: 'What is the simplest yet most robust stack for this PRD?'",
         items: [
           {
-            text: "Pick a frontend framework. Next.js is the default for 90% of indie projects — SEO, one-click Vercel deploy, massive ecosystem. Use Remix if your app is form-heavy. If unsure: Next.js.",
+            text: "Pick a frontend framework. Next.js is the default for 90% of indie projects, SEO, one-click Vercel deploy, massive ecosystem. Use Remix if your app is form-heavy. If unsure: Next.js.",
             links: [
               { label: "Next.js", href: "https://nextjs.org" },
               { label: "Remix", href: "https://remix.run" },
             ],
           },
           {
-            text: "Pick a UI system. Tailwind CSS + shadcn/ui is the indie standard — components you copy and own, no dependency lock-in.",
+            text: "Pick a UI system. Tailwind CSS + shadcn/ui is the indie standard, components you copy and own, no dependency lock-in.",
             links: [
               { label: "Tailwind CSS", href: "https://tailwindcss.com" },
               { label: "shadcn/ui", href: "https://ui.shadcn.com" },
@@ -253,18 +253,18 @@ const STEPS: StepData[] = [
             ],
           },
           {
-            text: "Connect your repo to Vercel today — not at launch. Every push to main deploys automatically. Every PR gets a preview URL.",
+            text: "Connect your repo to Vercel today, not at launch. Every push to main deploys automatically. Every PR gets a preview URL.",
             links: [
               { label: "Vercel", href: "https://vercel.com" },
               { label: "Railway", href: "https://railway.app" },
             ],
           },
           {
-            text: "Write all decisions in `docs/TechDesign.md`. Include framework, UI, DB, auth, deploy — and why you chose each.",
+            text: "Write all decisions in `docs/TechDesign.md`. Include framework, UI, DB, auth, deploy, and why you chose each.",
             detail: "This file gets loaded into every AI session alongside your PRD. No open decisions allowed.",
           },
           {
-            text: "Install Context7 MCP if using Claude Code — it pulls the current docs for any library directly into the LLM context window.",
+            text: "Install Context7 MCP if using Claude Code, it pulls the current docs for any library directly into the LLM context window.",
             detail: "Prevents hallucinated APIs. AI sees the actual API for your exact version, not what it was trained on.",
             links: [{ label: "Context7", href: "https://context7.com" }],
           },
@@ -279,7 +279,7 @@ const STEPS: StepData[] = [
             links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=nextjs+app+router+crash+course+2024" }],
           },
           {
-            text: "Watch: shadcn/ui — add and customize components",
+            text: "Watch: shadcn/ui, add and customize components",
             links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=shadcn+ui+tutorial+crash+course" }],
           },
           {
@@ -298,12 +298,12 @@ const STEPS: StepData[] = [
     step: "04",
     title: "Context",
     emoji: "🗂️",
-    whatThis: "Build the memory system every AI session reads from — AGENTS.md plus a memory-bank folder. This is what separates a codebase that stays coherent from one that doesn't.",
-    why: "Every new chat is a blank slate. Without a persistent context layer, every session drifts — different decisions, different conventions, broken consistency.",
+    whatThis: "Build the memory system every AI session reads from, AGENTS.md plus a memory-bank folder. This is what separates a codebase that stays coherent from one that doesn't.",
+    why: "Every new chat is a blank slate. Without a persistent context layer, every session drifts, different decisions, different conventions, broken consistency.",
     tasks: [
       {
         heading: "Checklist",
-        description: "Set this up once. Every session reads from it — no more re-explaining your stack.",
+        description: "Set this up once. Every session reads from it, no more re-explaining your stack.",
         items: [
           {
             text: "Create `AGENTS.md` (or `CLAUDE.md`) in the repo root. Claude Code reads it automatically at the start of every session.",
@@ -313,8 +313,8 @@ const STEPS: StepData[] = [
             ],
           },
           {
-            text: "Write your stack, folder structure, and naming conventions in plain English. Not code — sentences.",
-            detail: "'We use Next.js App Router. All components go in src/components. File names are kebab-case. No file exceeds 500 lines — refactor into modules instead.'",
+            text: "Write your stack, folder structure, and naming conventions in plain English. Not code, sentences.",
+            detail: "'We use Next.js App Router. All components go in src/components. File names are kebab-case. No file exceeds 500 lines, refactor into modules instead.'",
           },
           {
             text: "Add the 500-line rule: never create a file longer than 500 lines. If you're approaching the limit, refactor into modules first.",
@@ -322,10 +322,10 @@ const STEPS: StepData[] = [
           },
           {
             text: "Add the never-overwrite rule: never delete or overwrite existing code unless explicitly instructed.",
-            detail: "Prevents silent regressions. The AI that wrote the code is primed to defend it — this rule forces an explicit ask.",
+            detail: "Prevents silent regressions. The AI that wrote the code is primed to defend it, this rule forces an explicit ask.",
           },
           {
-            text: "Add the test rule: every new feature needs 3 tests — 1 expected use, 1 edge case, 1 failure case.",
+            text: "Add the test rule: every new feature needs 3 tests, 1 expected use, 1 edge case, 1 failure case.",
           },
           {
             text: "Add a no-touch list: files the AI must never modify. Examples: `.env`, `package-lock.json`, critical config files.",
@@ -349,11 +349,11 @@ const STEPS: StepData[] = [
             links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=claude+code+agents+md+memory+setup+tutorial" }],
           },
           {
-            text: "Read: Context Engineering intro — the full pattern",
+            text: "Read: Context Engineering intro, the full pattern",
             links: [{ label: "github.com/coleam00", href: "https://github.com/coleam00/context-engineering-intro" }],
           },
           {
-            text: "Read: KhazP vibe coding template — full project scaffold",
+            text: "Read: KhazP vibe coding template, full project scaffold",
             links: [{ label: "github.com/KhazP", href: "https://github.com/KhazP/vibe-coding-prompt-template" }],
           },
         ],
@@ -368,26 +368,26 @@ const STEPS: StepData[] = [
     step: "05",
     title: "Build",
     emoji: "🔄",
-    whatThis: "One task. Plan first. Execute. Verify. Commit. Start a new chat. Repeat. Planning is everything — do not let the AI plan autonomously.",
+    whatThis: "One task. Plan first. Execute. Verify. Commit. Start a new chat. Repeat. Planning is everything, do not let the AI plan autonomously.",
     why: "Big prompts produce big diffs. Big diffs don't get reviewed. Small loops mean smaller diffs, clean rollback points, and a codebase you can understand.",
     tasks: [
       {
         heading: "Checklist",
-        description: "Plan first, always. The AI builds what it understands — you define what that is.",
+        description: "Plan first, always. The AI builds what it understands, you define what that is.",
         items: [
           {
-            text: "Go slow at the start. The first week sets the patterns every future session inherits — naming conventions, file structure, component shape. Rushing this produces a codebase that's hard to reason about by week three. Slow at the start is fast overall.",
+            text: "Go slow at the start. The first week sets the patterns every future session inherits, naming conventions, file structure, component shape. Rushing this produces a codebase that's hard to reason about by week three. Slow at the start is fast overall.",
             detail: "This is the most consistent difference between projects that ship cleanly and projects that get stuck in debugging loops. The foundation compounds.",
           },
           {
-            text: "Build vertical slices — one complete feature at a time (UI + API + test together). Never build a full frontend and connect it to the backend later. Disconnected layers accumulate mismatched assumptions that take longer to reconcile than they would have taken to align from the start.",
+            text: "Build vertical slices, one complete feature at a time (UI + API + test together). Never build a full frontend and connect it to the backend later. Disconnected layers accumulate mismatched assumptions that take longer to reconcile than they would have taken to align from the start.",
             detail: "The most common vibe coding failure mode is 'I built the whole UI, now I need to wire it to the API.' By that point, the data shapes don't match, the auth logic doesn't align, and half the state management is wrong. One slice at a time prevents all of it.",
           },
           {
             text: "Break your PRD into 20–30 atomic tasks in `TASK.md`. 'Add auth' is not atomic. 'Add /login route that renders the Clerk sign-in component' is. If a task touches more than 3 files, split it.",
           },
           {
-            text: "Use Plan Mode before every task. In Claude Code: press `shift+tab` before executing. In Cursor: start your prompt with 'DO NOT code yet — just plan.' Approve the plan. Then execute.",
+            text: "Use Plan Mode before every task. In Claude Code: press `shift+tab` before executing. In Cursor: start your prompt with 'DO NOT code yet, just plan.' Approve the plan. Then execute.",
             detail: "Never let the AI make architectural decisions unsupervised. Review the plan first.",
           },
           {
@@ -400,13 +400,13 @@ const STEPS: StepData[] = [
             links: [{ label: "Conventional Commits", href: "https://conventionalcommits.org" }],
           },
           {
-            text: "Monitor your context window. Keep it above 50–60% capacity. Use `/compact` in Claude Code to compress history — not `/clear`. Clearing loses your session state.",
+            text: "Monitor your context window. Keep it above 50–60% capacity. Use `/compact` in Claude Code to compress history, not `/clear`. Clearing loses your session state.",
           },
           {
             text: "Pause before irreversible actions. Before deleting, before a major refactor, before deploying: ask 'What are the risks? What can't be undone?' Then proceed.",
           },
           {
-            text: "Troubleshoot with these prompts — AI ignoring docs: 'Read AGENTS.md, PRD, and TechDesign. Summarize key requirements before coding.' AI overcomplicating: 'Prioritize MVP scope. Give me the simplest working implementation.'",
+            text: "Troubleshoot with these prompts, AI ignoring docs: 'Read AGENTS.md, PRD, and TechDesign. Summarize key requirements before coding.' AI overcomplicating: 'Prioritize MVP scope. Give me the simplest working implementation.'",
           },
           {
             text: "Add this suffix to any prompt where quality matters: 'Think as long as needed. What matters is that you follow precisely what I asked and execute it perfectly. Ask me questions if I am not precise enough.'",
@@ -422,11 +422,11 @@ const STEPS: StepData[] = [
             links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=claude+code+plan+mode+build+loop+workflow" }],
           },
           {
-            text: "Watch: Agentic coding workflow — one task, one diff",
+            text: "Watch: Agentic coding workflow, one task, one diff",
             links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=agentic+coding+workflow+cursor+claude+build+loop" }],
           },
           {
-            text: "Read: EnzeD vibe coding guide — the full build loop methodology",
+            text: "Read: EnzeD vibe coding guide, the full build loop methodology",
             links: [{ label: "github.com/EnzeD", href: "https://github.com/EnzeD/vibe-coding" }],
           },
         ],
@@ -463,13 +463,13 @@ const STEPS: StepData[] = [
             links: [{ label: "git-secrets", href: "https://github.com/awslabs/git-secrets" }],
           },
           {
-            text: "Run `npm audit` — critical and high severity = deploy blockers.",
+            text: "Run `npm audit`, critical and high severity = deploy blockers.",
           },
           {
-            text: "Run `npx tsc --noEmit` — zero TypeScript errors, non-negotiable.",
+            text: "Run `npx tsc --noEmit`, zero TypeScript errors, non-negotiable.",
           },
           {
-            text: "Write one E2E test for your primary flow. Run `npx playwright codegen` — record by clicking through your app. Landing → sign up → core action → success.",
+            text: "Write one E2E test for your primary flow. Run `npx playwright codegen`, record by clicking through your app. Landing → sign up → core action → success.",
             links: [{ label: "Playwright", href: "https://playwright.dev" }],
           },
           {
@@ -490,7 +490,7 @@ const STEPS: StepData[] = [
             links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=playwright+testing+crash+course+beginners" }],
           },
           {
-            text: "Read: OWASP Top 10 — check your app against at least the first three",
+            text: "Read: OWASP Top 10, check your app against at least the first three",
             links: [{ label: "owasp.org", href: "https://owasp.org/www-project-top-ten" }],
           },
         ],
@@ -510,10 +510,10 @@ const STEPS: StepData[] = [
     tasks: [
       {
         heading: "Checklist",
-        description: "Set up observability before you share the URL — not after.",
+        description: "Set up observability before you share the URL, not after.",
         items: [
           {
-            text: "Connect your repo to Vercel — every push to main deploys, every PR gets a preview URL.",
+            text: "Connect your repo to Vercel, every push to main deploys, every PR gets a preview URL.",
             links: [{ label: "Vercel", href: "https://vercel.com" }],
           },
           {
@@ -521,7 +521,7 @@ const STEPS: StepData[] = [
             links: [{ label: "PostHog Next.js quickstart", href: "https://posthog.com/docs/libraries/next-js" }],
           },
           {
-            text: "Install Sentry before sharing the URL — it catches unhandled exceptions with full stack traces.",
+            text: "Install Sentry before sharing the URL, it catches unhandled exceptions with full stack traces.",
             links: [{ label: "Sentry Next.js setup", href: "https://docs.sentry.io/platforms/javascript/guides/nextjs/" }],
           },
           {
@@ -539,7 +539,7 @@ const STEPS: StepData[] = [
         description: "Set up analytics and learn how to get first users.",
         items: [
           {
-            text: "Watch: PostHog setup — session recordings and analytics",
+            text: "Watch: PostHog setup, session recordings and analytics",
             links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=posthog+session+recording+analytics+setup" }],
           },
           {
@@ -579,7 +579,7 @@ const STEPS: StepData[] = [
           },
           {
             text: "Pick exactly 3 friction points to fix. Not ten.",
-            detail: "Pick the ones that appear in 3+ recordings — not one-off edge cases.",
+            detail: "Pick the ones that appear in 3+ recordings, not one-off edge cases.",
           },
           {
             text: "Update your PRD before re-entering the build loop.",
@@ -600,11 +600,11 @@ const STEPS: StepData[] = [
             links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=how+to+analyze+session+recordings+posthog+ux" }],
           },
           {
-            text: "Watch: Product analytics fundamentals — funnels and retention",
+            text: "Watch: Product analytics fundamentals, funnels and retention",
             links: [{ label: "YouTube", href: "https://www.youtube.com/results?search_query=product+analytics+funnels+retention+beginners" }],
           },
           {
-            text: "Read: How to use session replays — PostHog guide",
+            text: "Read: How to use session replays, PostHog guide",
             links: [{ label: "posthog.com", href: "https://posthog.com/docs/session-replay/how-to-use-session-replays" }],
           },
         ],

@@ -1,12 +1,12 @@
 <!-- BEGIN:nextjs-agent-rules -->
 # This is NOT the Next.js you know
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
+This version has breaking changes, APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 <!-- END:nextjs-agent-rules -->
 
 ---
 
-# VibePrompt — Agent & Contributor Guide
+# VibePrompt, Agent & Contributor Guide
 
 Read this before writing any code in this repo.
 
@@ -14,21 +14,21 @@ Read this before writing any code in this repo.
 
 | Layer | Technology | Notes |
 |---|---|---|
-| Framework | Next.js 16 (App Router) | Breaking changes vs Next.js 13/14 — read the docs |
-| UI | React 19, Tailwind CSS v4 | v4 syntax differs from v3 — no `tailwind.config.js` |
+| Framework | Next.js 16 (App Router) | Breaking changes vs Next.js 13/14, read the docs |
+| UI | React 19, Tailwind CSS v4 | v4 syntax differs from v3, no `tailwind.config.js` |
 | Components | shadcn/ui | Components in `src/components/ui/` |
-| Auth | Clerk | `@clerk/nextjs` — middleware in `middleware.ts` |
+| Auth | Clerk | `@clerk/nextjs`, middleware in `middleware.ts` |
 | Database | Supabase | Client in `src/lib/supabase.ts` |
 | Animations | GSAP | Use sparingly, prefer Tailwind transitions |
-| Language | TypeScript | Strict mode — no `any` |
+| Language | TypeScript | Strict mode, no `any` |
 
 ## File Conventions
 
 - **Pages** live in `src/app/` using App Router conventions (`page.tsx`, `layout.tsx`)
 - **Client components** are co-located with their server counterparts, suffixed `-client.tsx`
-- **Data files** live in `src/lib/` — types in `types.ts`, category defs in `categories.ts`
+- **Data files** live in `src/lib/`, types in `types.ts`, category defs in `categories.ts`
 - **Prompt content** lives in `content/prompts/` as markdown files
-- **Prompt playbook** lives in `prompt-library/` as standalone markdown — not imported by the app
+- **Prompt playbook** lives in `prompt-library/` as standalone markdown, not imported by the app
 
 ## Design System
 
@@ -45,20 +45,20 @@ className="px-4 py-4 sm:px-6 sm:py-3.5"
 className="text-[9px] uppercase tracking-[0.18em] text-foreground/40"
 ```
 
-Dark/light mode via CSS variables — never hardcode colors. Use `text-foreground`, `bg-background`, `border-foreground/20`.
+Dark/light mode via CSS variables, never hardcode colors. Use `text-foreground`, `bg-background`, `border-foreground/20`.
 
 ## Category System
 
 Categories are defined in `src/lib/categories.ts` as `CATEGORY_DEFINITIONS`. Each entry maps:
-- `slug` — URL-safe identifier used in routes
-- `dirName` — actual folder name in `prompt-library/`
-- `name` / `shortName` — display name shown in UI
+- `slug`, URL-safe identifier used in routes
+- `dirName`, actual folder name in `prompt-library/`
+- `name` / `shortName`, display name shown in UI
 
 The folder names in `prompt-library/` are NOT the same as display names. Check `categories.ts` before referencing either.
 
 ## The 500-Line Rule
 
-No file should exceed 500 lines. If a file is approaching this limit, split it before adding more — extract a component, a hook, or a utility. Flag it rather than ignore it.
+No file should exceed 500 lines. If a file is approaching this limit, split it before adding more, extract a component, a hook, or a utility. Flag it rather than ignore it.
 
 ## Never-Overwrite Rule
 
@@ -80,13 +80,17 @@ prompt(category): add new-prompt-name
 content(awesome): add tool-name to category
 ```
 
+## Writing Style
+
+**No em dashes.** The em dash character (Unicode U+2014) is forbidden everywhere in this codebase: source files, content, markdown, comments. Use a comma instead. This applies to all `.tsx`, `.ts`, and `.md` files.
+
 ## Protected Files
 
 Do not modify these without explicit instruction:
-- `CLAUDE.md` — references `AGENTS.md`
-- `src/lib/categories.ts` — changing slugs breaks routes
-- `src/lib/types.ts` — shared across the whole app
-- `.env.local` — never commit this
+- `CLAUDE.md`, references `AGENTS.md`
+- `src/lib/categories.ts`, changing slugs breaks routes
+- `src/lib/types.ts`, shared across the whole app
+- `.env.local`, never commit this
 
 ## Adding a Prompt
 
