@@ -244,6 +244,17 @@ function FeedbackCopyCard({ data }: { data?: AuditResult }) {
           <path d="M5 10a1 1 0 1 0-2 0v4a1 1 0 1 0 2 0v-4ZM21 10a1 1 0 1 0-2 0v4a1 1 0 1 0 2 0v-4Z" />
         </svg>
         <span className="text-[9px] uppercase tracking-[0.18em] text-foreground/30">Feedback</span>
+        <div className="ml-auto">
+          {done && (
+            <button
+              type="button"
+              onClick={copy}
+              className="text-[10px] px-2.5 py-1 border border-foreground/12 hover:border-foreground/25 text-foreground/35 hover:text-foreground/65 transition-colors"
+            >
+              {copied ? "Copied ✓" : "Copy →"}
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Body */}
@@ -257,18 +268,6 @@ function FeedbackCopyCard({ data }: { data?: AuditResult }) {
         )}
       </div>
 
-      {/* Footer */}
-      {done && (
-        <div className="border-t border-foreground/8 px-5 py-2.5 flex justify-end">
-          <button
-            type="button"
-            onClick={copy}
-            className="text-[11px] px-3 py-1 border border-foreground/12 hover:border-foreground/25 text-foreground/35 hover:text-foreground/65 transition-colors"
-          >
-            {copied ? "Copied ✓" : "Copy →"}
-          </button>
-        </div>
-      )}
     </>
   );
 }
