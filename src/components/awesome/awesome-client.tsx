@@ -89,8 +89,7 @@ export function AwesomeClient({ categories }: { categories: readonly AwesomeCate
                   <button
                     key={tag}
                     onClick={(e) => { e.preventDefault(); setQuery(tag); }}
-                    className="text-[10px] transition-opacity hover:opacity-70"
-                    style={{ color: "var(--accent-blue)" }}
+                    className="text-[10px] text-foreground/30 hover:text-foreground/60 transition-colors"
                   >
                     #{tag}
                   </button>
