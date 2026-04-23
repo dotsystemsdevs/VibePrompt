@@ -623,7 +623,7 @@ export default function WorkflowPage() {
       <Reveal>
         <Hero
           title={"The vibe coding\nworkflow."}
-          description="9 steps from idea to shipped. Built from the most-starred vibe coding repos — what to do, what to learn, what to check."
+          description="9 steps from idea to shipped, built from the most-starred vibe coding repos."
           accent="#ffffff"
         />
       </Reveal>
