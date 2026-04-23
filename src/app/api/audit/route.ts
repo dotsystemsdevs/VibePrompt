@@ -655,6 +655,8 @@ function normalizeUrl(raw: string): string {
   return trimmed;
 }
 
+export const maxDuration = 30;
+
 export async function GET(req: NextRequest) {
   const rawUrl = req.nextUrl.searchParams.get("url");
   if (!rawUrl) return NextResponse.json({ error: "Missing url parameter" }, { status: 400 });
@@ -667,28 +669,25 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Invalid URL" }, { status: 400 });
   }
 
+  const origin = new URL(targetUrl).origin;
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 12000);
+  const timeout = setTimeout(() => controller.abort(), 20000);
 
   try {
-    const res = await fetch(targetUrl, {
-      signal: controller.signal,
-      headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-        Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.9",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Cache-Control": "no-cache",
-        Pragma: "no-cache",
-        "Upgrade-Insecure-Requests": "1",
-        "Sec-Fetch-Dest": "document",
-        "Sec-Fetch-Mode": "navigate",
-        "Sec-Fetch-Site": "none",
-        "Sec-Fetch-User": "?1",
-      },
-      redirect: "follow",
-      cache: "no-store",
-    });
+    const [res, external] = await Promise.all([
+      fetch(targetUrl, {
+        signal: controller.signal,
+        headers: {
+          "User-Agent": "Mozilla/5.0 (compatible; VibePromptBot/1.0; +https://vibeprompt.tech/scan)",
+          Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+          "Accept-Language": "en-US,en;q=0.9",
+          "Cache-Control": "no-cache",
+        },
+        redirect: "follow",
+        cache: "no-store",
+      }),
+      checkExternalFiles(origin),
+    ]);
 
     clearTimeout(timeout);
 
@@ -701,8 +700,6 @@ export async function GET(req: NextRequest) {
     }
 
     const html = await res.text();
-    const origin = new URL(targetUrl).origin;
-    const [external] = await Promise.all([checkExternalFiles(origin)]);
     const page: ParsedPage = {
       ...parseHtml(html),
       ...checkSecurityHeaders(res.headers),
