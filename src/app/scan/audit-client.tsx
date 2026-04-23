@@ -200,9 +200,9 @@ function FeedbackCopyCard({ data }: { data?: AuditResult }) {
     const best = Object.entries(data.categories).sort((a, b) => b[1].score - a[1].score)[0];
     const topIssues = data.findings.slice(0, 3).map((f) => `- ${f.title}`).join("\n");
     const score = data.score;
-    const feel = score >= 75 ? "pretty solid" : score >= 50 ? "decent foundation but some things to tighten up" : "quite a few things worth addressing";
-    const praise = score >= 75 ? "genuinely strong" : "actually doing well";
-    return `took a quick look at your landing page, scored ${score}/100, ${feel}\n\nyour ${best[1].label} is ${praise} at ${best[1].score}/100, not something you see on every site\n\na few things worth fixing:\n${topIssues}\n\nfull breakdown: ${scanUrl}`;
+    const feel = score >= 75 ? "overall it's in pretty good shape" : score >= 50 ? "decent foundation but a few things that could use some work" : "there's quite a bit that could be improved here";
+    const praise = score >= 75 ? "genuinely solid" : "actually doing well";
+    return `had a look at your landing page, ${feel}\n\nyour ${best[1].label} is ${praise}, not something you see on every site\n\na few things that could be better:\n${topIssues}\n\nI scanned it properly, full breakdown here: ${scanUrl}`;
   })() : null;
 
   function copy() {
