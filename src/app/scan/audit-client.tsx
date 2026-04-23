@@ -192,12 +192,11 @@ function ResultPanel({ data }: { data: AuditResult }) {
 
 // ── Reddit reply generator ────────────────────────────────────────────────────
 
-function RedditReplyCard() {
-  const [siteUrl, setSiteUrl] = useState("");
+function RedditReplyCard({ scannedUrl }: { scannedUrl?: string }) {
   const [copied, setCopied] = useState(false);
 
-  const scanUrl = siteUrl.trim()
-    ? `${typeof window !== "undefined" ? window.location.origin : "https://vibeprompt.com"}/scan?url=${encodeURIComponent(siteUrl.trim())}`
+  const scanUrl = scannedUrl
+    ? `${typeof window !== "undefined" ? window.location.origin : "https://vibeprompt.com"}/scan?url=${encodeURIComponent(scannedUrl)}`
     : null;
 
   const replyText = scanUrl
@@ -221,28 +220,13 @@ function RedditReplyCard() {
       </div>
 
       <div className="border border-foreground/12 overflow-hidden">
-        {/* URL input */}
-        <div className="border-b border-foreground/8 px-5 py-3.5 flex items-center gap-3">
-          <span className="text-[10px] text-foreground/30 shrink-0">Their site</span>
-          <input
-            type="url"
-            placeholder="https://theirsite.com"
-            value={siteUrl}
-            onChange={(e) => setSiteUrl(e.target.value)}
-            className="flex-1 bg-transparent text-xs text-foreground placeholder:text-foreground/20 outline-none"
-          />
-        </div>
-
-        {/* Preview */}
         <div className="px-5 py-4 min-h-[80px]">
           {replyText ? (
             <p className="text-xs leading-relaxed text-foreground/50 whitespace-pre-line">{replyText}</p>
           ) : (
-            <p className="text-xs text-foreground/20">Paste their URL above to generate the reply.</p>
+            <p className="text-xs text-foreground/20">Scan a site above to generate a ready-to-paste Reddit reply.</p>
           )}
         </div>
-
-        {/* Copy button */}
         <div className="border-t border-foreground/8 px-5 py-3 flex justify-end">
           <button
             type="button"
@@ -424,7 +408,7 @@ export function AuditClient() {
 
       {state.status === "result" && <ResultPanel data={state.data} />}
       {state.status === "idle" && <DemoPanel />}
-      <RedditReplyCard />
+      <RedditReplyCard scannedUrl={state.status === "result" ? state.data.url : undefined} />
     </div>
   );
 }
