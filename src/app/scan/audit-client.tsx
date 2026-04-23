@@ -140,6 +140,8 @@ function ResultPanel({ data }: { data: AuditResult }) {
         </div>
       </div>
 
+      <FeedbackCopyCard data={data} />
+
       {/* ── Findings card ── */}
       {data.findings.length > 0 && (
         <div className="border border-foreground/12 overflow-hidden">
@@ -186,8 +188,6 @@ function ResultPanel({ data }: { data: AuditResult }) {
 <p className="text-[9px] text-foreground/20">
         Scanned {new Date(data.scannedAt).toLocaleString()} · Static HTML only
       </p>
-
-      <FeedbackCopyCard data={data} />
     </div>
   );
 }
@@ -220,7 +220,7 @@ function FeedbackCopyCard({ data }: { data?: AuditResult }) {
   }, [fullText]);
 
   return (
-    <div className="mt-6">
+    <div>
       <div className="border border-foreground/12 overflow-hidden">
         <div className="px-5 py-5 flex items-start gap-4">
           <div className="shrink-0 mt-0.5 w-7 h-7 rounded-sm border border-foreground/12 flex items-center justify-center">
