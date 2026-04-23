@@ -203,7 +203,7 @@ function FeedbackCopyCard({ data }: { data?: AuditResult }) {
     const best = Object.entries(data.categories).sort((a, b) => b[1].score - a[1].score)[0];
     const topIssues = data.findings.slice(0, 3).map((f) => `- ${f.title}`).join("\n");
     const praise = data.score >= 75 ? "genuinely solid" : "actually doing well";
-    return `your ${best[1].label} is ${praise}, not something you see on every site\n\na few things that could be better:\n${topIssues}\n\nI scanned it properly, full breakdown here: ${scanUrl}`;
+    return `your ${best[1].label} is ${praise}, not something you see on every site\n\na few things that could be better:\n${topIssues}\n\nI scanned it properly, scored ${data.score}/100, full breakdown here: ${scanUrl}`;
   })() : null;
 
   useEffect(() => {
@@ -223,8 +223,8 @@ function FeedbackCopyCard({ data }: { data?: AuditResult }) {
     <div>
       <div className="border border-foreground/12 overflow-hidden">
         <div className="px-5 py-5 flex items-start gap-4">
-          <div className="shrink-0 mt-0.5 w-7 h-7 rounded-sm border border-foreground/12 flex items-center justify-center">
-            <svg className="w-4 h-4 text-foreground/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
+          <div className="shrink-0 mt-0.5 w-7 h-7 rounded-sm border border-blue-500/30 bg-blue-500/10 flex items-center justify-center">
+            <svg className="w-4 h-4 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
               <rect x="3" y="8" width="18" height="13" rx="2" />
               <path d="M8 8V6a4 4 0 0 1 8 0v2" />
               <circle cx="9" cy="14" r="1.5" fill="currentColor" stroke="none" />
