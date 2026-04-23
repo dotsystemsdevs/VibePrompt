@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getAllArticles } from "@/lib/articles";
 import { Hero } from "@/components/hero/hero";
+import { GithubCta } from "@/components/cta/github-cta";
 import { Reveal } from "@/components/motion/reveal";
 
 export const metadata: Metadata = {
@@ -76,6 +77,19 @@ export default async function ArticlesPage() {
             ))}
           </div>
         )}
+        <Reveal>
+          <GithubCta
+            title={"Got an article\nidea?"}
+            description="Practical guides, lessons learned, or tools that work — if it helps vibe coders ship, suggest it."
+            accent="#ffffff"
+            primaryHref="https://github.com/dotsystemsdevs/VibePrompt/issues"
+            primaryLabel="Suggest an article"
+            secondaryHref="https://github.com/dotsystemsdevs/VibePrompt"
+            secondaryLabel="Submit a PR instead"
+            borderTop={false}
+            className="mt-6"
+          />
+        </Reveal>
       </div>
     </div>
   );
