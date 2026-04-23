@@ -305,11 +305,7 @@ const DEMO_FINDINGS = [
 function DemoPanel() {
   return (
     <div className="mt-10 select-none pointer-events-none opacity-40">
-      <div className="flex items-center gap-3 mb-5">
-        <div className="h-px flex-1 bg-foreground/8" />
-        <span className="text-[9px] uppercase tracking-[0.18em] text-foreground/30">Example result</span>
-        <div className="h-px flex-1 bg-foreground/8" />
-      </div>
+      <div className="mb-5 h-px bg-foreground/8" />
 
       {/* Score card, matches real ResultPanel */}
       <div className="border border-foreground/10 overflow-hidden">
