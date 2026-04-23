@@ -225,12 +225,12 @@ function FeedbackCopyCard({ data }: { data?: AuditResult }) {
         <div className="px-5 py-5 flex items-start gap-4">
           <div className="shrink-0 mt-0.5 w-7 h-7 rounded-sm border border-blue-500/30 bg-blue-500/10 flex items-center justify-center">
             <svg className="w-4 h-4 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
-              <rect x="3" y="8" width="18" height="13" rx="2" />
-              <path d="M8 8V6a4 4 0 0 1 8 0v2" />
-              <circle cx="9" cy="14" r="1.5" fill="currentColor" stroke="none" />
-              <circle cx="15" cy="14" r="1.5" fill="currentColor" stroke="none" />
-              <path d="M9 18h6" strokeLinecap="round" />
-              <path d="M12 3v2" strokeLinecap="round" />
+              <path d="M12 2v3M9 5h6" strokeLinecap="round" />
+              <rect x="4" y="8" width="16" height="11" rx="2" />
+              <rect x="7" y="11" width="3" height="3" rx="0.5" fill="currentColor" stroke="none" />
+              <rect x="14" y="11" width="3" height="3" rx="0.5" fill="currentColor" stroke="none" />
+              <path d="M9 17.5h6" strokeLinecap="round" />
+              <path d="M2 12h2M20 12h2" strokeLinecap="round" />
             </svg>
           </div>
           {fullText ? (
