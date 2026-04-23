@@ -202,10 +202,8 @@ function FeedbackCopyCard({ data }: { data?: AuditResult }) {
     const scanUrl = `https://vibeprompt.com/scan?url=${encodeURIComponent(data.url)}`;
     const best = Object.entries(data.categories).sort((a, b) => b[1].score - a[1].score)[0];
     const topIssues = data.findings.slice(0, 3).map((f) => `- ${f.title}`).join("\n");
-    const score = data.score;
-    const feel = score >= 75 ? "overall it's in pretty good shape" : score >= 50 ? "decent foundation but a few things that could use some work" : "there's quite a bit that could be improved here";
-    const praise = score >= 75 ? "genuinely solid" : "actually doing well";
-    return `had a look at your landing page, ${feel}\n\nyour ${best[1].label} is ${praise}, not something you see on every site\n\na few things that could be better:\n${topIssues}\n\nI scanned it properly, full breakdown here: ${scanUrl}`;
+    const praise = data.score >= 75 ? "genuinely solid" : "actually doing well";
+    return `your ${best[1].label} is ${praise}, not something you see on every site\n\na few things that could be better:\n${topIssues}\n\nI scanned it properly, full breakdown here: ${scanUrl}`;
   })() : null;
 
   useEffect(() => {
@@ -222,12 +220,21 @@ function FeedbackCopyCard({ data }: { data?: AuditResult }) {
   }, [fullText]);
 
   return (
-    <div className="mt-10">
+    <div className="mt-6">
       <div className="border border-foreground/12 overflow-hidden">
-        <div className="px-6 py-8 flex flex-col items-center text-center gap-4">
-          <span className="text-2xl">🤖</span>
+        <div className="px-5 py-5 flex items-start gap-4">
+          <div className="shrink-0 mt-0.5 w-7 h-7 rounded-sm border border-foreground/12 flex items-center justify-center">
+            <svg className="w-4 h-4 text-foreground/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
+              <rect x="3" y="8" width="18" height="13" rx="2" />
+              <path d="M8 8V6a4 4 0 0 1 8 0v2" />
+              <circle cx="9" cy="14" r="1.5" fill="currentColor" stroke="none" />
+              <circle cx="15" cy="14" r="1.5" fill="currentColor" stroke="none" />
+              <path d="M9 18h6" strokeLinecap="round" />
+              <path d="M12 3v2" strokeLinecap="round" />
+            </svg>
+          </div>
           {fullText ? (
-            <p className="text-xs leading-relaxed text-foreground/50 whitespace-pre-line max-w-xl">
+            <p className="text-xs leading-relaxed text-foreground/50 whitespace-pre-line">
               {displayed}{!done && <span className="animate-pulse">▌</span>}
             </p>
           ) : (
