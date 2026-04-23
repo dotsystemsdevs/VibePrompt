@@ -193,9 +193,10 @@ function ResultPanel({ data }: { data: AuditResult }) {
 // ── Reddit reply generator ────────────────────────────────────────────────────
 
 function FeedbackCopyCard({ data }: { data?: AuditResult }) {
-  const [copied, setCopied] = useState(false);
+  const [displayed, setDisplayed] = useState("");
+  const [done, setDone] = useState(false);
 
-  const feedbackText = data ? (() => {
+  const fullText = data ? (() => {
     const scanUrl = `https://vibeprompt.com/scan?url=${encodeURIComponent(data.url)}`;
     const best = Object.entries(data.categories).sort((a, b) => b[1].score - a[1].score)[0];
     const topIssues = data.findings.slice(0, 3).map((f) => `- ${f.title}`).join("\n");
@@ -205,33 +206,31 @@ function FeedbackCopyCard({ data }: { data?: AuditResult }) {
     return `had a look at your landing page, ${feel}\n\nyour ${best[1].label} is ${praise}, not something you see on every site\n\na few things that could be better:\n${topIssues}\n\nI scanned it properly, full breakdown here: ${scanUrl}`;
   })() : null;
 
-  function copy() {
-    if (!feedbackText) return;
-    navigator.clipboard.writeText(feedbackText).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
-  }
+  useEffect(() => {
+    if (!fullText) { setDisplayed(""); setDone(false); return; }
+    setDisplayed("");
+    setDone(false);
+    let i = 0;
+    const id = setInterval(() => {
+      i++;
+      setDisplayed(fullText.slice(0, i));
+      if (i >= fullText.length) { clearInterval(id); setDone(true); }
+    }, 18);
+    return () => clearInterval(id);
+  }, [fullText]);
 
   return (
     <div className="mt-10">
       <div className="border border-foreground/12 overflow-hidden">
-        <div className="px-5 py-4 min-h-[80px]">
-          {feedbackText ? (
-            <p className="text-xs leading-relaxed text-foreground/50 whitespace-pre-line">{feedbackText}</p>
+        <div className="px-6 py-8 flex flex-col items-center text-center gap-4">
+          <span className="text-2xl">🤖</span>
+          {fullText ? (
+            <p className="text-xs leading-relaxed text-foreground/50 whitespace-pre-line max-w-xl">
+              {displayed}{!done && <span className="animate-pulse">▌</span>}
+            </p>
           ) : (
-            <p className="text-xs text-foreground/20">Scan a site above to generate a ready-to-copy feedback summary.</p>
+            <p className="text-xs text-foreground/20">Scan a site above to generate a feedback summary.</p>
           )}
-        </div>
-        <div className="border-t border-foreground/8 px-5 py-3 flex justify-end">
-          <button
-            type="button"
-            onClick={copy}
-            disabled={!feedbackText}
-            className="text-[11px] font-medium px-4 py-1.5 border border-foreground/15 hover:border-foreground/30 text-foreground/50 hover:text-foreground/80 transition-colors disabled:opacity-25 disabled:cursor-not-allowed"
-          >
-            {copied ? "Copied ✓" : "Copy →"}
-          </button>
         </div>
       </div>
     </div>
