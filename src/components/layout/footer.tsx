@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 
 const GITHUB_URL = "https://github.com/dotsystemsdevs/vibeprompt";
+const COFFEE_URL = "https://buymeacoffee.com/dotdevs";
 
 type FooterContributor = {
   login: string;
@@ -140,6 +141,8 @@ export function Footer() {
               <Link href="/about" className="text-muted-foreground transition-colors hover:text-foreground">About</Link>
               <span className="text-foreground/20">·</span>
               <Link href="/privacy" className="text-muted-foreground transition-colors hover:text-foreground">Privacy</Link>
+              <span className="text-foreground/20">·</span>
+              <a href={COFFEE_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-foreground">Coffee ↗</a>
             </div>
           </div>
         ) : (
@@ -185,6 +188,8 @@ export function Footer() {
               <Link href="/about" className="transition-colors hover:text-foreground">About</Link>
               <span className="mx-2 text-foreground/20">·</span>
               <Link href="/privacy" className="transition-colors hover:text-foreground">Privacy</Link>
+              <span className="mx-2 text-foreground/20">·</span>
+              <a href={COFFEE_URL} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-foreground">Coffee ↗</a>
             </div>
           </div>
         )}
