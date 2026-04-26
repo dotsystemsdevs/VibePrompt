@@ -2,8 +2,8 @@
 title: "The One-Shot Myth: What Vibe Coding Actually Looks Like"
 description: "Everyone online is one-shotting full dashboards. You're spending weeks debugging. Here's why both things are true, and what actually separates the people who ship from the ones who don't."
 date: "2026-04-22"
-image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&q=80"
-imageAlt: "Abstract AI interface with glowing elements"
+image: "https://images.unsplash.com/photo-1518773553398-650c184e0bb3?w=1200&q=80"
+imageAlt: "Developer typing on a backlit keyboard"
 author: "vibeprompt"
 ---
 

@@ -2,8 +2,8 @@
 title: "Getting Your First 10 App Reviews (Without Begging or Bots)"
 description: "Zero reviews kills conversion. Five reviews unlocks it. Going from zero to ten is the highest-ROI marketing move you'll make. Here's how to do it in a morning, with the channels that actually convert."
 date: "2026-04-18"
-image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&q=80"
-imageAlt: "Abstract AI interface with glowing elements"
+image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=80"
+imageAlt: "Open laptop showing source code"
 author: "vibeprompt"
 ---
 

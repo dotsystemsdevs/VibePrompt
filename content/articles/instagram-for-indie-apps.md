@@ -2,8 +2,8 @@
 title: "Instagram for Indie Apps: What Worked, What Didn't, Real Numbers"
 description: "Across three accounts and one week of posting, we tracked exactly what Instagram does and doesn't do for indie app marketing. The headline: it builds your brand, not your install base."
 date: "2026-04-19"
-image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=80"
-imageAlt: "Abstract neural network visualization"
+image: "https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=1200&q=80"
+imageAlt: "Workstation with multiple screens of code"
 author: "vibeprompt"
 ---
 

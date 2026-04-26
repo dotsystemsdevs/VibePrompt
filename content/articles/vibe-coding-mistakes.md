@@ -2,8 +2,8 @@
 title: "The 7 Most Common Vibe Coding Mistakes"
 description: "Every project failure follows the same pattern. Here's what actually goes wrong when you build with AI, and the exact fix for each one."
 date: "2026-04-21"
-image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=80"
-imageAlt: "Abstract neural network visualization"
+image: "https://images.unsplash.com/photo-1605379399642-870262d3d051?w=1200&q=80"
+imageAlt: "Code on a screen in low light"
 author: "vibeprompt"
 ---
 

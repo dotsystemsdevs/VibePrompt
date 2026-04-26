@@ -2,8 +2,8 @@
 title: "Real Vibe Coding Examples (With Actual Time Data)"
 description: "Seven real prompts from shipping three production apps. The exact requests, what the AI got right, what it got wrong, and how long each one took. No theory, just receipts."
 date: "2026-04-24"
-image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&q=80"
-imageAlt: "Abstract AI interface with glowing elements"
+image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=1200&q=80"
+imageAlt: "Lines of code on a screen"
 author: "vibeprompt"
 ---
 

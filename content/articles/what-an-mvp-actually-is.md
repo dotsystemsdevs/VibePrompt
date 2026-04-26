@@ -2,8 +2,8 @@
 title: "What an MVP Actually Is (Most People Build the Wrong Thing)"
 description: "Eric Ries defined MVP fifteen years ago. Most people building one today are building something else: a polished v1, a portfolio piece, or a product they're scared to show. Here's what an MVP is for, and how to know when yours is done."
 date: "2026-04-25"
-image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=80"
-imageAlt: "Abstract neural network visualization"
+image: "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=1200&q=80"
+imageAlt: "Late-night programmer setup"
 author: "vibeprompt"
 ---
 
