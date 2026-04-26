@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { getPromptLibrary } from "@/lib/prompt-library";
 import { getRepoContributors } from "@/lib/github-repo-contributors";
-import { getAllArticles } from "@/lib/articles";
 import { WORKFLOW_STEPS } from "@/lib/workflow-steps";
 
 const SCHEMA_ORG = {
@@ -21,7 +20,6 @@ const SCHEMA_ORG = {
 export default async function HomePage() {
   const { prompts, categories } = await getPromptLibrary();
   const contributors = await getRepoContributors();
-  const latestArticles = (await getAllArticles()).slice(0, 3);
 
   return (
     <>
@@ -105,8 +103,8 @@ export default async function HomePage() {
 
           </div>
 
-          {/* Right, workflow + latest articles */}
-          <div className="flex w-[340px] shrink-0 flex-col gap-4">
+          {/* Right, workflow card */}
+          <div className="w-[340px] shrink-0">
             <div className="border border-foreground/20 bg-[#0a0a0a]">
 
               <div className="flex items-center justify-between border-b border-foreground/12 px-4 py-3">
@@ -140,38 +138,6 @@ export default async function HomePage() {
               </div>
 
             </div>
-
-            {latestArticles.length > 0 && (
-              <div className="border border-foreground/20 bg-[#0a0a0a]">
-                <div className="flex items-center justify-between border-b border-foreground/12 px-4 py-3">
-                  <span className="text-[9px] font-medium uppercase tracking-widest text-foreground/30">
-                    Latest articles
-                  </span>
-                  <span className="text-[9px] text-foreground/20">new</span>
-                </div>
-                <div className="divide-y divide-foreground/[0.06]">
-                  {latestArticles.map((a) => (
-                    <Link
-                      key={a.slug}
-                      href={`/articles/${a.slug}`}
-                      className="group block px-4 py-2.5 transition-colors hover:bg-foreground/[0.04]"
-                    >
-                      <span className="line-clamp-2 text-[11px] leading-snug text-foreground/55 transition-colors group-hover:text-foreground/80">
-                        {a.title}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-                <div className="border-t border-foreground/10 px-4 py-3">
-                  <Link
-                    href="/articles"
-                    className="text-[11px] font-medium text-foreground/30 transition-colors hover:text-foreground/65"
-                  >
-                    See all articles →
-                  </Link>
-                </div>
-              </div>
-            )}
           </div>
 
         </div>
@@ -237,33 +203,6 @@ export default async function HomePage() {
               </Link>
             </div>
           </div>
-
-          {latestArticles.length > 0 && (
-            <div className="mt-4 border border-foreground/20">
-              <div className="flex items-center justify-between border-b border-foreground/12 px-4 py-2.5">
-                <span className="text-[9px] font-medium uppercase tracking-widest text-foreground/30">Latest articles</span>
-                <span className="text-[9px] text-foreground/20">new</span>
-              </div>
-              <div className="divide-y divide-foreground/[0.06]">
-                {latestArticles.map((a) => (
-                  <Link
-                    key={a.slug}
-                    href={`/articles/${a.slug}`}
-                    className="group block px-4 py-2.5 transition-colors hover:bg-foreground/[0.04]"
-                  >
-                    <span className="line-clamp-2 text-[11px] leading-snug text-foreground/55 transition-colors group-hover:text-foreground/80">
-                      {a.title}
-                    </span>
-                  </Link>
-                ))}
-              </div>
-              <div className="border-t border-foreground/10 px-4 py-3">
-                <Link href="/articles" className="text-[11px] font-medium text-foreground/30 transition-colors hover:text-foreground/65">
-                  See all articles →
-                </Link>
-              </div>
-            </div>
-          )}
 
           {contributors.length > 0 && (
             <div className="mt-7 flex items-center gap-3">
