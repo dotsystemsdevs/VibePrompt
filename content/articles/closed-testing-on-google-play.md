@@ -2,8 +2,8 @@
 title: "Closed Testing on Google Play: From Zero to 100 Testers"
 description: "Google Play requires real users in closed testing for 14 days before production. Here's exactly how to recruit them, where to post, what to avoid, and how to handle the feedback when it lands."
 date: "2026-04-23"
-image: "https://images.unsplash.com/photo-1619410283995-43d9134e7656?w=1200&q=80"
-imageAlt: "Mobile device next to a laptop showing code"
+image: "https://images.unsplash.com/photo-1696695368125-fc0d809b4ab5?w=1200&q=80"
+imageAlt: "Android smartphone held in a hand"
 author: "vibeprompt"
 ---
 

@@ -2,8 +2,8 @@
 title: "What Vibe Coding Actually Is (and What It Isn't)"
 description: "Karpathy coined the term in February 2025. Since then it's been twisted into a hype word for both fans and critics. Here's the practical definition, and the line between using AI well and shipping slop."
 date: "2026-04-26"
-image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=1200&q=80"
-imageAlt: "Code on a dark monitor"
+image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&q=80"
+imageAlt: "Abstract AI brain visualization"
 author: "vibeprompt"
 ---
 

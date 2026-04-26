@@ -2,8 +2,8 @@
 title: "After-Launch Troubleshooting: When the Numbers Won't Move"
 description: "You shipped. Now nothing's happening. Five common post-launch problems, what we tried for each, and what actually moved the metric. Real data from real apps, no theory."
 date: "2026-04-17"
-image: "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?w=1200&q=80"
-imageAlt: "Console output on a terminal screen"
+image: "https://images.unsplash.com/photo-1501618669935-18b6ecb13d6d?w=1200&q=80"
+imageAlt: "Analytics dashboard with graphs and metrics"
 author: "vibeprompt"
 ---
 

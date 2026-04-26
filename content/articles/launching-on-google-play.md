@@ -2,8 +2,8 @@
 title: "Launching on Google Play: The Listing, the ASO, and the Day Itself"
 description: "Launch isn't the finish line, it's where the real work starts. Here's how to set up the store listing so it actually converts, what ASO levers matter, and what to do on the day you go live."
 date: "2026-04-22"
-image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=1200&q=80"
-imageAlt: "Code editor open on a desk"
+image: "https://images.unsplash.com/photo-1633613286991-611fe299c4be?w=1200&q=80"
+imageAlt: "Rocket lifting off into the sky"
 author: "vibeprompt"
 ---
 
