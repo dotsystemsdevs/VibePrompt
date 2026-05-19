@@ -23,6 +23,8 @@ type HandbookChapter = {
   listIds?: string[];
 };
 
+// Chapter order mirrors the 9-step build loop (Research → PRD → Stack → Context → Build → Quality → Ship → Iterate),
+// bookended by Mindset (pre-everything) and post-launch chapters (Grow, Earn & Stay).
 const HANDBOOK_CHAPTERS: HandbookChapter[] = [
   {
     number: "01",
@@ -34,15 +36,6 @@ const HANDBOOK_CHAPTERS: HandbookChapter[] = [
   },
   {
     number: "02",
-    slug: "context",
-    title: "Context",
-    tagline: "Set up the agent so it actually understands your project.",
-    blurb: "AGENTS.md, CLAUDE.md, memory, file-system constraints. The difference between an agent that ships features and one that hallucinates new state every prompt.",
-    promptCategorySlugs: ["agent-setup"],
-    articleSlugs: ["context-is-everything"],
-  },
-  {
-    number: "03",
     slug: "research",
     title: "Research",
     tagline: "Validate demand before writing a line of code.",
@@ -50,7 +43,7 @@ const HANDBOOK_CHAPTERS: HandbookChapter[] = [
     promptCategorySlugs: ["research-validate"],
   },
   {
-    number: "04",
+    number: "03",
     slug: "plan",
     title: "Plan & Spec",
     tagline: "PRDs, MVP scoping, and what done looks like.",
@@ -59,12 +52,21 @@ const HANDBOOK_CHAPTERS: HandbookChapter[] = [
     articleSlugs: ["what-an-mvp-actually-is"],
   },
   {
-    number: "05",
+    number: "04",
     slug: "architect",
     title: "Architect",
     tagline: "Stack, boundaries, and the shape of the thing.",
     blurb: "Pick the stack you have, not the stack you wish you had. Architecture decisions made at hour one cost 10x to change at week four.",
     promptCategorySlugs: ["architecture-stack"],
+  },
+  {
+    number: "05",
+    slug: "context",
+    title: "Context",
+    tagline: "Set up the agent so it actually understands your project.",
+    blurb: "AGENTS.md, CLAUDE.md, memory, file-system constraints. The difference between an agent that ships features and one that hallucinates new state every prompt.",
+    promptCategorySlugs: ["agent-setup"],
+    articleSlugs: ["context-is-everything"],
   },
   {
     number: "06",
@@ -96,6 +98,15 @@ const HANDBOOK_CHAPTERS: HandbookChapter[] = [
   },
   {
     number: "09",
+    slug: "iterate",
+    title: "Iterate",
+    tagline: "Post-launch maintenance, ops, and the long tail of shipping.",
+    blurb: "Launch is the start, not the finish. Ops, monitoring, post-launch troubleshooting, and the prompts that keep small things from becoming incidents.",
+    promptCategorySlugs: ["ops-maintenance"],
+    articleSlugs: ["after-launch-troubleshooting"],
+  },
+  {
+    number: "10",
     slug: "grow",
     title: "Grow",
     tagline: "How people actually find your thing.",
@@ -104,21 +115,12 @@ const HANDBOOK_CHAPTERS: HandbookChapter[] = [
     listCategories: ["grow"],
   },
   {
-    number: "10",
+    number: "11",
     slug: "earn-stay",
     title: "Earn & Stay",
     tagline: "Pricing, monetization, and not burning out before PMF.",
     blurb: "54% of solo founders cite burnout as the #1 cause of failure, ahead of product and capital. Pricing too low is the second. Both have field-tested fixes.",
     listCategories: ["earn", "stay"],
-  },
-  {
-    number: "11",
-    slug: "iterate",
-    title: "Iterate",
-    tagline: "Post-launch maintenance, ops, and the long tail of shipping.",
-    blurb: "Launch is the start, not the finish. Ops, monitoring, post-launch troubleshooting, and the prompts that keep small things from becoming incidents.",
-    promptCategorySlugs: ["ops-maintenance"],
-    articleSlugs: ["after-launch-troubleshooting"],
   },
 ];
 
