@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "vibeprompt, Prompts, workflow & tools for vibe coders";
+export const alt = "vibeprompt vs. the vibe coding books — free, web-native, continuously updated";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -20,59 +20,39 @@ export default function OGImage() {
           fontFamily: "ui-monospace, monospace",
         }}
       >
-        {/* Top: logo */}
         <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-          <div
-            style={{
-              width: "40px",
-              height: "40px",
-              borderRadius: "50%",
-              backgroundColor: "#2563EB",
-            }}
-          />
+          <div style={{ width: "40px", height: "40px", borderRadius: "50%", backgroundColor: "#2563EB" }} />
           <span style={{ color: "#ffffff", fontSize: "22px", fontWeight: "700", letterSpacing: "-0.03em" }}>
-            vibeprompt
+            vibeprompt / vs-books
           </span>
         </div>
 
-        {/* Center: headline */}
         <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-          <div
-            style={{
-              color: "#ffffff",
-              fontSize: "72px",
-              fontWeight: "800",
-              lineHeight: "1.0",
-              letterSpacing: "-0.04em",
-            }}
-          >
-            Everything you need
+          <div style={{ color: "#ffffff", fontSize: "72px", fontWeight: "800", lineHeight: "1.0", letterSpacing: "-0.04em" }}>
+            vibeprompt vs.
             <br />
-            <span style={{ color: "#2563EB" }}>to ship with AI.</span>
+            <span style={{ color: "#2563EB" }}>the vibe coding books.</span>
           </div>
           <div style={{ color: "#71717a", fontSize: "24px", fontWeight: "400" }}>
-            Prompts · 9-step workflow · fixes · deep-dives · free &amp; open
+            How the free web-native option compares to Gene Kim & Yegge and Smykowski.
           </div>
         </div>
 
-        {/* Bottom: workflow steps */}
         <div style={{ display: "flex", gap: "12px" }}>
-          {["Environment", "Research", "PRD", "Stack", "Context", "Build", "Quality", "Ship", "Iterate"].map((step, i) => (
+          {["Free", "Open source", "Updated weekly", "Web-native", "Indie-focused"].map((tag) => (
             <div
-              key={step}
+              key={tag}
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "6px",
                 border: "1px solid #27272a",
-                padding: "6px 12px",
-                color: "#52525b",
-                fontSize: "11px",
+                padding: "8px 14px",
+                color: "#a1a1aa",
+                fontSize: "13px",
                 letterSpacing: "0.05em",
               }}
             >
-              <span style={{ color: "#3f3f46", fontFamily: "monospace" }}>0{i}</span>
-              <span>{step}</span>
+              {tag}
             </div>
           ))}
         </div>
