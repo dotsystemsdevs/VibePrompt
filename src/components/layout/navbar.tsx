@@ -6,10 +6,11 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const NAV_LINKS = [
+  { href: "/handbook", label: "Handbook" },
   { href: "/workflow", label: "Workflow" },
   { href: "/browse", label: "Prompts" },
-  { href: "/awesome", label: "Awesome" },
   { href: "/articles", label: "Articles" },
+  { href: "/awesome", label: "Awesome" },
   { href: "/scan", label: "Scan" },
 ];
 
