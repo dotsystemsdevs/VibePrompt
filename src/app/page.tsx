@@ -3,27 +3,33 @@ import Image from "next/image";
 import { getPromptLibrary } from "@/lib/prompt-library";
 import { getRepoContributors } from "@/lib/github-repo-contributors";
 import { WORKFLOW_STEPS } from "@/lib/workflow-steps";
-
-const SCHEMA_ORG = {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  name: "vibeprompt",
-  description: "The vibe coding cookbook — recipes for shipping with AI. 9-step workflow, 55 battle-tested prompts, 45 field-tested fixes, and 15 deep-dives. Free, open source, web-native.",
-  url: "https://vibeprompt.tech",
-  applicationCategory: "DeveloperApplication",
-  operatingSystem: "Web",
-  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-  keywords: "vibe coding, vibe coding cookbook, vibe coding book, vibe coding guide, AI prompts, prompt library, Claude prompts, AI workflow, open source",
-  creator: { "@type": "Organization", name: "vibeprompt", url: "https://vibeprompt.tech" },
-};
+import { getAllArticles } from "@/lib/articles";
+import { LIST_PROBLEMS } from "@/lib/list-problems";
 
 export default async function HomePage() {
   const { prompts, categories } = await getPromptLibrary();
   const contributors = await getRepoContributors();
+  const articles = await getAllArticles();
+  const fixesCount = LIST_PROBLEMS.length;
+  const articlesCount = articles.length;
+  const promptsCount = prompts.length;
+
+  const schemaOrg = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "vibeprompt",
+    description: `The vibe coding cookbook — recipes for shipping with AI. 9-step workflow, ${promptsCount} battle-tested prompts, ${fixesCount} field-tested fixes, and ${articlesCount} deep-dives. Free, open source, web-native.`,
+    url: "https://vibeprompt.tech",
+    applicationCategory: "DeveloperApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    keywords: "vibe coding, vibe coding cookbook, vibe coding book, vibe coding guide, AI prompts, prompt library, Claude prompts, AI workflow, open source",
+    creator: { "@type": "Organization", name: "vibeprompt", url: "https://vibeprompt.tech" },
+  };
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA_ORG) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }} />
 
       <div className="flex min-h-0 flex-1 flex-col overflow-hidden pt-12">
 
@@ -34,7 +40,7 @@ export default async function HomePage() {
           <div className="flex flex-1 flex-col">
 
             <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground/50">
-              {prompts.length} prompts &nbsp;·&nbsp; 45 fixes &nbsp;·&nbsp; 15 deep-dives &nbsp;·&nbsp; free · open
+              {promptsCount} prompts &nbsp;·&nbsp; {fixesCount} fixes &nbsp;·&nbsp; {articlesCount} deep-dives &nbsp;·&nbsp; free · open
             </p>
 
             <h1
@@ -162,7 +168,7 @@ export default async function HomePage() {
         <div className="flex flex-1 flex-col px-5 py-10 lg:hidden">
 
           <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground/50">
-            {prompts.length} prompts &nbsp;·&nbsp; 45 fixes &nbsp;·&nbsp; 15 deep-dives &nbsp;·&nbsp; free
+            {promptsCount} prompts &nbsp;·&nbsp; {fixesCount} fixes &nbsp;·&nbsp; {articlesCount} deep-dives &nbsp;·&nbsp; free
           </p>
 
           <p
