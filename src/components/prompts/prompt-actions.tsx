@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { track } from "@vercel/analytics";
 import { incrementCopyCount } from "@/lib/actions/copies";
 
 interface PromptActionsProps {
@@ -23,6 +24,7 @@ export function PromptActions({ slug, promptText, initialCopyCount = 0, sidebar,
     setCopied(true);
     setCopyCount((n) => n + 1);
     setTimeout(() => setCopied(false), 2000);
+    track("prompt_copied", { slug });
     incrementCopyCount(slug).catch(() => {});
   }
 
