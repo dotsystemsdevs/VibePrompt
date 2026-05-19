@@ -6,6 +6,26 @@ import { getArticle, getAllArticles, CATEGORY_LABEL } from "@/lib/articles";
 import { ArticleToc } from "@/components/articles/article-toc";
 import { LIST_PROBLEMS, LIST_CATEGORY_LABEL } from "@/lib/list-problems";
 
+function FormattedAnswer({ text }: { text: string }) {
+  const parts = text.split("`");
+  return (
+    <>
+      {parts.map((part, i) =>
+        i % 2 === 1 ? (
+          <code
+            key={i}
+            className="rounded-sm bg-foreground/[0.08] px-1.5 py-0.5 font-mono text-[12px] text-foreground/85"
+          >
+            {part}
+          </code>
+        ) : (
+          <span key={i}>{part}</span>
+        )
+      )}
+    </>
+  );
+}
+
 export async function generateStaticParams() {
   const articles = await getAllArticles();
   return articles.map((a) => ({ slug: a.slug }));
@@ -129,26 +149,41 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
                 {relatedProblems.length > 0 && (
                   <div>
-                    <h3 className="mb-3 text-[13px] font-semibold text-foreground/85">
+                    <h3 className="mb-4 text-[13px] font-semibold text-foreground/85">
                       Common problems this covers
                     </h3>
-                    <ul className="space-y-0.5">
-                      {relatedProblems.map((p) => (
-                        <li key={p.id}>
-                          <Link
-                            href={`/list?cat=${p.category}#${p.id}`}
-                            className="group flex items-baseline gap-3 py-1.5"
-                          >
-                            <span className="text-[9px] font-semibold uppercase tracking-[0.18em] text-foreground/30 w-12 shrink-0">
-                              {LIST_CATEGORY_LABEL[p.category]}
+                    <ol className="border border-foreground/15 overflow-hidden">
+                      {relatedProblems.map((p, i) => (
+                        <li
+                          key={p.id}
+                          id={p.id}
+                          className={`px-5 sm:px-6 py-5 scroll-mt-24 ${i > 0 ? "border-t border-foreground/[0.08]" : ""}`}
+                        >
+                          <div className="mb-2 flex items-baseline gap-3">
+                            <span className="shrink-0 text-[10px] tabular-nums uppercase tracking-widest text-foreground/30 w-6 pt-0.5">
+                              {String(i + 1).padStart(2, "0")}
                             </span>
-                            <span className="text-[13px] leading-snug text-foreground/70 group-hover:text-foreground transition-colors">
+                            <h4 className="text-[15px] font-semibold leading-snug text-foreground">
                               {p.title}
-                            </span>
-                          </Link>
+                            </h4>
+                          </div>
+                          <div className="ml-9">
+                            <div className="mb-2 flex items-center gap-3">
+                              <span className="text-[9px] font-semibold uppercase tracking-[0.18em] text-foreground/40">
+                                {LIST_CATEGORY_LABEL[p.category]}
+                              </span>
+                              <span className="text-foreground/15">·</span>
+                              <span className="text-[9px] font-semibold uppercase tracking-[0.18em] text-foreground/55">
+                                Fix
+                              </span>
+                            </div>
+                            <p className="text-[13px] leading-7 text-foreground/75">
+                              <FormattedAnswer text={p.answer} />
+                            </p>
+                          </div>
                         </li>
                       ))}
-                    </ul>
+                    </ol>
                   </div>
                 )}
               </aside>

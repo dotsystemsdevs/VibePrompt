@@ -39,7 +39,6 @@ export function Footer() {
     if (pathname === "/awesome") return true;
     if (pathname === "/articles") return true;
     if (pathname.startsWith("/articles/")) return true;
-    if (pathname === "/list") return true;
     if (pathname === "/scan") return true;
     return false;
   }, [pathname]);

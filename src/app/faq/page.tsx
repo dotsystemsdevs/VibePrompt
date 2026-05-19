@@ -38,7 +38,7 @@ function buildFaq(promptsCount: number, fixesCount: number, articlesCount: numbe
     },
     {
       q: "Where should I start with prompt engineering for AI coding?",
-      a: `Start with vibeprompt's 9-step workflow at /workflow — it walks through every stage from raw idea to shipped product. Then browse the ${promptsCount}-prompt library at /browse. If you hit a specific problem (security, conversion, burnout, etc.), check /list for ${fixesCount} field-tested fixes with the tactical answer for each.`,
+      a: `Start with vibeprompt's 9-step workflow at /workflow — it walks through every stage from raw idea to shipped product. Then browse the ${promptsCount}-prompt library at /browse. If you hit a specific problem (security, conversion, burnout, etc.), articles at /articles include ${fixesCount} field-tested fixes inline with the tactical answer for each.`,
     },
     {
       q: "Does vibeprompt work with Claude Code, Cursor, or Windsurf?",

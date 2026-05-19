@@ -227,7 +227,7 @@ export function WorkflowStepper({ steps, relatedByStep = {} }: WorkflowStepperPr
             {relatedProblems.map((problem) => (
               <Link
                 key={problem.id}
-                href={`/list?cat=${problem.category}#${problem.id}`}
+                href={problem.articleSlug ? `/articles/${problem.articleSlug}#${problem.id}` : "/articles"}
                 className="group flex items-baseline gap-3 px-4 py-3 sm:px-6 transition-colors hover:bg-foreground/[0.03]"
               >
                 <span className="shrink-0 text-[9px] font-semibold uppercase tracking-[0.18em] text-foreground/30 w-12">
@@ -239,14 +239,6 @@ export function WorkflowStepper({ steps, relatedByStep = {} }: WorkflowStepperPr
                 <span className="shrink-0 text-[9px] text-foreground/20 transition-colors group-hover:text-foreground/45">→</span>
               </Link>
             ))}
-            {relatedProblems[0] && (
-              <Link
-                href={`/list?cat=${relatedProblems[0].category}`}
-                className="block px-4 py-2.5 sm:px-6 text-[10px] uppercase tracking-widest text-foreground/30 transition-colors hover:text-foreground/65 hover:bg-foreground/[0.03]"
-              >
-                See all {LIST_CATEGORY_LABEL[relatedProblems[0].category]} fixes →
-              </Link>
-            )}
           </div>
         </div>
       )}

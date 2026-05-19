@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Not found · vibeprompt",
-  description: "The page you're looking for doesn't exist. Try the workflow, prompts, articles, or fixes instead.",
+  description: "The page you're looking for doesn't exist. Try the workflow, prompts, or articles instead.",
   robots: { index: false, follow: true },
 };
 
@@ -20,13 +20,8 @@ const SUGGESTIONS = [
   },
   {
     href: "/articles",
-    label: "Deep-dive articles",
-    description: "TestFlight, ASO, conversion, vibe coding mistakes. Real receipts.",
-  },
-  {
-    href: "/list",
-    label: "Field-tested fixes",
-    description: "Problem → tactical answer. Paste your error, find the fix.",
+    label: "Deep-dive articles & fixes",
+    description: "TestFlight, ASO, conversion, vibe coding mistakes. Field-tested problems and the tactical answer for each.",
   },
   {
     href: "/awesome",
