@@ -22,18 +22,19 @@ export function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-foreground/12 bg-background/95 backdrop-blur-md">
       <div className="mx-auto flex h-12 max-w-6xl items-center justify-between px-6">
-        <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-70">
-          <Image src="/favicon.svg" alt="vibeprompt logo" width={20} height={20} className="rounded-sm" />
+        <Link href="/" aria-label="vibeprompt home" className="flex items-center gap-2 transition-opacity hover:opacity-70">
+          <Image src="/favicon.svg" alt="" width={20} height={20} className="rounded-sm" />
           <span className="text-sm font-semibold tracking-tight text-foreground">vibeprompt</span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((l) => {
             const active = pathname === l.href || pathname.startsWith(l.href + "/");
             return (
               <Link
                 key={l.href}
                 href={l.href}
+                aria-current={active ? "page" : undefined}
                 className={`text-xs transition-colors ${
                   active
                     ? "font-medium text-foreground"
@@ -56,7 +57,14 @@ export function Navbar() {
           >
             GitHub ↗
           </a>
-          <button type="button" className="p-2 -mr-2 text-muted-foreground md:hidden" aria-label="Menu" onClick={() => setOpen(!open)}>
+          <button
+            type="button"
+            className="p-2 -mr-2 text-muted-foreground md:hidden"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            onClick={() => setOpen(!open)}
+          >
             <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {open ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
@@ -69,14 +77,15 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className="border-t border-foreground/12 px-6 pb-5 pt-4 md:hidden">
-          <div className="flex flex-col gap-4 text-xs">
+        <div id="mobile-nav" className="border-t border-foreground/12 px-6 pb-5 pt-4 md:hidden">
+          <nav aria-label="Mobile" className="flex flex-col gap-4 text-xs">
             {NAV_LINKS.map((l) => {
               const active = pathname === l.href || pathname.startsWith(l.href + "/");
               return (
                 <Link
                   key={l.href}
                   href={l.href}
+                  aria-current={active ? "page" : undefined}
                   className={
                     active ? "font-medium text-foreground" : "text-muted-foreground hover:text-foreground"
                   }
@@ -95,7 +104,7 @@ export function Navbar() {
             >
               GitHub ↗
             </a>
-          </div>
+          </nav>
         </div>
       )}
     </header>
