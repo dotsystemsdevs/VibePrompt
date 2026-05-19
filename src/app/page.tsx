@@ -53,11 +53,11 @@ export default async function HomePage() {
 
             <div className="mt-8 flex items-center gap-3">
               <Link
-                href="/cookbook"
+                href="/workflow"
                 className="cta inline-flex items-center gap-2 px-7 py-3 text-sm font-semibold text-white transition-all hover:opacity-85 active:scale-95"
                 style={{ background: "linear-gradient(135deg, #3b82f6, #2563eb)" }}
               >
-                Open the cookbook →
+                See the workflow →
               </Link>
               <a
                 href="https://github.com/dotsystemsdevs/vibeprompt/issues"
@@ -134,7 +134,7 @@ export default async function HomePage() {
                 {WORKFLOW_STEPS.map(({ step, title }) => (
                   <Link
                     key={step}
-                    href="/cookbook#workflow"
+                    href={`/workflow#step-${step}`}
                     className="group flex items-center gap-3 px-4 py-2.5 transition-colors hover:bg-foreground/[0.04]"
                   >
                     <span className="w-6 shrink-0 font-mono text-[10px] tabular-nums text-foreground/25">{step}</span>
@@ -146,10 +146,10 @@ export default async function HomePage() {
 
               <div className="border-t border-foreground/10 px-4 py-3">
                 <Link
-                  href="/cookbook#workflow"
+                  href="/workflow"
                   className="text-[11px] font-medium text-foreground/30 transition-colors hover:text-foreground/65"
                 >
-                  Open the build loop →
+                  See full workflow →
                 </Link>
               </div>
 
@@ -180,11 +180,11 @@ export default async function HomePage() {
 
           <div className="mt-7 flex items-center gap-3">
             <Link
-              href="/cookbook"
+              href="/workflow"
               className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-85"
               style={{ background: "linear-gradient(135deg, #3b82f6, #2563eb)" }}
             >
-              Open the cookbook →
+              See the workflow →
             </Link>
             <Link
               href="/browse"
@@ -204,7 +204,7 @@ export default async function HomePage() {
               {WORKFLOW_STEPS.map(({ step, title }) => (
                 <Link
                   key={step}
-                  href="/cookbook#workflow"
+                  href={`/workflow#step-${step}`}
                   className="group flex items-center gap-3 px-4 py-2.5 transition-colors hover:bg-foreground/[0.04]"
                 >
                   <span className="w-6 shrink-0 font-mono text-[10px] tabular-nums text-foreground/25">{step}</span>
@@ -214,8 +214,8 @@ export default async function HomePage() {
               ))}
             </div>
             <div className="border-t border-foreground/10 px-4 py-3">
-              <Link href="/cookbook#workflow" className="text-[11px] font-medium text-foreground/30 transition-colors hover:text-foreground/65">
-                Open the build loop →
+              <Link href="/workflow" className="text-[11px] font-medium text-foreground/30 transition-colors hover:text-foreground/65">
+                See full workflow →
               </Link>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function LearnPage() {
-  redirect("/cookbook");
+  redirect("/workflow");
 }

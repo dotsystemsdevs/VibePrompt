@@ -34,7 +34,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Where should I start with prompt engineering for AI coding?",
-    a: "Start with the Cookbook at /cookbook. It includes the 9-step interactive build loop (from idea to shipped) plus 11 chapters covering mindset, context, building, shipping, growing, and staying. Then browse the prompt library at /browse to find category-specific prompts.",
+    a: "Start with vibeprompt's 9-step workflow at /workflow. It walks through every stage from raw idea to shipped product and shows which prompts to use at each step. Then browse the prompt library at /browse to find category-specific prompts.",
   },
   {
     q: "Does vibeprompt work with Claude Code, Cursor, or Windsurf?",
