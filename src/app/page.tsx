@@ -8,12 +8,12 @@ const SCHEMA_ORG = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "vibeprompt",
-  description: "The vibe coding playbook — a 9-step methodology and 55 battle-tested prompts for shipping with Claude Code, Cursor, and other AI coding agents. Free, open source.",
+  description: "The vibe coding cookbook — recipes for shipping with AI. 9-step workflow, 55 battle-tested prompts, 45 field-tested fixes, and 15 deep-dives. Free, open source, web-native.",
   url: "https://vibeprompt.tech",
   applicationCategory: "DeveloperApplication",
   operatingSystem: "Web",
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-  keywords: "AI prompts, vibe coding, prompt library, Claude prompts, AI workflow, open source",
+  keywords: "vibe coding, vibe coding cookbook, vibe coding book, vibe coding guide, AI prompts, prompt library, Claude prompts, AI workflow, open source",
   creator: { "@type": "Organization", name: "vibeprompt", url: "https://vibeprompt.tech" },
 };
 
@@ -34,7 +34,7 @@ export default async function HomePage() {
           <div className="flex flex-1 flex-col">
 
             <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground/50">
-              9-step playbook &nbsp;·&nbsp; {prompts.length} prompts &nbsp;·&nbsp; free · open source
+              {prompts.length} prompts &nbsp;·&nbsp; 45 fixes &nbsp;·&nbsp; 15 deep-dives &nbsp;·&nbsp; free · open
             </p>
 
             <h1
@@ -43,12 +43,12 @@ export default async function HomePage() {
             >
               The vibe coding
               <br />
-              playbook.
+              cookbook.
             </h1>
 
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-foreground/50">
-              A 9-step methodology for shipping with AI agents.
-              {prompts.length} battle-tested prompts to use at every stage.
+              Recipes for shipping with AI. A 9-step workflow,
+              {" "}{prompts.length} battle-tested prompts, and field-tested fixes when things break.
             </p>
 
             <div className="mt-8 flex items-center gap-3">
@@ -162,7 +162,7 @@ export default async function HomePage() {
         <div className="flex flex-1 flex-col px-5 py-10 lg:hidden">
 
           <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground/50">
-            {prompts.length} prompts &nbsp;·&nbsp; {categories.length} categories &nbsp;·&nbsp; free
+            {prompts.length} prompts &nbsp;·&nbsp; 45 fixes &nbsp;·&nbsp; 15 deep-dives &nbsp;·&nbsp; free
           </p>
 
           <p
@@ -171,11 +171,11 @@ export default async function HomePage() {
             style={{ fontSize: "clamp(2.2rem, 8vw, 3rem)" }}
           >
             The vibe coding
-            <br />playbook.
+            <br />cookbook.
           </p>
 
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-foreground/50">
-            A 9-step methodology for shipping with AI agents. {prompts.length} prompts at every stage.
+            Recipes for shipping with AI. A 9-step workflow, {prompts.length} prompts, and fixes when things break.
           </p>
 
           <div className="mt-7 flex items-center gap-3">

@@ -19,26 +19,26 @@ export const metadata: Metadata = {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
   },
-  title: "vibeprompt — The vibe coding playbook",
+  title: "vibeprompt — The vibe coding cookbook",
   description:
-    "A 9-step methodology and 55 battle-tested prompts for shipping with Claude Code, Cursor, and AI coding agents. Free, open source, no login.",
+    "Recipes for shipping with AI: a 9-step workflow, 55 battle-tested prompts, 45 field-tested fixes, 15 deep-dives. Free, open source, updated as you ship.",
   keywords:
-    "vibe coding, vibe coding playbook, AI coding workflow, Claude Code prompts, Cursor prompts, prompt library, AI development methodology",
+    "vibe coding, vibe coding cookbook, vibe coding playbook, vibe coding book, vibe coding guide, vibe coding handbook, AI coding workflow, Claude Code prompts, Cursor prompts, prompt library, AI development methodology, indie hacker, solo developer",
   metadataBase: getMetadataBase(),
   alternates: { canonical: "https://vibeprompt.tech" },
   openGraph: {
-    title: "vibeprompt — The vibe coding playbook",
+    title: "vibeprompt — The vibe coding cookbook",
     description:
-      "A 9-step methodology and 55 battle-tested prompts for shipping with AI coding agents. Free and open source.",
+      "Recipes for shipping with AI: a 9-step workflow, 55 prompts, 45 fixes, and 15 deep-dives. Free, open source, web-native, updated weekly.",
     siteName: "vibeprompt",
     type: "website",
     url: "https://vibeprompt.tech",
   },
   twitter: {
     card: "summary_large_image",
-    title: "vibeprompt — The vibe coding playbook",
+    title: "vibeprompt — The vibe coding cookbook",
     description:
-      "9-step methodology + 55 prompts for shipping with Claude Code, Cursor & AI agents. Free, open source.",
+      "Recipes for shipping with AI. 9-step workflow, 55 prompts, 45 fixes, 15 deep-dives. Free, open source, updated weekly.",
   },
 };
 
