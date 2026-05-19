@@ -106,12 +106,12 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
                     </p>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] text-foreground/30">
+                    <span className="text-[10px] text-foreground/55">
                       {article.author}
-                      <span className="mx-1.5 text-foreground/15">·</span>
+                      <span className="mx-1.5 text-foreground/25">·</span>
                       {article.readingMinutes} min read
                     </span>
-                    <span className="text-xs text-foreground/25 transition-colors group-hover:text-foreground/60">Read →</span>
+                    <span className="text-xs text-foreground/55 transition-colors group-hover:text-foreground">Read →</span>
                   </div>
                 </div>
               </Link>

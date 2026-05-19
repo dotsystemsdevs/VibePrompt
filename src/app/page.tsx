@@ -140,10 +140,10 @@ export default async function HomePage() {
             <div className="border border-foreground/20 bg-[#0a0a0a]">
 
               <div className="flex items-center justify-between border-b border-foreground/12 px-4 py-3">
-                <span className="text-[9px] font-medium uppercase tracking-widest text-foreground/30">
+                <span className="text-[9px] font-medium uppercase tracking-widest text-foreground/55">
                   Vibe coding workflow
                 </span>
-                <span className="text-[9px] text-foreground/20">{WORKFLOW_STEPS.length} steps</span>
+                <span className="text-[9px] text-foreground/45">{WORKFLOW_STEPS.length} steps</span>
               </div>
 
               <div className="divide-y divide-foreground/[0.06]">
@@ -220,8 +220,8 @@ export default async function HomePage() {
           {/* Workflow card */}
           <div className="mt-8 border border-foreground/20">
             <div className="flex items-center justify-between border-b border-foreground/12 px-4 py-2.5">
-              <span className="text-[9px] font-medium uppercase tracking-widest text-foreground/30">Vibe coding workflow</span>
-              <span className="text-[9px] text-foreground/20">{WORKFLOW_STEPS.length} steps</span>
+              <span className="text-[9px] font-medium uppercase tracking-widest text-foreground/55">Vibe coding workflow</span>
+              <span className="text-[9px] text-foreground/45">{WORKFLOW_STEPS.length} steps</span>
             </div>
             <div className="divide-y divide-foreground/[0.06]">
               {WORKFLOW_STEPS.map(({ step, title }) => (
@@ -237,7 +237,7 @@ export default async function HomePage() {
               ))}
             </div>
             <div className="border-t border-foreground/10 px-4 py-3">
-              <Link href="/workflow" className="text-[11px] font-medium text-foreground/30 transition-colors hover:text-foreground/65">
+              <Link href="/workflow" className="text-[11px] font-medium text-foreground/55 transition-colors hover:text-foreground">
                 See full workflow →
               </Link>
             </div>
