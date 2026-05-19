@@ -182,6 +182,7 @@ export const WORKFLOW_PAGE_STEPS: StepData[] = [
           },
           {
             text: "Save as `docs/PRD.md` in the repo root. You will paste this into every AI session and load it into AGENTS.md.",
+            links: [{ label: "Download vibeprompt's PRD template", href: "/templates/PRD.md" }],
           },
         ],
       },
@@ -322,7 +323,11 @@ export const WORKFLOW_PAGE_STEPS: StepData[] = [
           {
             text: "Create a `memory-bank/` folder with these files: `@architecture.md` (file map, always read), `@design-doc.md` (your PRD, always read), `progress.md` (completed steps), `implementation-plan.md` (ordered task list).",
             detail: "Files prefixed with @ are set as 'Always' rules in your tool. The AI reads them before every session.",
-            links: [{ label: "EnzeD memory-bank pattern", href: "https://github.com/EnzeD/vibe-coding" }],
+            links: [
+              { label: "Download @architecture.md template", href: "/templates/architecture.md" },
+              { label: "Download implementation-plan.md template", href: "/templates/implementation-plan.md" },
+              { label: "EnzeD memory-bank pattern", href: "https://github.com/EnzeD/vibe-coding" },
+            ],
           },
           {
             text: "Start every AI session: 'Read AGENTS.md, docs/PRD.md, and memory-bank/@architecture.md before doing anything. Summarize what you understand before coding.'",
