@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { CommandPaletteTrigger } from "@/components/search/command-palette";
 
 const NAV_LINKS = [
   { href: "/workflow", label: "Workflow" },
@@ -49,6 +50,7 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <CommandPaletteTrigger />
           <a
             href={GITHUB_URL}
             target="_blank"

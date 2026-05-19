@@ -6,6 +6,8 @@ import { Analytics } from "@vercel/analytics/next";
 import { getPromptLibrary } from "@/lib/prompt-library";
 import { getAllArticles } from "@/lib/articles";
 import { LIST_PROBLEMS } from "@/lib/list-problems";
+import { getSearchData } from "@/lib/search-data";
+import { CommandPalette } from "@/components/search/command-palette";
 
 const getMetadataBase = () => {
   const fallback = "https://vibeprompt.tech";
@@ -55,11 +57,12 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const searchData = await getSearchData();
   return (
     <html lang="en" className="h-full antialiased">
       <head>
@@ -78,6 +81,7 @@ export default function RootLayout({
         <Navbar />
         <main id="main" className="flex min-h-0 flex-1 flex-col">{children}</main>
         <Footer />
+        <CommandPalette data={searchData} />
         <Analytics />
       </body>
     </html>
