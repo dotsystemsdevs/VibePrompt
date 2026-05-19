@@ -177,7 +177,6 @@ function resolveChapter(
 export default async function CookbookPage() {
   const [articles, library] = await Promise.all([getAllArticles(), getPromptLibrary()]);
   const { prompts } = library;
-  const totalCount = articles.length + prompts.length + LIST_PROBLEMS.length;
 
   return (
     <div className="pt-12">
@@ -189,52 +188,10 @@ export default async function CookbookPage() {
         />
       </Reveal>
 
-      <div className="mx-auto max-w-6xl px-6 pt-2 pb-10">
+      <div className="mx-auto max-w-6xl px-6 pt-6 pb-10">
 
-        {/* Stats grid */}
-        <div className="mb-12 grid grid-cols-2 sm:grid-cols-5 border border-foreground/12">
-          <Stat label="Chapters" value={HANDBOOK_CHAPTERS.length} href="#chapters" />
-          <Stat label="Build steps" value={WORKFLOW_PAGE_STEPS.length} href="#workflow" />
-          <Stat label="Articles" value={articles.length} href="/articles" />
-          <Stat label="Prompts" value={prompts.length} href="/browse" />
-          <Stat label="Problems" value={LIST_PROBLEMS.length} href="/list" />
-        </div>
-
-        {/* Mini TOC */}
-        <nav aria-label="Chapter index" className="mb-14 border border-foreground/12 p-5 sm:p-6">
-          <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground/45">
-            On this page · {totalCount + WORKFLOW_PAGE_STEPS.length} resources
-          </p>
-          <ol className="grid gap-x-6 gap-y-2 sm:grid-cols-2 lg:grid-cols-3 text-[12px]">
-            <li>
-              <a
-                href="#workflow"
-                className="group flex items-baseline gap-2 py-1 text-foreground/70 hover:text-foreground transition-colors"
-              >
-                <span className="tabular-nums text-foreground/30 text-[10px] uppercase tracking-widest w-5">→</span>
-                <span className="font-medium">Build loop</span>
-                <span className="text-foreground/35 text-[11px] truncate">9-step interactive walkthrough</span>
-              </a>
-            </li>
-            {HANDBOOK_CHAPTERS.map((c) => (
-              <li key={c.slug}>
-                <a
-                  href={`#${c.slug}`}
-                  className="group flex items-baseline gap-2 py-1 text-foreground/70 hover:text-foreground transition-colors"
-                >
-                  <span className="tabular-nums text-foreground/30 text-[10px] uppercase tracking-widest w-5">
-                    {c.number}
-                  </span>
-                  <span className="font-medium">{c.title}</span>
-                  <span className="text-foreground/35 text-[11px] truncate">{c.tagline}</span>
-                </a>
-              </li>
-            ))}
-          </ol>
-        </nav>
-
-        {/* Interactive build loop — formerly /workflow */}
-        <section id="workflow" className="mb-16 scroll-mt-24">
+        {/* Interactive build loop — the centerpiece, right after hero */}
+        <section id="workflow" className="mb-20 scroll-mt-24">
           <header className="mb-6 max-w-2xl">
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground/45 mb-3">
               The build loop
@@ -248,6 +205,28 @@ export default async function CookbookPage() {
           </header>
           <WorkflowStepper steps={WORKFLOW_PAGE_STEPS} />
         </section>
+
+        {/* Reference library — slim TOC then chapters */}
+        <div className="mb-8">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground/45 mb-3">
+            Reference library
+          </p>
+          <h2 className="text-xl sm:text-2xl font-bold leading-tight tracking-[-0.02em] text-foreground mb-3">
+            {HANDBOOK_CHAPTERS.length} chapters, deep dives, prompts, and field-tested fixes.
+          </h2>
+        </div>
+
+        <nav aria-label="Chapter index" className="mb-12 flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-foreground/10 pb-5 text-[11px]">
+          {HANDBOOK_CHAPTERS.map((c, i) => (
+            <span key={c.slug} className="flex items-baseline gap-3">
+              {i > 0 && <span className="text-foreground/15">·</span>}
+              <a href={`#${c.slug}`} className="text-foreground/55 transition-colors hover:text-foreground">
+                <span className="tabular-nums text-foreground/25 mr-1.5">{c.number}</span>
+                {c.title}
+              </a>
+            </span>
+          ))}
+        </nav>
 
         <div id="chapters">
           {HANDBOOK_CHAPTERS.map((chapter) => {
@@ -280,24 +259,6 @@ export default async function CookbookPage() {
       </div>
     </div>
   );
-}
-
-function Stat({ label, value, href }: { label: string; value: number; href?: string }) {
-  const inner = (
-    <div className="px-5 py-5 sm:py-6">
-      <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-foreground/40 mb-2">{label}</p>
-      <p className="text-2xl sm:text-3xl font-bold tabular-nums tracking-[-0.02em] text-foreground">{value}</p>
-    </div>
-  );
-  const baseCls = "border-r last:border-r-0 sm:border-r border-b sm:border-b-0 border-foreground/8";
-  if (href) {
-    return (
-      <Link href={href} className={`${baseCls} transition-colors hover:bg-foreground/[0.03]`}>
-        {inner}
-      </Link>
-    );
-  }
-  return <div className={baseCls}>{inner}</div>;
 }
 
 function Chapter({
