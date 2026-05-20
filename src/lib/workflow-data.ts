@@ -585,13 +585,24 @@ export const WORKFLOW_PAGE_STEPS: StepData[] = [
           {
             text: "Twitter / X: post a build-in-public thread. Show the screenshot, the metric you care about, the ask. Tag #buildinpublic #indiedev. Reply to 10 accounts in your niche daily for the next week.",
             detail: "Following count doesn't matter. Consistency + engagement does. After 30 days of daily replies, your impressions 10–20x.",
+            links: [
+              { label: "#buildinpublic on X", href: "https://x.com/search?q=%23buildinpublic&src=typed_query&f=live" },
+              { label: "#indiedev on X", href: "https://x.com/search?q=%23indiedev&src=typed_query&f=live" },
+            ],
           },
           {
             text: "DM your first 30 users individually for a review/feedback. Not a broadcast — use their name, reference what they did in your app.",
             detail: "Conversion rate is 30–40% if asked right. Zero reviews kills install rate; 5 reviews unlocks it.",
+            links: [
+              { label: "Getting your first 10 app reviews", href: "/articles/getting-your-first-app-reviews" },
+            ],
           },
           {
             text: "Find 3 Discord servers / Slack communities where your target user hangs out. Lurk a week, contribute, then mention your product when relevant — never as the first message.",
+            links: [
+              { label: "Indie Hackers Discord", href: "https://discord.com/invite/indiehackers" },
+              { label: "r/SideProject Discord finder", href: "https://disboard.org/search?keyword=indie+dev" },
+            ],
           },
           {
             text: "App Store / Play Store: re-check the listing one more time before driving paid or organic traffic to it. Screenshot 1 must say what the app does in 5 words.",
@@ -600,9 +611,17 @@ export const WORKFLOW_PAGE_STEPS: StepData[] = [
           {
             text: "Track every channel separately. UTM params on links from Reddit, Twitter, PH. Without UTMs you can't tell what worked.",
             detail: "?utm_source=reddit&utm_medium=post&utm_campaign=launch — keep it that simple.",
+            links: [
+              { label: "Google Campaign URL Builder", href: "https://ga-dev-tools.google/campaign-url-builder/" },
+              { label: "UTM cheatsheet", href: "https://buffer.com/library/utm-guide/" },
+            ],
           },
           {
             text: "Kill the channel that doesn't work after 7 days. Double down on the one that does. Most launches succeed on ONE channel, not five.",
+            links: [
+              { label: "Show HN sank to page 4 — fix", href: "/articles/launching-on-google-play#show-hn-sunk" },
+              { label: "Product Hunt stalled at 8 upvotes — fix", href: "/articles/launching-on-google-play#ph-launch-8-upvotes" },
+            ],
           },
         ],
       },
