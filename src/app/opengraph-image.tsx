@@ -38,6 +38,8 @@ export default function OGImage() {
         <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
           <div
             style={{
+              display: "flex",
+              flexDirection: "column",
               color: "#ffffff",
               fontSize: "72px",
               fontWeight: "800",
@@ -45,11 +47,10 @@ export default function OGImage() {
               letterSpacing: "-0.04em",
             }}
           >
-            Everything you need
-            <br />
+            <span>Everything you need</span>
             <span style={{ color: "#2563EB" }}>to ship with AI.</span>
           </div>
-          <div style={{ color: "#71717a", fontSize: "24px", fontWeight: "400" }}>
+          <div style={{ display: "flex", color: "#71717a", fontSize: "24px", fontWeight: "400" }}>
             Prompts · 10-step workflow · fixes · deep-dives · free &amp; open
           </div>
         </div>

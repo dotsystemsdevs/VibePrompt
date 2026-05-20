@@ -27,12 +27,11 @@ export default function OGImage() {
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-          <div style={{ color: "#ffffff", fontSize: "72px", fontWeight: "800", lineHeight: "1.0", letterSpacing: "-0.04em" }}>
-            From idea to shipped,
-            <br />
+          <div style={{ display: "flex", flexDirection: "column", color: "#ffffff", fontSize: "72px", fontWeight: "800", lineHeight: "1.0", letterSpacing: "-0.04em" }}>
+            <span>From idea to shipped,</span>
             <span style={{ color: "#2563EB" }}>in 10 steps.</span>
           </div>
-          <div style={{ color: "#71717a", fontSize: "24px", fontWeight: "400" }}>
+          <div style={{ display: "flex", color: "#71717a", fontSize: "24px", fontWeight: "400" }}>
             Interactive checklist. Progress saves locally. Pick up where you left off.
           </div>
         </div>

@@ -27,12 +27,11 @@ export default function OGImage() {
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-          <div style={{ color: "#ffffff", fontSize: "72px", fontWeight: "800", lineHeight: "1.0", letterSpacing: "-0.04em" }}>
-            vibeprompt vs.
-            <br />
+          <div style={{ display: "flex", flexDirection: "column", color: "#ffffff", fontSize: "72px", fontWeight: "800", lineHeight: "1.0", letterSpacing: "-0.04em" }}>
+            <span>vibeprompt vs.</span>
             <span style={{ color: "#2563EB" }}>the vibe coding books.</span>
           </div>
-          <div style={{ color: "#71717a", fontSize: "24px", fontWeight: "400" }}>
+          <div style={{ display: "flex", color: "#71717a", fontSize: "24px", fontWeight: "400" }}>
             How the free web-native option compares to Gene Kim & Yegge and Smykowski.
           </div>
         </div>
