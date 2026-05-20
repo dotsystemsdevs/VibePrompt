@@ -7,7 +7,7 @@ type State =
   | { status: "idle" }
   | { status: "loading" }
   | { status: "result"; data: AuditResult }
-  | { status: "error"; message: string };
+  | { status: "error"; message: string; detail?: string; botProtection?: string };
 
 type FilterKey = "all" | "quickwins" | string;
 
@@ -373,7 +373,15 @@ export function AuditClient() {
     try {
       const res = await fetch(`/api/audit?url=${encodeURIComponent(url)}`);
       const data = await res.json();
-      if (!res.ok || data.error) { setState({ status: "error", message: data.error ?? "Unknown error" }); return; }
+      if (!res.ok || data.error) {
+        setState({
+          status: "error",
+          message: data.error ?? "Unknown error",
+          detail: data.detail,
+          botProtection: data.botProtection,
+        });
+        return;
+      }
       setState({ status: "result", data });
       window.history.pushState(null, "", `/scan?url=${encodeURIComponent(url)}`);
     } catch {
@@ -452,10 +460,15 @@ export function AuditClient() {
       )}
 
       {state.status === "error" && (
-        <div className="mt-6 border border-red-500/15 bg-red-500/[0.03] px-4 py-4">
-          <p className="text-xs font-medium text-red-400/80">Scan failed</p>
-          <p className="mt-0.5 text-xs text-foreground/40">{state.message}</p>
-          <button type="button" onClick={reset} className="mt-2 text-[10px] text-foreground/35 hover:text-foreground/55 underline transition-colors">Try again</button>
+        <div className={`mt-6 border px-4 py-4 ${state.botProtection ? "border-amber-500/20 bg-amber-500/[0.03]" : "border-red-500/15 bg-red-500/[0.03]"}`}>
+          <p className={`text-xs font-medium ${state.botProtection ? "text-amber-400/85" : "text-red-400/80"}`}>
+            {state.botProtection ? "Couldn't audit — bot protection detected" : "Scan failed"}
+          </p>
+          <p className="mt-0.5 text-xs text-foreground/55">{state.message}</p>
+          {state.detail && (
+            <p className="mt-2 text-[11px] leading-relaxed text-foreground/45">{state.detail}</p>
+          )}
+          <button type="button" onClick={reset} className="mt-3 text-[10px] text-foreground/45 hover:text-foreground underline transition-colors">Try a different URL</button>
         </div>
       )}
 
