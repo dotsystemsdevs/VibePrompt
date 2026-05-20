@@ -45,6 +45,8 @@ export const WORKFLOW_RELATED: Record<string, WorkflowRelated> = {
       "launching-on-google-play",
       "getting-your-first-app-reviews",
       "instagram-for-indie-apps",
+      "onboarding-that-actually-converts",
+      "taking-payment-as-an-indie-dev",
     ],
     fixIds: [
       "reddit-removed-post",
@@ -53,10 +55,12 @@ export const WORKFLOW_RELATED: Record<string, WorkflowRelated> = {
       "twitter-12-impressions",
       "five-stars-three-reviews",
       "rank-brand-only",
+      "priced-too-low",
+      "free-tier-converts-zero",
     ],
   },
   "09": {
-    articleSlugs: ["after-launch-troubleshooting"],
-    fixIds: ["60-visitors-zero-conv", "metrics-anxious"],
+    articleSlugs: ["after-launch-troubleshooting", "onboarding-that-actually-converts"],
+    fixIds: ["60-visitors-zero-conv", "metrics-anxious", "refunds-week-one"],
   },
 };
