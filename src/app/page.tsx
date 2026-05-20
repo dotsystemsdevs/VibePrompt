@@ -7,7 +7,7 @@ import { getAllArticles } from "@/lib/articles";
 import { LIST_PROBLEMS } from "@/lib/list-problems";
 
 export default async function HomePage() {
-  const { prompts, categories } = await getPromptLibrary();
+  const { prompts } = await getPromptLibrary();
   const contributors = await getRepoContributors();
   const articles = await getAllArticles();
   const fixesCount = LIST_PROBLEMS.length;

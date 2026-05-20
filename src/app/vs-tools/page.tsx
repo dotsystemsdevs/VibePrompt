@@ -5,7 +5,6 @@ import { Reveal } from "@/components/motion/reveal";
 import { GithubCta } from "@/components/cta/github-cta";
 import { getPromptLibrary } from "@/lib/prompt-library";
 import { getAllArticles } from "@/lib/articles";
-import { LIST_PROBLEMS } from "@/lib/list-problems";
 
 export const metadata: Metadata = {
   title: "vibeprompt vs. Replit, Lovable, Bolt, Cursor, Claude Code — which vibe coding tool to pick",

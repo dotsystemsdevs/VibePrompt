@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { TocItem } from "@/lib/articles";
 
 export type TocProblem = { id: string; title: string };
@@ -11,13 +11,18 @@ interface ArticleTocProps {
 }
 
 export function ArticleToc({ items, problems = [] }: ArticleTocProps) {
-  const allIds = [...items.map((i) => i.id), ...problems.map((p) => p.id)];
-  const [activeId, setActiveId] = useState<string | null>(allIds[0] ?? null);
+  const idsKey = useMemo(
+    () => [...items.map((i) => i.id), ...problems.map((p) => p.id)].join(","),
+    [items, problems],
+  );
+  const firstId = idsKey.split(",")[0] || null;
+  const [activeId, setActiveId] = useState<string | null>(firstId);
 
   useEffect(() => {
-    if (allIds.length === 0) return;
+    const ids = idsKey ? idsKey.split(",") : [];
+    if (ids.length === 0) return;
 
-    const headingEls = allIds
+    const headingEls = ids
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
 
@@ -40,7 +45,7 @@ export function ArticleToc({ items, problems = [] }: ArticleTocProps) {
 
     headingEls.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, [allIds.join(",")]);
+  }, [idsKey]);
 
   if (items.length === 0 && problems.length === 0) return null;
 

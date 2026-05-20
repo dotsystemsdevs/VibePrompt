@@ -37,8 +37,10 @@ export function CommandPalette({ data }: { data: SearchItem[] }) {
 
   useEffect(() => {
     if (open) {
+      /* eslint-disable react-hooks/set-state-in-effect -- intentional reset when modal opens */
       setQuery("");
       setSelectedIndex(0);
+      /* eslint-enable react-hooks/set-state-in-effect */
       requestAnimationFrame(() => inputRef.current?.focus());
     }
   }, [open]);
@@ -61,6 +63,7 @@ export function CommandPalette({ data }: { data: SearchItem[] }) {
   }, [query, data]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional reset when query changes
     setSelectedIndex(0);
   }, [query]);
 
