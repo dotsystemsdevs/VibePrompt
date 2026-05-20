@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 type Kind = "agents" | "prd";
 
 const STORAGE_KEY = "vibeprompt-generator-v1";
+const AI_ENABLED = process.env.NEXT_PUBLIC_AI_ENABLED === "true";
 
 type FormData = {
   agents: {
@@ -358,38 +359,42 @@ function OutputPanel({
         {markdown}
       </pre>
 
-      <div className="mt-3 flex flex-wrap items-center gap-2">
-        {!isAi ? (
-          <button
-            type="button"
-            onClick={onEnhance}
-            disabled={aiState === "loading"}
-            className="inline-flex items-center gap-1.5 border border-foreground/45 bg-foreground/[0.04] px-3 py-1.5 text-[11px] font-semibold text-foreground transition-colors hover:bg-foreground/[0.08] disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {aiState === "loading" ? "Generating…" : "Enhance with AI ✨"}
-          </button>
-        ) : (
-          <button
-            type="button"
-            onClick={onRevertToTemplate}
-            className="inline-flex items-center gap-1.5 border border-foreground/25 px-3 py-1.5 text-[11px] font-semibold text-foreground/70 transition-colors hover:bg-foreground/[0.04]"
-          >
-            ← Revert to template
-          </button>
-        )}
-        <p className="text-[10px] text-foreground/40">
-          {isAi
-            ? "AI version — re-generates when you edit inputs."
-            : "AI version uses Claude Haiku. 5 per hour. Template version is free, unlimited."}
-        </p>
-      </div>
+      {AI_ENABLED && (
+        <div className="mt-3 flex flex-wrap items-center gap-2">
+          {!isAi ? (
+            <button
+              type="button"
+              onClick={onEnhance}
+              disabled={aiState === "loading"}
+              className="inline-flex items-center gap-1.5 border border-foreground/45 bg-foreground/[0.04] px-3 py-1.5 text-[11px] font-semibold text-foreground transition-colors hover:bg-foreground/[0.08] disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {aiState === "loading" ? "Generating…" : "Enhance with AI ✨"}
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={onRevertToTemplate}
+              className="inline-flex items-center gap-1.5 border border-foreground/25 px-3 py-1.5 text-[11px] font-semibold text-foreground/70 transition-colors hover:bg-foreground/[0.04]"
+            >
+              ← Revert to template
+            </button>
+          )}
+          <p className="text-[10px] text-foreground/40">
+            {isAi
+              ? "AI version — re-generates when you edit inputs."
+              : "AI version uses Claude Haiku. 5 per hour. Template version is free, unlimited."}
+          </p>
+        </div>
+      )}
 
-      {aiError && (
+      {AI_ENABLED && aiError && (
         <p className="mt-2 text-[11px] text-red-500">{aiError}</p>
       )}
 
       <p className="mt-3 text-[10px] text-foreground/40">
-        Template inputs save to your browser. Nothing leaves your machine unless you tap &ldquo;Enhance with AI&rdquo;.
+        {AI_ENABLED
+          ? "Template inputs save to your browser. Nothing leaves your machine unless you tap “Enhance with AI”."
+          : "All inputs save to your browser. Nothing leaves your machine."}
       </p>
     </div>
   );

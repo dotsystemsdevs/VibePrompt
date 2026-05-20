@@ -81,14 +81,14 @@ export default function ToolboxPage() {
                 <span className="text-[11px] text-foreground/55">Open →</span>
               </div>
               <p className="mt-3 text-sm leading-relaxed text-foreground/80">
-                Fill in the blanks and download a ready-to-ship AGENTS.md or PRD. Or hit
-                &ldquo;Enhance with AI ✨&rdquo; and let Claude write a project-specific version
-                (5 free per hour, no API key needed).
+                Fill in the blanks and download a ready-to-ship AGENTS.md or PRD. Two modes
+                included in the source — template-fill (default) and a Claude-powered
+                enhance mode you can switch on with one env var if you self-host.
               </p>
               <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-[11px] text-foreground/55">
-                <span>· Two modes: template fill, or AI-enhanced</span>
                 <span>· Saves to your browser</span>
                 <span>· No signup</span>
+                <span>· Open source</span>
               </div>
             </Link>
           </section>
